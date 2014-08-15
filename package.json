@@ -1,0 +1,27 @@
+{
+  "name": "vier",
+  "version": "0.0.0",
+  "description": "Game for the js13k 2014 challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agar3s/vier.git"
+  },
+  "keywords": [
+    "game",
+    "13k"
+  ],
+  "author": "agar3s",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/agar3s/vier/issues"
+  },
+  "homepage": "https://github.com/agar3s/vier",
+  "dependencies": {
+    "connect": "^3.1.1",
+    "serve-static": "^1.5.2"
+  }
+}
