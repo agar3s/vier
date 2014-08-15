@@ -10,8 +10,8 @@ var drawGrilla = function(){
   ctx.stroke();
 }
 
-var drawCharacter = function(array){
-  ctx.fillStyle='#000';
+var drawCharacter = function(array, color, pixelSize){
+  ctx.fillStyle=color;
   for (var i = 0; i < array.length; i++) {
     var pixel = array[i];
     var y = pixel >> 4;
@@ -20,13 +20,22 @@ var drawCharacter = function(array){
   };
 }
 
+function loadSprite(sprite, callback){
+  var xhr = new XMLHttpRequest;
+  xhr.open('GET', '/sprites/' + sprite, true);
+  xhr.responseType = 'arraybuffer';
+  xhr.onload = function(){
+    var data = new Uint8Array(xhr.response || xhr.mozResponseArrayBuffer);
+    callback(data);
+  };
+  xhr.send(null);
+}
 
-var xhr = new XMLHttpRequest;
-xhr.open('GET', '/sprites/h', true);
-xhr.responseType = 'arraybuffer';
-xhr.onload = function(){
-  var data = new Uint8Array(xhr.response || xhr.mozResponseArrayBuffer);
-  drawCharacter(data);
-};
+loadSprite('h', function(data){
+  drawCharacter(data, '#000', 10);
+});
 
-xhr.send(null);
+loadSprite('f', function(data){
+  drawCharacter(data, '#E60', 4);
+});
+
