@@ -52,8 +52,13 @@ function loadSprite(sprite, callback){
 }
 
 function loadByImage(sprite, callback){
-  window.myImg = new Image();
-  myImg.src = 'sprites/'+sprite+'.png';
+  var myImg = new Image();
+  //myImg.src = 'sprites/'+sprite+'.png';
+  
+  var laImg = document.getElementById('f');
+  console.log(laImg);
+  myImg.crossOrigin = "Anonymous";
+  myImg.src = laImg.src; 
   var data = [];
 
   myImg.onload = function(){
