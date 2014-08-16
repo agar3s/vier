@@ -1,4 +1,6 @@
 var fs = require('fs');
+var Png = require('png').Png;
+
 
 //assuming sprites with 16X16 dimmension
 var cols = 16;
@@ -9,6 +11,13 @@ var createSprite = function(name, byteArray){
   var buffer = new Buffer(byteArray);
   wstream.write(buffer);
   wstream.end();
+};
+
+var createImage = function(name, byteArray){
+  var png = new Png(new Buffer(byteArray), Math.floor(byteArray.length/3), 1);
+  png.encode(function(encodedPng){
+    fs.writeFileSync('./app/sprites/'+name+'.png', encodedPng.toString('binary'), 'binary');
+  });
 };
 
 var transformSprite = function(file){
@@ -26,9 +35,9 @@ var transformSprite = function(file){
       }
     };
     createSprite(file[0], byteArray);
-
+    createImage(file[0], byteArray);
   });
 };
 
-transformSprite('hero');
 transformSprite('fire');
+transformSprite('hero');

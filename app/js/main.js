@@ -51,13 +51,33 @@ function loadSprite(sprite, callback){
   xhr.send(null);
 }
 
-loadSprite('h', function(data){
+function loadByImage(sprite, callback){
+  window.myImg = new Image();
+  myImg.src = 'sprites/'+sprite+'.png';
+  var data = [];
+
+  myImg.onload = function(){
+    ctx.drawImage(myImg, 0, 0);
+    for (i = 0; i < myImg.width; i++) {
+      var pixel = ctx.getImageData(i, 0, 1,1).data;
+      data.push(pixel[0]);
+      data.push(pixel[1]);
+      data.push(pixel[2]);
+    };
+    callback(data);
+  };
+};
+//drawGrilla();
+
+loadByImage('h', function(data){
+  console.log('h',data);
   var hero = new Sprite(data);
   drawCharacter(hero.toData, '#000', 10);
 });
-
-loadSprite('f', function(data){
+/**
+loadByImage('f', function(data){
+  console.log('f',data);
   var fire = new Sprite(data)
   drawCharacter(fire.toData, '#E60', 4);
 });
-
+*/
