@@ -40,49 +40,33 @@ var drawCharacter = function(array, color, pixelSize){
   };
 }
 
-function loadSprite(sprite, callback){
-  var xhr = new XMLHttpRequest;
-  xhr.open('GET', 'sprites/' + sprite, true);
-  xhr.responseType = 'arraybuffer';
-  xhr.onload = function(){
-    var data = new Uint8Array(xhr.response || xhr.mozResponseArrayBuffer);
-    callback(data);
-  };
-  xhr.send(null);
+function loadByString(sprite, callback){
+  var i=0, char=sprite[i];
+  var byteArray=[];
+  var byte = 0;
+  while(char){
+    var mod = 0X55;
+    if(char[0]=='{'){
+      char = sprite[++i];
+      mod=0;
+    }
+    if(char[0]=='~'){
+      char = sprite[++i];
+      mod=0XAA;
+    }
+    byteArray.push(char.charCodeAt()+mod);
+    char = sprite[++i]
+  }
+  callback(byteArray);
 }
 
-function loadByImage(sprite, callback){
-  var myImg = new Image();
-  //myImg.src = 'sprites/'+sprite+'.png';
-  
-  var laImg = document.getElementById('f');
-  console.log(laImg);
-  myImg.crossOrigin = "Anonymous";
-  myImg.src = laImg.src; 
-  var data = [];
-
-  myImg.onload = function(){
-    ctx.drawImage(myImg, 0, 0);
-    for (i = 0; i < myImg.width; i++) {
-      var pixel = ctx.getImageData(i, 0, 1,1).data;
-      data.push(pixel[0]);
-      data.push(pixel[1]);
-      data.push(pixel[2]);
-    };
-    callback(data);
-  };
-};
-//drawGrilla();
-
-loadByImage('h', function(data){
-  console.log('h',data);
+loadByString(hero, function(data){
   var hero = new Sprite(data);
   drawCharacter(hero.toData, '#000', 10);
 });
-/**
-loadByImage('f', function(data){
-  console.log('f',data);
+
+loadByString(fire, function(data){
   var fire = new Sprite(data)
   drawCharacter(fire.toData, '#E60', 4);
 });
-*/
+

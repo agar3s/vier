@@ -6,22 +6,53 @@ var Png = require('png').Png;
 var cols = 16;
 var rows = 16;
 
+
+/* byte version..
 var createSprite = function(name, byteArray){
   var wstream = fs.createWriteStream('./app/sprites/'+name);
-  var buffer = new Buffer(byteArray);
+  //var buffer = new Buffer(byteArray);
+  //var encoded = encodeByteArray(byteArray);
+  //console.log(encoded);
   wstream.write(buffer);
   wstream.end();
 };
+*/
+var createSprite = function(name, byteArray){
+  var encoded = '';
+  // for (var i = 0; i < byteArray.length; i++) {
+  //   var code=byteArray[i].toString(16);
+  //   encoded+=code.length==1?'0'+code:code;
+  // };
+  
+  for (var i = 0; i < byteArray.length; i++) {
+    var b = byteArray[i];
+    var code = '';
+    if(b<0X55){
+      code = '{';
+    }else if(b<0XAA){
+      code = '';
+    }else{
+      code = '~';
+    }
+    code += String.fromCharCode(b%0X55+0X21); 
+    encoded+=code;
+  }
+
+
+  fs.writeFile('./sprites/'+name, encoded, function(err){
+
+  });
+}
 
 var createImage = function(name, byteArray){
   var png = new Png(new Buffer(byteArray), Math.floor(byteArray.length/3), 1);
   png.encode(function(encodedPng){
-    fs.writeFileSync('./app/sprites/'+name+'.png', encodedPng.toString('binary'), 'binary');
+    fs.writeFileSync('./sprites/'+name+'.png', encodedPng.toString('binary'), 'binary');
   });
 };
 
 var transformSprite = function(file){
-  var spritestream = fs.readFile('./app/sprites/' + file + '.sprite', 'binary', function(err, data){
+  var spritestream = fs.readFile('./sprites/' + file + '.sprite', 'binary', function(err, data){
     if(err){
       console.log(err);
       return;
@@ -35,7 +66,7 @@ var transformSprite = function(file){
       }
     };
     createSprite(file[0], byteArray);
-    createImage(file[0], byteArray);
+    //createImage(file[0], byteArray);
   });
 };
 
