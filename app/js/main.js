@@ -1,11 +1,9 @@
 
-var canvas = document.getElementById('c');
-var ctx = canvas.getContext('2d');
-var pixelSize = 10;
-var i;
+var canvas = document.getElementById('c'), ctx = canvas.getContext('2d'), pixelSize = 10, i,j;
 var drawGrilla = function(){
-  for (i = 0; i < 256; i++) {
-    ctx.rect((i%16)*pixelSize, Math.floor(i/16)*pixelSize, pixelSize, pixelSize);
+  ctx.strokeStyle='#DDD';
+  for (i = 0; i < 900; i++) {
+    ctx.rect((i%30)*pixelSize, Math.floor(i/30)*pixelSize, pixelSize, pixelSize);
   };
   ctx.stroke();
 }
@@ -13,21 +11,36 @@ var drawGrilla = function(){
 var Sprite = function(data){
   var byteArray = new Int16Array(16);
   var data = data;
-  for (i = 0; i < data.length; i++) {
-    //var y = data[i] >> 4;       // takes the y index 
-    //var x = data[i] & 0XF;      // takes the x index 
-    //byteArray[y] |= 1<<15-x;  // create a number of 16bits each bit represents a pixel of the character
-    byteArray[data[i] >> 4] |= 1<<15-(data[i] & 0XF);  // create a number of 16bits each bit represents a pixel of the character
+  function convertTobyte(){
+    byteArray = new Int16Array(16);
+    for (i = 0; i < data.length; i++) {
+      //var y = data[i] >> 4;       // takes the y index 
+      //var x = data[i] & 0XF;      // takes the x index 
+      //byteArray[y] |= 1<<15-x;  // create a number of 16bits each bit represents a pixel of the character
+      byteArray[data[i] >> 4] |= 1<<15-(data[i] & 0XF);  // create a number of 16bits each bit represents a pixel of the character
+    }
   }
+  function toData(){
+    return data;
+  }
+  convertTobyte();
+  console.log(data);
   function rotate(){
-    var byteArrayT = new Int16Array(16);
-    for (var i = 0; i < byteArray.length; i++) {
-      byteArrayT[i]
-    };
+    var data2 = [];
+    for (i = 0; i < 16; i++) {
+      for (j = 0; j < 16; j++) {
+        if(byteArray[i] & 1<<15-j){
+          data2.push(j*16+15-i);
+        }
+      }
+    }
+    data = data2;
+    convertTobyte();
   }
   return {
     toByte: byteArray,
-    toData: data
+    toData: toData,
+    rotate: rotate
   }
 }
 
@@ -60,13 +73,28 @@ function loadByString(sprite, callback){
   callback(byteArray);
 }
 
+drawGrilla();
 loadByString(hero, function(data){
-  var hero = new Sprite(data);
-  drawCharacter(hero.toData, '#000', 10);
+  heroS = new Sprite(data);
 });
 
 loadByString(fire, function(data){
-  var fire = new Sprite(data)
-  drawCharacter(fire.toData, '#E60', 4);
+  fireS = new Sprite(data)
 });
 
+function cleanSpace(){
+  ctx.fillStyle='#fff';
+  ctx.fillRect(0,0,500,500);
+}
+
+var loop = 0;
+function repeatOften() {
+  cleanSpace();
+  drawCharacter(fireS.toData(), 'rgb(238,102,0)', 3);
+  drawCharacter(heroS.toData(), '#000', 6);
+  if(loop%6==0)
+    fireS.rotate();
+  requestAnimationFrame(repeatOften);
+  loop++;
+}
+requestAnimationFrame(repeatOften);
