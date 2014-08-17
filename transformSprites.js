@@ -1,5 +1,4 @@
 var fs = require('fs');
-var Png = require('png').Png;
 
 
 //assuming sprites with 16X16 dimmension
@@ -34,13 +33,19 @@ var createSprite = function(name, byteArray){
     }else{
       code = '~';
     }
-    code += String.fromCharCode(b%0X55+0X21); 
+    var byte = b%0X55+0X21;
+    code += byte==92?'\\':'';
+    code += String.fromCharCode(byte);
     encoded+=code;
   }
 
 
   fs.writeFile('./sprites/'+name, encoded, function(err){
-
+    if(err){
+      console.log('exception:', err);
+      return;
+    }
+    console.log('file created');
   });
 }
 
@@ -65,10 +70,17 @@ var transformSprite = function(file){
         byteArray.push(i);
       }
     };
-    createSprite(file[0], byteArray);
+    createSprite(file.replace('.sprite', ''), byteArray);
     //createImage(file[0], byteArray);
   });
 };
 
 transformSprite('fire');
 transformSprite('hero');
+transformSprite('control');
+
+for (var i = 1; i <= 13; i++) {
+  var index = i<10?'0'+i:i;
+  transformSprite('hero'+index);
+};
+transformSprite('diff');
