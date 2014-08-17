@@ -5,6 +5,7 @@ Sprite = function(data){
   var iFrame = 0;
   var color = '#000';
   var x=0, y=0;
+  var vx=0, vy=0;
   function convertTobyte(d){
     var bArray = new Int16Array(ppp);
     for (i = 0; i < d.length; i++) {
@@ -18,6 +19,7 @@ Sprite = function(data){
   function toData(){
     return data;
   }
+
   byteArray = convertTobyte(data);
 
   function rotate(){
@@ -35,6 +37,9 @@ Sprite = function(data){
   function addFrame(data){
     frames.push(convertTobyte(data));
     iFrame = frames.length-1;
+  }
+  function fall(){
+    y += vy; 
   }
   function animate(){
     if(++iFrame>=frames.length){
@@ -58,18 +63,39 @@ Sprite = function(data){
     addFrame: addFrame,
     animate: animate,
     color: color,
+    xi:function(){return x+6*5},
+    xf:function(){return x+6*11},
+    yi:function(){return y+6*2},
+    yf:function(){return y+6*16},
+    vy:function(){return vy},
+    accelerateY: function(dvy){
+      vy+=dvy;
+    },
+    land: function(yf){
+      vy = 0;
+      y = yf-6*15;
+    },
     setColor: function(c){
       color = c;
     },
     left: function(){
       console.log('ai');
-      x-=5;
+      x-=6;
     },
     right: function(){
-      x+=5;
+      x+=6;
     },
     jump: function(){
+      vy=-10;
+    },
+    up: function(){
       y+=10;
+    },
+    down: function(){
+      y-=10;
+    },
+    update: function(){
+      fall();
     },
     drawCharacter: function(pixelSize){
       ctx.fillStyle = color;

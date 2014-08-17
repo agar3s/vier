@@ -6,7 +6,7 @@ for (j = 0; j < heroAnimation.length; j++) {
   heroS.addFrame(loadByString(ha));
 };
 
-heroElementColors=['#0BF','#0A3','#00F','#0F0'];
+heroElementColors=['#0BF','#0A3','#E60','#FE2'];
 HeroT = function(spr){
   sprite = spr;
   element = 0;
@@ -31,6 +31,8 @@ HeroT = function(spr){
       if(keyMap&64) prev();
       if(keyMap&1)sprite.left();
       if(keyMap&4)sprite.right();
+      if(keyMap&8)sprite.up();
+      if(keyMap&2)sprite.down();
       if(keyMap&128)sprite.jump();
     } 
   }
@@ -47,20 +49,35 @@ function cleanSpace(){
   ctx.fillRect(0,0,800,600);
 }
 
+var platforms = [];
+platforms.push(new Platform(12,400,240));
+platforms.push(new Platform(600,400,240));
+platforms.push(new Platform(200,300,240));
+platforms.push(new Platform(120,600,60));
+platforms.push(new Platform(150,500,240));
+
 var loop = 0;
-function repeatOften() {
+function gameLoop() {
   cleanSpace();
   fireS.drawCharacter(3);
   heroS.drawCharacter(6);
-  if(loop%7==0){
+  heroS.accelerateY(1);
+  heroS.update();
+  for (var i = 0; i < platforms.length; i++) {
+    platforms[i].draw();
+    platforms[i].collides();
+  }
+
+  if(loop%8==0){
     fireS.rotate();
+    loop=0;
   }
   myhero.manage();
   if(loop%2==0){
     heroS.animate();
   }
   loop++;
-  requestAnimationFrame(repeatOften);
+  requestAnimationFrame(gameLoop);
 }
 
-requestAnimationFrame(repeatOften);
+requestAnimationFrame(gameLoop);
