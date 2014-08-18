@@ -6,6 +6,7 @@ Sprite = function(data){
   var color = '#000';
   var x=0, y=0;
   var vx=0, vy=0;
+  var downed=false;
   function convertTobyte(d){
     var bArray = new Int16Array(ppp);
     for (i = 0; i < d.length; i++) {
@@ -39,7 +40,10 @@ Sprite = function(data){
     iFrame = frames.length-1;
   }
   function fall(){
-    y += vy; 
+    y += vy;
+    if(vy<0){
+      landed = false;
+    }
   }
   function animate(){
     if(++iFrame>=frames.length){
@@ -66,13 +70,20 @@ Sprite = function(data){
     xi:function(){return x+6*5},
     xf:function(){return x+6*11},
     yi:function(){return y+6*2},
+    yil:function(){return y+6*13},
     yf:function(){return y+6*16},
     vy:function(){return vy},
     accelerateY: function(dvy){
       vy+=dvy;
+      if(vy>18){
+        vy = 18;
+      }
     },
     land: function(yf){
       vy = 0;
+      landed = true;
+      djump = false;
+      downed = false;
       y = yf-6*15;
     },
     setColor: function(c){
@@ -86,13 +97,20 @@ Sprite = function(data){
       x+=6;
     },
     jump: function(){
-      vy=-10;
-    },
-    up: function(){
-      y+=10;
+      if(landed){
+        vy=-3*6;
+        landed = false;
+      }
     },
     down: function(){
-      y-=10;
+      if(!downed){
+        vy+=17;
+        downed = true;
+      }
+
+    },
+    up: function(){
+      //y-=20;
     },
     update: function(){
       fall();

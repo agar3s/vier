@@ -31,8 +31,8 @@ HeroT = function(spr){
       if(keyMap&64) prev();
       if(keyMap&1)sprite.left();
       if(keyMap&4)sprite.right();
-      if(keyMap&8)sprite.up();
-      if(keyMap&2)sprite.down();
+      if(keyMap&8)sprite.down();
+      if(keyMap&2)sprite.up();
       if(keyMap&128)sprite.jump();
     } 
   }
@@ -52,8 +52,8 @@ function cleanSpace(){
 var platforms = [];
 platforms.push(new Platform(12,400,240));
 platforms.push(new Platform(600,400,240));
-platforms.push(new Platform(200,300,240));
-platforms.push(new Platform(120,600,60));
+platforms.push(new Platform(320,336,240));
+platforms.push(new Platform(120,520,60));
 platforms.push(new Platform(150,500,240));
 
 var loop = 0;

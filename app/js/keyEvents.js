@@ -11,14 +11,17 @@ keys={
 }
 document.addEventListener('keydown', function(e){
   var key = e.keyCode ? e.keyCode : e.which;
-  e.preventDefault();
-  keyMap|=keys[key];
+  if(keys[key]){
+    keyMap|=keys[key];
+    e.preventDefault();
+  }
 });
 
 document.addEventListener('keyup',  function(e){
   var key = e.keyCode ? e.keyCode : e.which;
-  e.preventDefault();
-  if(keyMap&keys[key])
+  if(keyMap&keys[key]){
     keyMap-=keys[key];
+    e.preventDefault();
+  }
   //console.log('u '+key);
 });

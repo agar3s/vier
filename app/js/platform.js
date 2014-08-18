@@ -7,7 +7,7 @@ Platform = function(x,y,width){
     collides: function(){
       if((heroS.xi()>x&&heroS.xi()<x+width||
         heroS.xf()>x&&heroS.xf()<x+width)&&
-        (y>heroS.yi()&&y+5<heroS.yf())&&
+        (y>heroS.yil()&&y+5<heroS.yf())&&
         (heroS.vy()>=0)){
         collides = true;
         heroS.land(y);
