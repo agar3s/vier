@@ -1,4 +1,5 @@
 Sprite = function(data){
+  
   var byteArray = new Int16Array(ppp);
   var data = data;
   var frames = [];
@@ -6,7 +7,8 @@ Sprite = function(data){
   var color = '#000';
   var x=0, y=0;
   var vx=0, vy=0;
-  var downed=false;
+  var downed=0;
+  var direction = 1;
   function convertTobyte(d){
     var bArray = new Int16Array(ppp);
     for (i = 0; i < d.length; i++) {
@@ -42,7 +44,7 @@ Sprite = function(data){
   function fall(){
     y += vy;
     if(vy<0){
-      landed = false;
+      landed = 0;
     }
   }
   function animate(){
@@ -67,12 +69,20 @@ Sprite = function(data){
     addFrame: addFrame,
     animate: animate,
     color: color,
+    getX: function(){ return x},
+    setX: function(z){x=z},
+    getY: function(){ return y},
+    setY: function(z){y=z},
+    setVx: function(x){vx=x},
+    setVy: function(y){vy=y},
+    getColor: function(){ return color},
     xi:function(){return x+6*5},
     xf:function(){return x+6*11},
     yi:function(){return y+6*2},
     yil:function(){return y+6*13},
     yf:function(){return y+6*16},
     vy:function(){return vy},
+    direction:function(){return direction},
     accelerateY: function(dvy){
       vy+=dvy;
       if(vy>18){
@@ -81,31 +91,32 @@ Sprite = function(data){
     },
     land: function(yf){
       vy = 0;
-      landed = true;
-      djump = false;
-      downed = false;
+      landed = 1;
+      djump = 0;
+      downed = 0;
       y = yf-6*15;
     },
     setColor: function(c){
       color = c;
     },
     left: function(){
-      console.log('ai');
       x-=6;
+      direction = 0;
     },
     right: function(){
       x+=6;
+      direction = 1;
     },
     jump: function(){
       if(landed){
         vy=-3*6;
-        landed = false;
+        landed = 0;
       }
     },
     down: function(){
       if(!downed){
         vy+=17;
-        downed = true;
+        downed = 1;
       }
 
     },
@@ -114,6 +125,10 @@ Sprite = function(data){
     },
     update: function(){
       fall();
+      x += vx;
+    },
+    updateX: function(){
+      x += vx;
     },
     drawCharacter: function(pixelSize){
       ctx.fillStyle = color;

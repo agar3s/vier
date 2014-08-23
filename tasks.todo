@@ -1,9 +1,94 @@
+---- animation preview in the sprite editor.
+---- implements textures for the backgrounds
+---- implements sound management
+	--- background music
+	--- sound effects
+	--- encrypted sounds way
+
+---- enemies with simple AI
+
+
 ---- gravity
 --- add collisions
 --- levels
 --- animation
+--- camera
 --- transition between animations
 --- enemies
+	--- elementals: pure elements life been
+		--- 3 levels
+	--- wizards
+		--- acolito
+		--- wizard
+		--- great master
+	--- demons
+		--- minions
+		--- spectres
+	--- gods
 --- launch powers
 --- energy powes
+--- save stats
 -- keys pressed and keys one pressed...
+--- show texts...
+--- make a history to follow?
+-- bosses
+
+--- about the game play
+
+-- you are a wizard in the world of the AnarQuy
+-- after steal the elemental stone<vier> from the demons of exacra you won the ability of control the basic four elements allowing you to became the most powerfull wizard in the orb.
+
+-- but... there are forces that wants the power that you have... and think you have more power that you deserve.
+
+-- the wizards of the AnarQuy decides to defeat you and steal the elemental stone.
+-- the way to stop the attacks from the wizard is to destroy them
+-- once you destroy the 4 masters of the elements you go for the big master of the AnarQuy
+-- when you became the big master, the demons arrive to your palace to recover the vier stone
+-- the sons of the gods destroy the cofrady to fight against you.
+
+
+
+---- levels
+	-- 1 enter the orb, attacks from different elementals.
+	-- 2 against air master
+	-- 3 against earth master
+	-- 4 against fire and water masters
+	-- 5 against the big master
+	-- 6 against the demons of exacra
+	-- 7 against the 4 elemental sons of the gods
+
+---- infinity level
+	-- infinity montain
+
+--- gameplay
+	-- you need to climb different stages and destroy all the enemies in the level
+
+	-- you have 4 elementals powers
+		-- air
+		-- fire
+		-- earth
+		-- water
+	-- there are a equilibrium between them
+	-- rules:
+		-- air > water: 	damageX2
+		-- air / air: 		damageX0
+		-- air < fire: 		damageX1/2
+		-- air = earth:		damageX1
+
+		-- water > earth:	damageX2
+		-- water / water:	damageX0
+		-- water < air:		damageX1/2
+		-- water = fire:	damageX1
+
+		-- earth > fire:	damageX2
+		-- earth / earth:	damageX0
+		-- earth < water:	damageX1/2
+		-- earth = earth:	damageX1
+
+		-- fire > air:		damageX2
+		-- fire / fire:		damageX0
+		-- fire < earth:	damageX1/2
+		-- fire = water:	damageX1
+
+
+	-- each enemy drops an amount of elemental energy = to his hit points

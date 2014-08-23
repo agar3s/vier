@@ -1,6 +1,8 @@
 window.fire = '{f{g{h{i{u!$%056?@ABFORV`bcefostu~,';
-window.hero  = '{${5{F{H{I{W{X{Y{h"#13@CPS`bcdrt~-~/~=~?~M~O~\\~]~_~`';
+window.hero  = '{H{I{X{Y"#$135ACEPSV`bcdfrt~-~/~=~?~M~O~\\~]~_~`';
 
+//window.hero  = '{${5{F{H{I{W{X{Y{h"#13@CPS`bcdrt~-~/~=~?~M~O~\\~]~_~`';
+/*
 window.frames = [
   '{E{4{3{5{$',
   '{G{Y{I',
@@ -15,4 +17,11 @@ window.frames = [
   '~?~=db$#"{j{<~@~<s42%{k',
   '~/~-{L{H{G{=~0~,{h{g{K{<'
 ];
-window.heroAnimation = [0,1,2,3,4,5,6,7,8,9,10,11,11,10,9,8,7,6,5,4,3,2,1,0];
+*/
+//window.heroAnimation = [0,1,2,3,4,5,6,7,8,9,10,11,11,10,9,8,7,6,5,4,3,2,1,0];
+
+window.frames = [
+  '',
+  '~!pUQ42{i{hVP51$#"{I{H'
+];
+window.heroAnimation = [1,1,1,1,1,1,0,0,1,0,0,0,0,0,0,0];

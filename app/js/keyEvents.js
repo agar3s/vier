@@ -9,7 +9,7 @@ keys={
   '68':64,
   '32':128
 }
-document.addEventListener('keydown', function(e){
+doc.addEventListener('keydown', function(e){
   var key = e.keyCode ? e.keyCode : e.which;
   if(keys[key]){
     keyMap|=keys[key];
@@ -17,7 +17,7 @@ document.addEventListener('keydown', function(e){
   }
 });
 
-document.addEventListener('keyup',  function(e){
+doc.addEventListener('keyup',  function(e){
   var key = e.keyCode ? e.keyCode : e.which;
   if(keyMap&keys[key]){
     keyMap-=keys[key];

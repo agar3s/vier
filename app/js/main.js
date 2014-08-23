@@ -1,15 +1,36 @@
-
+//@agar3s
 data = loadByString(hero);
 heroS = new Sprite(data);
+powers = [];
 for (j = 0; j < heroAnimation.length; j++) {
   var ha = frames[heroAnimation[j]];
   heroS.addFrame(loadByString(ha));
 };
 
-heroElementColors=['#0BF','#0A3','#E60','#FE2'];
+heroElementColors = ['#0BF','#0A3','#E60','#FE2'];
+Power = function(type){
+  var data = loadByString(fire);
+  var fireS = new Sprite(data);
+  var outside = 0;
+  console.log(heroS.getColor());
+  fireS.setColor(heroS.getColor());
+  fireS.setX(heroS.getX());
+  fireS.setY(heroS.getY());
+  fireS.setVx(heroS.direction()?16:-16);
+  //fireS.setVy(-16);
+  return {
+    sprite: fireS,
+    updateX: function(){
+      fireS.updateX();
+      outside = fireS.getX()>1000 || fireS.getX()<-10;
+    },
+    isOutside: function(){return outside}
+  }
+}
 HeroT = function(spr){
   sprite = spr;
   element = 0;
+  coldown = 16;
   chargeColor = function(){
     sprite.setColor(heroElementColors[element]);
   }
@@ -23,9 +44,18 @@ HeroT = function(spr){
     keyMap-=64;
     chargeColor();
   }
+  power = function(){
+    if(coldown<=0){
+      powers.push(new Power(0));
+      coldown = 8;
+    }
+  }
   return {
     next: next,
     prev: prev,
+    update: function(){
+      if(--coldown<0) coldown=0;
+    },
     manage: function(){
       if(keyMap&16) next();
       if(keyMap&64) prev();
@@ -34,6 +64,7 @@ HeroT = function(spr){
       if(keyMap&8)sprite.down();
       if(keyMap&2)sprite.up();
       if(keyMap&128)sprite.jump();
+      if(keyMap&32)power();
     } 
   }
 }
@@ -63,17 +94,30 @@ function gameLoop() {
   heroS.drawCharacter(6);
   heroS.accelerateY(1);
   heroS.update();
-  for (var i = 0; i < platforms.length; i++) {
+  myhero.update();
+  for(i = 0; i < platforms.length; i++) {
     platforms[i].draw();
     platforms[i].collides();
   }
+  for (var j = powers.length - 1; j >= 0; j--) {
+    powers[j].sprite.accelerateY(1);
+    powers[j].updateX();
+    powers[j].sprite.drawCharacter(3);
+    if(loop%16==0){
+      powers[j].sprite.rotate()
+      loop=0;
+    }
+    if(powers[j].isOutside()){
+      powers.splice(j, 1);
+    }
+  }
+//  console.log(powers.length);
 
   if(loop%8==0){
     fireS.rotate();
-    loop=0;
   }
   myhero.manage();
-  if(loop%2==0){
+  if(loop%3==0){
     heroS.animate();
   }
   loop++;

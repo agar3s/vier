@@ -69,6 +69,9 @@ var transformSprite = function(file){
       if(character==='M'){
         byteArray.push(i);
       }
+      if(character==='/'){
+        break;
+      }
     };
     createSprite(file.replace('.sprite', ''), byteArray);
     //createImage(file[0], byteArray);
@@ -83,4 +86,5 @@ for (var i = 1; i <= 13; i++) {
   var index = i<10?'0'+i:i;
   transformSprite('hero'+index);
 };
-transformSprite('diff');
+transformSprite('hero20');
+transformSprite('hero21');
