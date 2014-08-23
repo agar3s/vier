@@ -1,7 +1,7 @@
 var fs = require('fs');
 var heroSprites = [
-  '{H{I{X{Y"#$135ACEPSV`bcdfrt~-~/~=~?~M~O~\\~]~_~`',
-  '{X{Y{h{i234ACEQSU`bcdfprt~!~-~/~=~?~M~O~\\~]~_~`'  
+  '{I{J{Y{Z#$2347ACEFRScdsu~.~0~>~@~M~P~\\~`~a',
+  '{Y{Z{i{j"#$134ACDESVWbcdqru~)~*~+~0~9~A~Q~a~b'
 ];
 
 function convertArray(sprite){

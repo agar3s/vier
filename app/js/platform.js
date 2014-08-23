@@ -16,7 +16,7 @@ Platform = function(x,y,width){
     }
   },
   m.draw = function(){
-    ctx.fillStyle=m.collide?'#F00':'#000';
+    ctx.fillStyle=m.collide?'#F00':'#66F';
     ctx.fillRect(m.x, m.y, m.width, 5);
   }
 }

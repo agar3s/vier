@@ -82,9 +82,7 @@ transformSprite('fire');
 transformSprite('hero');
 transformSprite('control');
 
-for (var i = 1; i <= 13; i++) {
-  var index = i<10?'0'+i:i;
-  transformSprite('hero'+index);
-};
-transformSprite('hero20');
-transformSprite('hero21');
+transformSprite('hero00');
+transformSprite('hero99');
+transformSprite('hero01');
+transformSprite('hero31');

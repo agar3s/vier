@@ -7,7 +7,7 @@ for (j = 0; j < heroAnimation.length; j++) {
   heroS.addFrame(loadByString(ha));
 };
 
-heroElementColors = ['#0BF','#0A3','#E60','#EA00FF'];
+heroElementColors = [25,115,205,295];
 Power = function(type){
   var m = this;
   m.data = loadByString(fire);
@@ -29,18 +29,18 @@ HeroT = function(spr){
   m.sprite = spr;
   m.element = 0;
   m.coldown = 16;
-  m.changeColor = function(){
-    m.sprite.color = heroElementColors[m.element];
-  }
+  m.currentColor = heroElementColors[m.element];
+  m.sprite.color = 'hsl('+m.currentColor+',100%, 50%)';
+  m.incColor = 0;
   m.next = function(){
     if(++m.element>3) m.element=0;
-    m.changeColor();
+    m.incColor=5;
     keyMap-=16;
   }
   m.prev = function(){
     if(--m.element<0) m.element=3;
     keyMap-=64;
-    m.changeColor();
+    m.incColor=-5;
   }
   m.power = function(){
     if(m.coldown<=0){
@@ -49,6 +49,14 @@ HeroT = function(spr){
     }
   }
   m.update = function(){
+    m.currentColor+=m.incColor;
+    if(m.currentColor<0) m.currentColor=355;
+    if(m.currentColor>355) m.currentColor=5;
+    if(m.currentColor!=heroElementColors[m.element]){
+      m.sprite.color = 'hsl('+m.currentColor+',100%, 50%)';
+    }else{
+      m.incColor = 0;
+    }
     if(--m.coldown<0) m.coldown=0;
   }
   m.manage= function(){
@@ -69,7 +77,7 @@ firexx.color = '#E60';
 myhero = new HeroT(heroS);
 
 function cleanSpace(){
-  ctx.fillStyle='#333';
+  ctx.fillStyle='#111';
   ctx.fillRect(0,0,800,600);
 }
 

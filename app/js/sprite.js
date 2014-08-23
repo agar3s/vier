@@ -119,6 +119,7 @@ var Sprite = function(data){
   }
   m.drawCharacter= function(pixelSize){
     ctx.fillStyle = m.color;
+    ctx.strokeStyle = '#000';
     for(var i = 0; i < m.data.length; i++) {
       //var y = array[i] >> 4;
       //var x = array[i] & 0XF;
