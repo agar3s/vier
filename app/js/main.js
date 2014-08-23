@@ -16,8 +16,8 @@ Power = function(type){
   psprite.setColor(heroS.getColor());
   psprite.setX(heroS.getX()+8*3);
   psprite.setY(heroS.getY());
-  psprite.setVx(heroS.direction()?8:-8);
-  psprite.setDirection(heroS.direction());
+  psprite.setVx(heroS.direction?8:-8);
+  psprite.setDirection(heroS.direction);
   //this.psprite.setVy(-16);
 //  console.log(this.psprite);
   return {
@@ -73,8 +73,8 @@ HeroT = function(spr){
 
 data = loadByString(fire);
 firexx = new Sprite(data);
-firexx.setColor('#E60');
-
+firexx.color = '#E60';
+console.log(firexx.color);
 myhero = new HeroT(heroS);
 
 function cleanSpace(){
