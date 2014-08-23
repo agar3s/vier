@@ -1,24 +1,22 @@
 Platform = function(x,y,width){
-  var x = x;
-  var y = y;
-  var width = width;
-  var collides = false; 
-  return {
-    collides: function(){
-      if((heroS.xi()>x&&heroS.xi()<x+width||
-        heroS.xf()>x&&heroS.xf()<x+width)&&
-        (y>heroS.yil()&&y+5<heroS.yf())&&
-        (heroS.vy>=0)){
-        collides = true;
-        heroS.land(y);
-      }else{
-        collides = false;
-        
-      }
-    },
-    draw: function(){
-      ctx.fillStyle=collides?'#F00':'#000';
-      ctx.fillRect(x, y, width, 5);
+  var m = this;
+  m.x = x;
+  m.y = y;
+  m.width = width;
+  m.collide = 0;
+  m.collides = function(){
+    if((heroS.xi()>m.x&&heroS.xi()<m.x+m.width||
+      heroS.xf()>m.x&&heroS.xf()<m.x+m.width)&&
+      (m.y>heroS.yil()&&m.y+5<heroS.yf())&&
+      (heroS.vy>=0)){
+      m.collide = 1;
+      heroS.land(y);
+    }else{
+      m.collide = 0;
     }
+  },
+  m.draw = function(){
+    ctx.fillStyle=m.collide?'#F00':'#000';
+    ctx.fillRect(m.x, m.y, m.width, 5);
   }
 }

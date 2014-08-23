@@ -20,10 +20,6 @@ var Sprite = function(data){
   m.downed=0;
   m.direction = 1;
   m.landed = 0;
-  m.toData = function(){
-    return m.data;
-  }
-
   m.byteArray = convertTobyte(m.data);
 
   m.rotate = function(){
@@ -39,7 +35,6 @@ var Sprite = function(data){
     m.byteArray = convertTobyte(data2);
   }
   m.addFrame = function(data){
-    console.log(data);
     m.frames.push(convertTobyte(data));
     m.iFrame = m.frames.length-1;
   }
@@ -64,69 +59,67 @@ var Sprite = function(data){
     }
     m.data = data2;
   }
-  m.getX = function(){ return m.x}
-  m.setX = function(z){m.x=z};
-  m.getY = function(){ return m.y};
-  m.setY= function(z){m.y=z}
-  m.setVx= function(x){m.vx=x}
-  m.setVy= function(y){m.vy=y}
-  m.getColor= function(){ return m.color}
-  m.xi=function(){return m.x+6*5}
-  m.xf=function(){return m.x+6*11}
-  m.yi=function(){return m.y+6*2}
-  m.yil=function(){return m.y+6*13}
-  m.yf=function(){return m.y+6*16}
-  m.setDirection= function(d){m.direction=d},
-  m.accelerateY= function(dvy){
+  m.xi = function(){
+    return m.x+6*5;
+  }
+  m.xf = function(){
+    return m.x+6*11;
+  }
+  m.yi = function(){
+    return m.y+6*2;
+  }
+  m.yil = function(){
+    return m.y+6*13;
+  }
+  m.yf = function(){
+    return m.y+6*16;
+  }
+  m.accelerateY = function(dvy){
     m.vy+=dvy;
     if(m.vy>18){
       m.vy = 18;
     }
-  };
-  m.land= function(yf){
+  }
+  m.land = function(yf){
     m.vy = 0;
     m.landed = 1;
     m.djump = 0;
     m.downed = 0;
     m.y = yf-6*15;
-  };
-  m.setColor= function(c){
-    m.color = c;
-  };
-  m.left= function(){
+  }
+  m.left = function(){
     m.x-=6;
     m.direction = 0;
-  };
+  }
   m.right= function(){
     m.x+=6;
     m.direction = 1;
-  };
+  }
   m.jump= function(){
     if(m.landed){
       m.vy=-3*6;
       m.landed = 0;
     }
-  };
+  }
   m.down= function(){
     if(!m.downed){
       m.vy+=17;
       m.downed = 1;
     }
-  };
+  }
   m.up= function(){
     //y-=20;
-  };
+  }
   m.update= function(){
     m.fall();
     m.x += m.vx;
-  };
+  }
   m.updateX= function(){
     m.x += m.vx;
-  };
+  }
   m.drawCharacter= function(pixelSize){
     ctx.fillStyle = m.color;
     for(var i = 0; i < m.data.length; i++) {
-
       //var y = array[i] >> 4;
       //var x = array[i] & 0XF;
       var k = (m.data[i] & 0XF)
@@ -134,7 +127,6 @@ var Sprite = function(data){
     };
   }
 }
-
 
 function loadByString(sprite){
   var i=0, char=sprite[i];

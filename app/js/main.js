@@ -1,80 +1,71 @@
 //@agar3s
 data = loadByString(hero);
 heroS = new Sprite(data);
-console.log(heroS);
 powers = [];
 for (j = 0; j < heroAnimation.length; j++) {
   var ha = frames[heroAnimation[j]];
   heroS.addFrame(loadByString(ha));
 };
 
-heroElementColors = ['#0BF','#0A3','#E60','#FE2'];
+heroElementColors = ['#0BF','#0A3','#E60','#EA00FF'];
 Power = function(type){
-  var data = loadByString(fire);
-  var psprite = new Sprite(data);
-  var outside = 0;
-  psprite.setColor(heroS.getColor());
-  psprite.setX(heroS.getX()+8*3);
-  psprite.setY(heroS.getY());
-  psprite.setVx(heroS.direction?8:-8);
-  psprite.setDirection(heroS.direction);
-  //this.psprite.setVy(-16);
-//  console.log(this.psprite);
-  return {
-    sprite: psprite,
-    updateX: function(){
-      psprite.updateX();
-      outside = psprite.getX()>1000 || psprite.getX()<-10;
-    },
-    isOutside: function(){return outside}
+  var m = this;
+  m.data = loadByString(fire);
+  m.sprite = new Sprite(m.data);
+  m.outside = 0;
+  m.sprite.color = heroS.color;
+  m.sprite.x = heroS.x+8*3;
+  m.sprite.y = heroS.y;
+  m.sprite.vx = heroS.direction?8:-8;
+  m.sprite.direction = heroS.direction;
+  m.updateX= function(){
+    m.sprite.updateX();
+    m.outside = m.sprite.x>1000 || m.sprite.x<-10;
   }
 }
+
 HeroT = function(spr){
-  sprite = spr;
-  element = 0;
-  coldown = 16;
-  chargeColor = function(){
-    sprite.setColor(heroElementColors[element]);
+  var m = this;
+  m.sprite = spr;
+  m.element = 0;
+  m.coldown = 16;
+  m.changeColor = function(){
+    m.sprite.color = heroElementColors[m.element];
   }
-  next = function(){
-    if(++element>3) element=0;
-    chargeColor();
+  m.next = function(){
+    if(++m.element>3) m.element=0;
+    m.changeColor();
     keyMap-=16;
   }
-  prev = function(){
-    if(--element<0) element=3;
+  m.prev = function(){
+    if(--m.element<0) m.element=3;
     keyMap-=64;
-    chargeColor();
+    m.changeColor();
   }
-  power = function(){
-    if(coldown<=0){
+  m.power = function(){
+    if(m.coldown<=0){
       powers.push(new Power(0));
-      coldown = 16;
+      m.coldown = 16;
     }
   }
-  return {
-    next: next,
-    prev: prev,
-    update: function(){
-      if(--coldown<0) coldown=0;
-    },
-    manage: function(){
-      if(keyMap&16) next();
-      if(keyMap&64) prev();
-      if(keyMap&1)sprite.left();
-      if(keyMap&4)sprite.right();
-      if(keyMap&8)sprite.down();
-      if(keyMap&2)sprite.up();
-      if(keyMap&128)sprite.jump();
-      if(keyMap&32)power();
-    } 
+  m.update = function(){
+    if(--m.coldown<0) m.coldown=0;
+  }
+  m.manage= function(){
+    if(keyMap&16) m.next();
+    if(keyMap&64) m.prev();
+    if(keyMap&1) m.sprite.left();
+    if(keyMap&4) m.sprite.right();
+    if(keyMap&8) m.sprite.down();
+    if(keyMap&2) m.sprite.up();
+    if(keyMap&128) m.sprite.jump();
+    if(keyMap&32) m.power();
   }
 }
 
 data = loadByString(fire);
 firexx = new Sprite(data);
 firexx.color = '#E60';
-console.log(firexx.color);
 myhero = new HeroT(heroS);
 
 function cleanSpace(){
@@ -107,16 +98,15 @@ function gameLoop() {
     powers[j].sprite.drawCharacter(3);
     if(loop%4==0){
       powers[j].sprite.rotate()
-      loop=0;
     }
-    if(powers[j].isOutside()){
+    if(powers[j].outside){
       powers.splice(j, 1);
     }
   }
-//  console.log(powers.length);
 
   if(loop%8==0){
     firexx.rotate();
+    loop=0;
   }
   firexx.updateX();
   myhero.manage();
