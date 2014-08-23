@@ -1,6 +1,7 @@
 //@agar3s
 data = loadByString(hero);
 heroS = new Sprite(data);
+console.log(heroS);
 powers = [];
 for (j = 0; j < heroAnimation.length; j++) {
   var ha = frames[heroAnimation[j]];
@@ -10,19 +11,20 @@ for (j = 0; j < heroAnimation.length; j++) {
 heroElementColors = ['#0BF','#0A3','#E60','#FE2'];
 Power = function(type){
   var data = loadByString(fire);
-  var fireS = new Sprite(data);
+  var psprite = new Sprite(data);
   var outside = 0;
-  console.log(heroS.getColor());
-  fireS.setColor(heroS.getColor());
-  fireS.setX(heroS.getX());
-  fireS.setY(heroS.getY());
-  fireS.setVx(heroS.direction()?16:-16);
-  //fireS.setVy(-16);
+  psprite.setColor(heroS.getColor());
+  psprite.setX(heroS.getX()+8*3);
+  psprite.setY(heroS.getY());
+  psprite.setVx(heroS.direction()?8:-8);
+  psprite.setDirection(heroS.direction());
+  //this.psprite.setVy(-16);
+//  console.log(this.psprite);
   return {
-    sprite: fireS,
+    sprite: psprite,
     updateX: function(){
-      fireS.updateX();
-      outside = fireS.getX()>1000 || fireS.getX()<-10;
+      psprite.updateX();
+      outside = psprite.getX()>1000 || psprite.getX()<-10;
     },
     isOutside: function(){return outside}
   }
@@ -47,7 +49,7 @@ HeroT = function(spr){
   power = function(){
     if(coldown<=0){
       powers.push(new Power(0));
-      coldown = 8;
+      coldown = 16;
     }
   }
   return {
@@ -70,13 +72,13 @@ HeroT = function(spr){
 }
 
 data = loadByString(fire);
-fireS = new Sprite(data);
-fireS.setColor('#E60');
+firexx = new Sprite(data);
+firexx.setColor('#E60');
 
 myhero = new HeroT(heroS);
 
 function cleanSpace(){
-  ctx.fillStyle='#fff';
+  ctx.fillStyle='#333';
   ctx.fillRect(0,0,800,600);
 }
 
@@ -90,7 +92,7 @@ platforms.push(new Platform(150,500,240));
 var loop = 0;
 function gameLoop() {
   cleanSpace();
-  fireS.drawCharacter(3);
+  firexx.drawCharacter(3);
   heroS.drawCharacter(6);
   heroS.accelerateY(1);
   heroS.update();
@@ -100,10 +102,10 @@ function gameLoop() {
     platforms[i].collides();
   }
   for (var j = powers.length - 1; j >= 0; j--) {
-    powers[j].sprite.accelerateY(1);
+    //powers[j].sprite.accelerateY(1);
     powers[j].updateX();
     powers[j].sprite.drawCharacter(3);
-    if(loop%16==0){
+    if(loop%4==0){
       powers[j].sprite.rotate()
       loop=0;
     }
@@ -114,8 +116,9 @@ function gameLoop() {
 //  console.log(powers.length);
 
   if(loop%8==0){
-    fireS.rotate();
+    firexx.rotate();
   }
+  firexx.updateX();
   myhero.manage();
   if(loop%3==0){
     heroS.animate();

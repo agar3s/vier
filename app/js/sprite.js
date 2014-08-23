@@ -1,5 +1,4 @@
 Sprite = function(data){
-  
   var byteArray = new Int16Array(ppp);
   var data = data;
   var frames = [];
@@ -9,9 +8,10 @@ Sprite = function(data){
   var vx=0, vy=0;
   var downed=0;
   var direction = 1;
+  var landed = 0;
   function convertTobyte(d){
     var bArray = new Int16Array(ppp);
-    for (i = 0; i < d.length; i++) {
+    for (var i = 0; i < d.length; i++) {
       //var y = data[i] >> 4;       // takes the y index 
       //var x = data[i] & 0XF;      // takes the x index 
       //byteArray[y] |= 1<<15-x;  // create a number of 16bits each bit represents a pixel of the character
@@ -27,8 +27,8 @@ Sprite = function(data){
 
   function rotate(){
     var data2 = [];
-    for (i = 0; i < ppp; i++) {
-      for (j = 0; j < ppp; j++) {
+    for (var i = 0; i < ppp; i++) {
+      for (var j = 0; j < ppp; j++) {
         if(byteArray[i] & 1<<pp1-j){
           data2.push(j*ppp+pp1-i);
         }
@@ -83,6 +83,7 @@ Sprite = function(data){
     yf:function(){return y+6*16},
     vy:function(){return vy},
     direction:function(){return direction},
+    setDirection: function(d){direction=d},
     accelerateY: function(dvy){
       vy+=dvy;
       if(vy>18){
@@ -135,7 +136,8 @@ Sprite = function(data){
       for(i = 0; i < data.length; i++) {
         //var y = array[i] >> 4;
         //var x = array[i] & 0XF;
-        ctx.fillRect(x+(data[i] & 0XF)*pixelSize, y+(data[i] >> 4)*pixelSize, pixelSize, pixelSize);
+        var k = (data[i] & 0XF)
+        ctx.fillRect(x+(direction?k:15-k)*pixelSize, y+(data[i] >> 4)*pixelSize, pixelSize, pixelSize);
       };
     }
   }

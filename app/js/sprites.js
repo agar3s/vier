@@ -24,4 +24,4 @@ window.frames = [
   '',
   '~!pUQ42{i{hVP51$#"{I{H'
 ];
-window.heroAnimation = [1,1,1,1,1,1,0,0,1,0,0,0,0,0,0,0];
+window.heroAnimation = [0,0,0,0,0,1,0,0,0,0,0,0];
