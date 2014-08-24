@@ -8,7 +8,7 @@ for (j = 0; j < heroAnimation.length; j++) {
 };
 
 heroElementColors = [25,115,205,295];
-Power = function(type){
+Power = function(type, pixelSize){
   var m = this;
   m.data = loadByString(fire);
   m.sprite = new Sprite(m.data);
@@ -16,6 +16,7 @@ Power = function(type){
   m.sprite.color = heroS.color;
   m.sprite.x = heroS.x+8*3;
   m.sprite.y = heroS.y;
+  m.sprite.pixelSize = 2;
   m.sprite.vx = heroS.direction?8:-8;
   m.sprite.direction = heroS.direction;
   m.updateX= function(){
@@ -44,7 +45,7 @@ HeroT = function(spr){
   }
   m.power = function(){
     if(m.coldown<=0){
-      powers.push(new Power(0));
+      powers.push(new Power(0,2));
       m.coldown = 16;
     }
   }
@@ -62,12 +63,16 @@ HeroT = function(spr){
   m.manage= function(){
     if(keyMap&16) m.next();
     if(keyMap&64) m.prev();
-    if(keyMap&1) m.sprite.left();
-    if(keyMap&4) m.sprite.right();
     if(keyMap&8) m.sprite.down();
     if(keyMap&2) m.sprite.up();
-    if(keyMap&128) m.sprite.jump();
+    if(keyMap&128){
+      m.sprite.jump();
+      keyMap^=128;
+    }
     if(keyMap&32) m.power();
+    if(keyMap&1) m.sprite.left();
+    else if(keyMap&4) m.sprite.right();
+    else m.sprite.vx=0;
   }
 }
 
@@ -87,13 +92,15 @@ platforms.push(new Platform(600,400,240));
 platforms.push(new Platform(320,336,240));
 platforms.push(new Platform(120,520,60));
 platforms.push(new Platform(150,500,240));
+firexx.pixelSize = 4;
+heroS.pixelSize = 5;
 
 var loop = 0;
 function gameLoop() {
   cleanSpace();
-  firexx.drawCharacter(3);
-  heroS.drawCharacter(6);
-  heroS.accelerateY(1);
+  firexx.drawCharacter();
+  heroS.drawCharacter();
+  heroS.accelerateY(0.8);
   heroS.update();
   myhero.update();
   for(i = 0; i < platforms.length; i++) {
@@ -103,7 +110,7 @@ function gameLoop() {
   for (var j = powers.length - 1; j >= 0; j--) {
     //powers[j].sprite.accelerateY(1);
     powers[j].updateX();
-    powers[j].sprite.drawCharacter(3);
+    powers[j].sprite.drawCharacter();
     if(loop%4==0){
       powers[j].sprite.rotate()
     }
@@ -118,7 +125,7 @@ function gameLoop() {
   }
   firexx.updateX();
   myhero.manage();
-  if(loop%3==0){
+  if(loop%2==0){
     heroS.animate();
   }
   loop++;

@@ -15,12 +15,17 @@ var Sprite = function(data){
   m.frames = [];
   m.iFrame = 0;
   m.color = '#000';
-  m.x=0, m.y=0;
-  m.vx=0, m.vy=0;
+  m.x=0;
+  m.y=0;
+  m.vx=0;
+  m.vy=0;
   m.downed=0;
   m.direction = 1;
   m.landed = 0;
   m.byteArray = convertTobyte(m.data);
+  m.maxVx = pixelSize*2.5;
+  m.accelerationX = 0.5;
+  m.pixelSize = pixelSize;
 
   m.rotate = function(){
     var data2 = [];
@@ -60,50 +65,55 @@ var Sprite = function(data){
     m.data = data2;
   }
   m.xi = function(){
-    return m.x+6*5;
+    return m.x+m.pixelSize*5;
   }
   m.xf = function(){
-    return m.x+6*11;
+    return m.x+m.pixelSize*11;
   }
   m.yi = function(){
-    return m.y+6*2;
+    return m.y+m.pixelSize*2;
   }
   m.yil = function(){
-    return m.y+6*13;
+    return m.y+m.pixelSize*12;
   }
   m.yf = function(){
-    return m.y+6*16;
+    return m.y+m.pixelSize*16;
   }
   m.accelerateY = function(dvy){
     m.vy+=dvy;
-    if(m.vy>18){
-      m.vy = 18;
+    if(m.vy>m.pixelSize*3){
+      m.vy = m.pixelSize*3;
     }
   }
   m.land = function(yf){
     m.vy = 0;
     m.landed = 1;
-    m.djump = 0;
+    m.canDoubleJump = 1
     m.downed = 0;
-    m.y = yf-6*15;
+    m.y = yf-m.pixelSize*15;
   }
   m.left = function(){
-    m.x-=6;
+    m.vx-=m.accelerationX;
+    if(m.vx < -m.maxVx) m.vx = -m.maxVx;
     m.direction = 0;
   }
   m.right= function(){
-    m.x+=6;
+    m.vx+=m.accelerationX;
+    if(m.vx > m.maxVx) m.vx = m.maxVx;
     m.direction = 1;
   }
   m.jump= function(){
-    if(m.landed){
-      m.vy=-3*6;
+    console.log(m.landed, m.canDoubleJump);
+    if(m.landed||m.canDoubleJump){
+      m.vy=-m.pixelSize*3;
+      if(!m.landed)
+        m.canDoubleJump = 0;
       m.landed = 0;
     }
   }
   m.down= function(){
     if(!m.downed){
-      m.vy+=17;
+      m.vy+=pixelSize*3-1;
       m.downed = 1;
     }
   }
@@ -117,14 +127,13 @@ var Sprite = function(data){
   m.updateX= function(){
     m.x += m.vx;
   }
-  m.drawCharacter= function(pixelSize){
+  m.drawCharacter= function(){
     ctx.fillStyle = m.color;
-    ctx.strokeStyle = '#000';
     for(var i = 0; i < m.data.length; i++) {
       //var y = array[i] >> 4;
       //var x = array[i] & 0XF;
       var k = (m.data[i] & 0XF)
-      ctx.fillRect(m.x+(m.direction?k:15-k)*pixelSize, m.y+(m.data[i] >> 4)*pixelSize, pixelSize, pixelSize);
+      ctx.fillRect(m.x+(m.direction?k:15-k)*m.pixelSize, m.y+(m.data[i] >> 4)*m.pixelSize, m.pixelSize, m.pixelSize);
     };
   }
 }

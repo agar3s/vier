@@ -9,6 +9,7 @@
 
 
 ---- gravity
+--- launch powers
 --- add collisions
 --- levels
 --- animation
@@ -25,7 +26,6 @@
 		--- minions
 		--- spectres
 	--- gods
---- launch powers
 --- energy powes
 --- save stats
 -- keys pressed and keys one pressed...

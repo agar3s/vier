@@ -20,7 +20,7 @@ doc.addEventListener('keydown', function(e){
 doc.addEventListener('keyup',  function(e){
   var key = e.keyCode ? e.keyCode : e.which;
   if(keyMap&keys[key]){
-    keyMap-=keys[key];
+    keyMap^=keys[key];
     e.preventDefault();
   }
   //console.log('u '+key);
