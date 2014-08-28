@@ -90,7 +90,7 @@ var Sprite = function(data){
     }
   }
   m.land = function(yf){
-    if(!m.landed)m.setAnimation('idle');
+    if(!m.landed)m.setAnimation('i');
     m.vy = 0;
     m.landed = 1;
     m.canDoubleJump = 1
@@ -99,20 +99,20 @@ var Sprite = function(data){
   }
   m.left = function(){
     m.vx-=m.accelerationX;
-    if(m.landed) m.setAnimation('run');
+    if(m.landed) m.setAnimation('r');
     if(m.vx < -m.maxVx) m.vx = -m.maxVx;
     m.direction = 0;
   }
   m.right= function(){
     m.vx+=m.accelerationX;
-    if(m.landed) m.setAnimation('run');
+    if(m.landed) m.setAnimation('r');
     if(m.vx > m.maxVx) m.vx = m.maxVx;
     m.direction = 1;
   }
   m.stopX = function(){
     if(m.vx!=0){
       m.vx=0;
-      m.setAnimation('idle');
+      m.setAnimation('i');
     }
   }
   m.jump= function(){
@@ -122,7 +122,7 @@ var Sprite = function(data){
       if(!m.landed)
         m.canDoubleJump = 0;
       m.landed = 0;
-      m.setAnimation('jump');
+      m.setAnimation('j');
     }
   }
   m.down= function(){
@@ -154,13 +154,13 @@ var Sprite = function(data){
     if(m.currentAnimation == name) return;
     m.currentAnimation = name;
     m.frames = [];
-    var animation = window.animations[name].frames;
-    m.byteArray = convertTobyte(loadByString(window.animations[name].keyframe));
+    var animation = animations[name].f;
+    m.byteArray = convertTobyte(loadByString(animations[name].kf));
     for (j = 0; j < animation.length; j++) {
       var ha = frames[animation[j]];
       if(animation[j]==-1){
         m.iFrame = m.frames.length;
-        return m.frames.push('idle');
+        return m.frames.push('i');
       }
       m.addFrame(loadByString(ha));
     }

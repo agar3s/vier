@@ -2,7 +2,7 @@
 data = loadByString(hero);
 heroS = new Sprite(data);
 powers = [];
-heroS.setAnimation('idle');
+heroS.setAnimation('i');
 
 
 heroElementColors = [25,115,205,295];
@@ -43,7 +43,7 @@ HeroT = function(spr){
   }
   m.power = function(){
     if(m.coldown<=0){
-      m.sprite.setAnimation('power');
+      m.sprite.setAnimation('p');
       powers.push(new Power(0,2));
       m.coldown = 16;
     }

@@ -1,9 +1,9 @@
 window.fire = '{f{g{h{i{u!$%056?@ABFORV`bcefostu~,';
 window.hero  = '{H{I{X{Y"#$134ACEQSVacdsu~.~1~=~@~M~P~]~^~`~a';
-window.heropower = '{I{J{Y{Z"#$134ACERSVcdsu~.~0~=~?~M~O~]~^~_~`';
-window.herorun = '{Y{Z{i{j"#$134ACDESVWbcdqru~)~*~+~0~9~A~Q~a~b';
-window.herojump = '{Z{[{g{h{i{j{k!#$134ACESTcesu~-~0~=~?~L~O~\\~_';
-window.powerAnimation = '';
+heropower = '{I{J{Y{Z"#$134ACERSVcdsu~.~0~=~?~M~O~]~^~_~`';
+herorun = '{Y{Z{i{j"#$134ACDESVWbcdqru~)~*~+~0~9~A~Q~a~b';
+herojump = '{Z{[{g{h{i{j{k!#$134ACESTcesu~-~0~=~?~L~O~\\~_';
+powerAnimation = '';
 window.frames = [
   '',
   '~A~>~0tqfUD2{i{h~@~=~1udVE1$#"{I{H',
@@ -13,26 +13,21 @@ window.frames = [
   '~`~M~?~>~=~/T2{k{[~P~J~A~;~:~0~,rdbVB1"{i{Y'
 ];
 
-window.heroAnimation = [0,0,0,0,0,0,0,0,0,1];
-window.heropowerAnimation = [2,3,3,2,0,-1];
-window.herorunAnimation = [0,4,0,5,0,5,0,4,0];
-window.herojumpAnimation = [0];
-
 window.animations = {
-  idle:{
-    keyframe:window.hero,
-    frames: window.heroAnimation
+  i:{//idle
+    kf:window.hero,//key frame
+    f: [0,0,0,0,0,0,0,0,0,1] //frames
   },
-  power:{
-    keyframe:window.heropower,
-    frames: window.heropowerAnimation
+  p:{
+    kf:heropower,
+    f: [2,3,3,2,0,-1]
   },
-  run:{
-    keyframe:window.herorun,
-    frames: window.herorunAnimation
+  r:{
+    kf:herorun,
+    f: [0,4,0,5,0,5,0,4,0]
   },
-  jump:{
-    keyframe:window.herojump,
-    frames: window.herojumpAnimation
+  j:{
+    kf:herojump,
+    f: [0]
   }
 }
