@@ -5,11 +5,21 @@ window.heropower = '{I{J{Y{Z"#$134ACERSVcdsu~.~0~=~?~M~O~]~^~_~`';
 window.powerAnimation = '';
 window.frames = [
   '',
-  '~A~>~0tqfUD2{i{h~@~=~1udVE1$#"{I{H'
-];
-window.powerFrames = [
+  '~A~>~0tqfUD2{i{h~@~=~1udVE1$#"{I{H',
   'B65VREA',
   '~@~>tD2(\'&%{m{j{i~?~=udB651"{J{I'
 ];
+
 window.heroAnimation = [0,0,0,0,0,0,0,0,0,1];
-window.heropowerAnimation = [0,1,1,0];
+window.heropowerAnimation = [2,3,3,2,0,-1];
+
+window.animations = {
+  idle:{
+    keyframe:window.hero,
+    frames: window.heroAnimation
+  },
+  power:{
+    keyframe:window.heropower,
+    frames: window.heropowerAnimation
+  },
+}

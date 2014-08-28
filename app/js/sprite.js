@@ -53,6 +53,9 @@ var Sprite = function(data){
     if(++m.iFrame>=m.frames.length){
       m.iFrame=0;
     }
+    if(typeof(m.frames[m.iFrame])=='string'){
+      return m.setAnimation(m.frames[m.iFrame]);
+    }
     var data2 = [];
     for(var j = 0; j < ppp; j++) {
       m.byteArray[j] = m.byteArray[j]^m.frames[m.iFrame][j];
@@ -137,7 +140,17 @@ var Sprite = function(data){
     };
   }
   m.setAnimation = function(name){
-    
+    m.frames = [];
+    var animation = window.animations[name].frames;
+    m.byteArray = convertTobyte(loadByString(window.animations[name].keyframe));
+    for (j = 0; j < animation.length; j++) {
+      var ha = frames[animation[j]];
+      if(animation[j]==-1){
+        m.iFrame = m.frames.length;
+        return m.frames.push('idle');
+      }
+      m.addFrame(loadByString(ha));
+    }
   }
 }
 

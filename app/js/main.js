@@ -2,10 +2,8 @@
 data = loadByString(hero);
 heroS = new Sprite(data);
 powers = [];
-for (j = 0; j < heroAnimation.length; j++) {
-  var ha = frames[heroAnimation[j]];
-  heroS.addFrame(loadByString(ha));
-};
+heroS.setAnimation('idle');
+
 
 heroElementColors = [25,115,205,295];
 Power = function(type, pixelSize){
