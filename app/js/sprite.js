@@ -83,12 +83,14 @@ var Sprite = function(data){
     return m.y+m.pixelSize*16;
   }
   m.accelerateY = function(dvy){
+    //if(m.vy>0)m.setAnimation('jump');
     m.vy+=dvy;
     if(m.vy>m.pixelSize*3){
       m.vy = m.pixelSize*3;
     }
   }
   m.land = function(yf){
+    if(!m.landed)m.setAnimation('idle');
     m.vy = 0;
     m.landed = 1;
     m.canDoubleJump = 1
@@ -97,13 +99,21 @@ var Sprite = function(data){
   }
   m.left = function(){
     m.vx-=m.accelerationX;
+    if(m.landed) m.setAnimation('run');
     if(m.vx < -m.maxVx) m.vx = -m.maxVx;
     m.direction = 0;
   }
   m.right= function(){
     m.vx+=m.accelerationX;
+    if(m.landed) m.setAnimation('run');
     if(m.vx > m.maxVx) m.vx = m.maxVx;
     m.direction = 1;
+  }
+  m.stopX = function(){
+    if(m.vx!=0){
+      m.vx=0;
+      m.setAnimation('idle');
+    }
   }
   m.jump= function(){
     console.log(m.landed, m.canDoubleJump);
@@ -112,6 +122,7 @@ var Sprite = function(data){
       if(!m.landed)
         m.canDoubleJump = 0;
       m.landed = 0;
+      m.setAnimation('jump');
     }
   }
   m.down= function(){
@@ -140,6 +151,8 @@ var Sprite = function(data){
     };
   }
   m.setAnimation = function(name){
+    if(m.currentAnimation == name) return;
+    m.currentAnimation = name;
     m.frames = [];
     var animation = window.animations[name].frames;
     m.byteArray = convertTobyte(loadByString(window.animations[name].keyframe));

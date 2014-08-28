@@ -78,6 +78,6 @@ var transformSprite = function(file){
   });
 };
 
-transformSprite('heropower');
-transformSprite('heropower01');
-transformSprite('heropower02');
+transformSprite('herojump');
+transformSprite('herojump02');
+transformSprite('herojump03');

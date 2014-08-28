@@ -71,7 +71,7 @@ HeroT = function(spr){
     if(keyMap&32) m.power();
     if(keyMap&1) m.sprite.left();
     else if(keyMap&4) m.sprite.right();
-    else m.sprite.vx=0;
+    else m.sprite.stopX();
   }
 }
 

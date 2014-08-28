@@ -1,8 +1,8 @@
 var fs = require('fs');
 var heroSprites = [
   '{I{J{Y{Z"#$134ACERSVcdsu~.~0~=~?~M~O~]~^~_~`',
-  '{I{J{Y{Z"#$13456BCScdsu~.~0~=~?~M~O~]~^~_~`',
-  "{Y{Z{i{j{m#$%&'(234CDScst~.~0~>~@~M~O~]~^~_~`"
+  '{Z{[{g{h{i{j{k!#$134ACESTcesu~-~0~=~?~L~O~\\~_',
+  '{j{k"#$%&134ACDQSUcdsu~.~0~=~?~L~O~\\~]~_~`'
 ];
 
 function convertArray(sprite){
@@ -47,7 +47,7 @@ for (var i = 0; i < diffArray.length; i++) {
 };
 diffArray = diffArray.join('\n');
 
-fs.writeFile('./animations/heropower', diffArray, function(err){
+fs.writeFile('./animations/herojump', diffArray, function(err){
   if(err){
     console.log('exception:', err);
     return;

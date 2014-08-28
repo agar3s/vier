@@ -13,6 +13,7 @@ Platform = function(x,y,width){
       heroS.land(y);
     }else{
       m.collide = 0;
+//      heroS.landed = 0;
     }
   },
   m.draw = function(){
