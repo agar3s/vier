@@ -45,6 +45,7 @@ HeroT = function(spr){
   }
   m.power = function(){
     if(m.coldown<=0){
+      m.sprite.setAnimation('power');
       powers.push(new Power(0,2));
       m.coldown = 16;
     }

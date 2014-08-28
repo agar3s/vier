@@ -1,4 +1,10 @@
----- animation preview in the sprite editor.
+---- gulp builder
+	---- copy
+	---- concatenation
+	---- minification
+	---- uglify
+	---- zipping
++---- animation preview in the sprite editor.
 ---- implements textures for the backgrounds
 ---- implements sound management
 	--- background music
@@ -8,8 +14,8 @@
 ---- enemies with simple AI
 
 
----- gravity
---- launch powers
++---- gravity
++--- launch powers
 --- add collisions
 --- levels
 --- animation

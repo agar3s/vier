@@ -136,6 +136,9 @@ var Sprite = function(data){
       ctx.fillRect(m.x+(m.direction?k:15-k)*m.pixelSize, m.y+(m.data[i] >> 4)*m.pixelSize, m.pixelSize, m.pixelSize);
     };
   }
+  m.setAnimation = function(name){
+    
+  }
 }
 
 function loadByString(sprite){
