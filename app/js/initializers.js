@@ -1,3 +1,9 @@
-window.doc = document;
+var doc = document;
 doc.get = doc.getElementById;
-var canvas = doc.get('c'), ctx = canvas.getContext('2d'), pixelSize = 4, i,j,ppp=16, pp1=15;
+var canvas = doc.get('c');
+var ctx = canvas.getContext('2d');
+var pixelSize = 4;
+var i;
+var j;
+var ppp=16;
+var pp1=15;

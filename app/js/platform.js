@@ -1,4 +1,4 @@
-Platform = function(x,y,width){
+var Platform = function(x,y,width){
   var m = this;
   m.x = x;
   m.y = y;

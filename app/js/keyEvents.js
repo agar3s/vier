@@ -1,5 +1,5 @@
 var keyMap = 0;
-keys={
+var keys={
   '37':1,
   '38':2,
   '39':4,

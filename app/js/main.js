@@ -1,12 +1,12 @@
 //@agar3s
-data = loadByString(hero);
-heroS = new Sprite(data);
-powers = [];
+var data = loadByString(hero);
+var heroS = new Sprite(data);
+var powers = [];
 heroS.setAnimation('i');
 
 
-heroElementColors = [25,115,205,295];
-Power = function(type, pixelSize){
+var heroElementColors = [25,115,205,295];
+var Power = function(type, pixelSize){
   var m = this;
   m.data = loadByString(fire);
   m.sprite = new Sprite(m.data);
@@ -23,7 +23,7 @@ Power = function(type, pixelSize){
   }
 }
 
-HeroT = function(spr){
+var HeroT = function(spr){
   var m = this;
   m.sprite = spr;
   m.element = 0;
@@ -76,9 +76,9 @@ HeroT = function(spr){
 }
 
 data = loadByString(fire);
-firexx = new Sprite(data);
+var firexx = new Sprite(data);
 firexx.color = '#E60';
-myhero = new HeroT(heroS);
+var myhero = new HeroT(heroS);
 
 function cleanSpace(){
   ctx.fillStyle='#111';
