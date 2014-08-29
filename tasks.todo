@@ -1,10 +1,17 @@
+9.8kb
+
+2403/13312 23%
+2441/13312
+
+
 ---- gulp builder
-	---- copy
-	---- concatenation
-	---- minification
-	---- uglify
-	---- zipping
+	+---- copy
+	+---- concatenation
+	+---- minification
+	+---- uglify
+	+---- zipping
 +---- animation preview in the sprite editor.
+
 ---- implements textures for the backgrounds
 ---- implements sound management
 	--- background music
