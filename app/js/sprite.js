@@ -1,4 +1,4 @@
-function convertTobyte(d){
+var convertTobyte = function(d){
   var bArray = new Int16Array(ppp);
   for (var i = 0; i < d.length; i++) {
     //var y = data[i] >> 4;       // takes the y index 
@@ -167,7 +167,7 @@ var Sprite = function(data){
   }
 }
 
-function loadByString(sprite){
+var loadByString= function(sprite){
   var i=0, char=sprite[i];
   var byteArray=[];
   var byte = 0;
