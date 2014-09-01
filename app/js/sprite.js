@@ -116,7 +116,6 @@ var Sprite = function(data){
     }
   }
   m.jump= function(){
-    console.log(m.landed, m.canDoubleJump);
     if(m.landed||m.canDoubleJump){
       m.vy=-m.pixelSize*3;
       if(!m.landed)

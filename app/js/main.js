@@ -8,7 +8,10 @@ heroS.setAnimation('i');
 var heroElementColors = [25,115,205,295];
 var Power = function(type, pixelSize){
   var m = this;
-  m.data = loadByString(fire);
+  m.type = type;
+  if(m.type==0) m.data = loadByString(fire);
+  if(m.type==1) m.data = loadByString(water);
+  //m.data = loadByString(fire);
   m.sprite = new Sprite(m.data);
   m.outside = 0;
   m.sprite.color = heroS.color;
@@ -20,6 +23,10 @@ var Power = function(type, pixelSize){
   m.updateX= function(){
     m.sprite.updateX();
     m.outside = m.sprite.x>1000 || m.sprite.x<-10;
+  }
+  m.animate = function(){
+    if(m.type==0)m.sprite.rotate()
+    if(m.type==1)m.sprite.rotate()
   }
 }
 
@@ -95,6 +102,7 @@ firexx.pixelSize = 4;
 heroS.pixelSize = 5;
 
 var loop = 0;
+var xlevel = new Level();
 function gameLoop() {
   cleanSpace();
   firexx.drawCharacter();
@@ -102,16 +110,16 @@ function gameLoop() {
   heroS.accelerateY(0.8);
   heroS.update();
   myhero.update();
+  xlevel.drawLevel();
   for(i = 0; i < platforms.length; i++) {
     platforms[i].draw();
     platforms[i].collides();
   }
   for (var j = powers.length - 1; j >= 0; j--) {
-    //powers[j].sprite.accelerateY(1);
     powers[j].updateX();
     powers[j].sprite.drawCharacter();
     if(loop%4==0){
-      powers[j].sprite.rotate()
+      powers[j].animate();
     }
     if(powers[j].outside){
       powers.splice(j, 1);
