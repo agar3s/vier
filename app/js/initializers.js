@@ -8,4 +8,4 @@ var j;
 var ppp=16;
 var pp1=15;
 var dimensions = {w:1024,h:720};
-var viewport = {x:0, y:-720};
+var viewport = {x:0, y:-720, oY:250};

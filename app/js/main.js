@@ -148,7 +148,7 @@ function gameLoop() {
   }else{
     xxx=0;
   }
-  if((myhero.sprite.y+200+16*pixelSize>viewport.y+dimensions.h&&myhero.sprite.vy>0)||(myhero.sprite.y-200<viewport.y&&myhero.sprite.vy<0)){
+  if(viewport.y-viewport.oY<-dimensions.h&&(myhero.sprite.y+viewport.oY+16*pixelSize>viewport.y+dimensions.h&&myhero.sprite.vy>0)||(myhero.sprite.y-viewport.oY<viewport.y&&myhero.sprite.vy<0)){
     viewport.y+=myhero.sprite.vy;
     yyy= -myhero.sprite.vy;
   }else{
