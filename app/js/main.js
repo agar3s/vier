@@ -2,7 +2,7 @@
 var data = loadByString(hero);
 var heroS = new Sprite(data);
 var powers = [];
-var platforms = [];
+
 var xlevel = new Level();
 heroS.setAnimation('i');
 

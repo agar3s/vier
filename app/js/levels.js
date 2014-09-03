@@ -1,9 +1,10 @@
+var platforms = [];
 var Level = function(){
 	var m = this;
   m.w = 1500;
   m.h = 0;
   //m.points = [];
-  var factor = 32;
+  var factor = 1;
   //var montains = +20*(2*Math.sin(i/3));
   //var imposible climbing = -i/2+30*(2*Math.tan(i));
   //var y = -20*(2*Math.sin(i/3));
@@ -11,10 +12,10 @@ var Level = function(){
     platforms = [];
     for (var i = 0; i <= m.w; i+=factor) {
       var grad = i%(Math.PI*2);
-      var y = -20*(2*Math.sin(i/3));
+      var y = -i-20*(Math.sin(i/4));
       //var y = -i/4+20*(2*Math.tan(i));
       m.h=y<m.h?y:m.h;
-      platforms.push(new Platform(i,y, factor));
+      platforms.push(new Platform(i,y, factor*10));
       //m.points.push({x:i,y:300+(factor)*(Math.sin(i)-Math.cos(i))});
     };
   }

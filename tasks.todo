@@ -2,6 +2,7 @@
 
 2403/13312 23%
 2441/13312
+---- script to 
 
 
 ---- gulp builder
@@ -12,6 +13,10 @@
 	+---- zipping
 +---- animation preview in the sprite editor.
 
++-- implement camera tracker
++-- save the generator level
+	-- solo validar el que se encuentra en el mismo index.
+
 ---- implements textures for the backgrounds
 ---- implements sound management
 	--- background music
@@ -20,14 +25,14 @@
 
 ---- enemies with simple AI
 
-
+-- calculates the velocity in y
 +---- gravity
 +--- launch powers
 --- add collisions
 --- levels
---- animation
---- camera
---- transition between animations
++--- animation
++--- camera
++--- transition between animations
 --- enemies
 	--- elementals: pure elements life been
 		--- 3 levels
