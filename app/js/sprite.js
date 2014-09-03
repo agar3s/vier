@@ -100,7 +100,7 @@ var Sprite = function(data){
   m.left = function(){
     m.vx-=m.accelerationX;
     if(m.landed) m.setAnimation('r');
-    if(m.vx < -m.maxVx) m.vx = -m.maxVx;
+    if(m.vx < -m.maxVx&&m.x>100) m.vx = -m.maxVx;
     m.direction = 0;
   }
   m.right= function(){

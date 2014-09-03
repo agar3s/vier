@@ -2,6 +2,8 @@
 var data = loadByString(hero);
 var heroS = new Sprite(data);
 var powers = [];
+var platforms = [];
+var xlevel = new Level();
 heroS.setAnimation('i');
 
 
@@ -22,7 +24,7 @@ var Power = function(type, pixelSize){
   m.sprite.direction = heroS.direction;
   m.updateX= function(){
     m.sprite.updateX();
-    m.outside = m.sprite.x>3200 || m.sprite.x<-10;
+    m.outside = m.sprite.x>xlevel.w || m.sprite.x<-10;
   }
   m.animate = function(){
     if(m.type==0)m.sprite.rotate()
@@ -76,8 +78,8 @@ var HeroT = function(spr){
       keyMap^=128;
     }
     if(keyMap&32) m.power();
-    if(keyMap&1) m.sprite.left();
-    else if(keyMap&4) m.sprite.right();
+    if(keyMap&1&&m.sprite.x>-pixelSize) m.sprite.left();
+    else if(keyMap&4&&m.sprite.x+16*pixelSize<xlevel.w) m.sprite.right();
     else m.sprite.stopX();
   }
 }
@@ -91,12 +93,10 @@ function cleanSpace(){
   ctx.clearRect(-viewport.x, viewport.y, dimensions.w, dimensions.h);
 }
 
-var platforms = [];
 firexx.pixelSize = 4;
 heroS.pixelSize = 5;
 
 var loop = 0;
-var xlevel = new Level();
 
 // var boundsv
 var xcam = 0; 
@@ -142,7 +142,7 @@ function gameLoop() {
   }
   loop++;
 
-  if(myhero.sprite.x>300+viewport.x&&myhero.sprite.x-300<2400){
+  if(myhero.sprite.x>300+viewport.x&&myhero.sprite.x-300<xlevel.w-dimensions.w){
     viewport.x-=myhero.sprite.vx;
     xxx=-myhero.sprite.vx;
   }else{

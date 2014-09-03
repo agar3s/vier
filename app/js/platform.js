@@ -17,7 +17,9 @@ var Platform = function(x,y,width){
     }
   },
   m.draw = function(){
-    ctx.fillStyle=m.collide?'#F00':'#66F';
+    //ctx.fillStyle=m.collide?'#F00':'#668';
+    //ctx.fillRect(m.x, m.y, m.width, 500);
+    ctx.fillStyle=m.collide?'#F44':'#663';
     ctx.fillRect(m.x, m.y, m.width, 5);
   }
 }
