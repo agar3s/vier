@@ -108,16 +108,12 @@ ctx.translate(viewport.x, -viewport.y);
 //ctx.transform(1, 0, 0, 1, 0, 0);
 function gameLoop() {
   cleanSpace();
-  xlevel.drawLevel();
+  xlevel.draw();
   xlevel.collides();
   firexx.drawCharacter();
   heroS.accelerateY(0.8);
   heroS.update();
   myhero.update();
-  for(i = 0; i < platforms.length; i++) {
-    platforms[i].draw();
-    platforms[i].collides();
-  }
 
   for (var j = powers.length - 1; j >= 0; j--) {
     powers[j].updateX();
