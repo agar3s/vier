@@ -28,6 +28,7 @@ gulp.task('scripts', ['move'],function() {
             './app/js/sprites.js',
             './app/js/sprite.js',
             './app/js/platform.js',
+            './app/js/levels.js',
             './app/js/main.js',
             'wrappere.txt'
           ])

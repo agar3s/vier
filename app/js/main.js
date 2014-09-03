@@ -18,11 +18,11 @@ var Power = function(type, pixelSize){
   m.sprite.x = heroS.x+8*3;
   m.sprite.y = heroS.y;
   m.sprite.pixelSize = 2;
-  m.sprite.vx = heroS.direction?8:-8;
+  m.sprite.vx = heroS.direction?9:-9;
   m.sprite.direction = heroS.direction;
   m.updateX= function(){
     m.sprite.updateX();
-    m.outside = m.sprite.x>1000 || m.sprite.x<-10;
+    m.outside = m.sprite.x>3200 || m.sprite.x<-10;
   }
   m.animate = function(){
     if(m.type==0)m.sprite.rotate()
@@ -88,33 +88,37 @@ firexx.color = '#E60';
 var myhero = new HeroT(heroS);
 
 function cleanSpace(){
-  ctx.fillStyle='#111';
-  ctx.fillRect(0,0,800,600);
+  ctx.clearRect(-viewport.x, viewport.y, dimensions.w, dimensions.h);
 }
 
 var platforms = [];
-platforms.push(new Platform(12,400,240));
-platforms.push(new Platform(600,400,240));
-platforms.push(new Platform(320,336,240));
-platforms.push(new Platform(120,520,60));
-platforms.push(new Platform(150,500,240));
 firexx.pixelSize = 4;
 heroS.pixelSize = 5;
 
 var loop = 0;
 var xlevel = new Level();
+
+// var boundsv
+var xcam = 0; 
+var ycam = 0;
+//scale
+ctx.scale(1, 1);
+
+ctx.translate(viewport.x, -viewport.y);
+//ctx.transform(1, 0, 0, 1, 0, 0);
 function gameLoop() {
   cleanSpace();
+  xlevel.drawLevel();
+  xlevel.collides();
   firexx.drawCharacter();
-  heroS.drawCharacter();
   heroS.accelerateY(0.8);
   heroS.update();
   myhero.update();
-  xlevel.drawLevel();
   for(i = 0; i < platforms.length; i++) {
     platforms[i].draw();
     platforms[i].collides();
   }
+
   for (var j = powers.length - 1; j >= 0; j--) {
     powers[j].updateX();
     powers[j].sprite.drawCharacter();
@@ -131,11 +135,26 @@ function gameLoop() {
     loop=0;
   }
   firexx.updateX();
+  heroS.drawCharacter();
   myhero.manage();
   if(loop%2==0){
     heroS.animate();
   }
   loop++;
+
+  if(myhero.sprite.x>300+viewport.x&&myhero.sprite.x-300<2400){
+    viewport.x-=myhero.sprite.vx;
+    xxx=-myhero.sprite.vx;
+  }else{
+    xxx=0;
+  }
+  if((myhero.sprite.y+200+16*pixelSize>viewport.y+dimensions.h&&myhero.sprite.vy>0)||(myhero.sprite.y-200<viewport.y&&myhero.sprite.vy<0)){
+    viewport.y+=myhero.sprite.vy;
+    yyy= -myhero.sprite.vy;
+  }else{
+    yyy = 0;
+  }
+  ctx.translate(xxx, yyy);
   requestAnimationFrame(gameLoop);
 }
 
