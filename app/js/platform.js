@@ -19,7 +19,7 @@ var Platform = function(x,y,width){
   },
   m.draw = function(){
     //ctx.fillStyle=m.collide?'#700':'#668';
-    ctx.fillRect(m.x, m.y, m.width, -xlevel.h+dimensions.w);
+    //ctx.fillRect(m.x, m.y, m.width, -xlevel.h+dimensions.w);
     
     ctx.fillRect(m.x, m.y, m.width, 5);
   }

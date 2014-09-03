@@ -102,9 +102,6 @@ var loop = 0;
 var xcam = 0; 
 var ycam = 0;
 //scale
-ctx.scale(1, 1);
-
-ctx.translate(viewport.x, -viewport.y);
 //ctx.transform(1, 0, 0, 1, 0, 0);
 function gameLoop() {
   cleanSpace();

@@ -9,3 +9,10 @@ var ppp=16;
 var pp1=15;
 var dimensions = {w:1024,h:720};
 var viewport = {x:0, y:-720, oY:250};
+
+var zoomFactor =(window.innerHeight-100)/dimensions.h; 
+//var zoomFactor =1; 
+canvas.width = dimensions.w*zoomFactor;
+canvas.height = dimensions.h*zoomFactor;
+ctx.scale(zoomFactor, zoomFactor);
+ctx.translate(viewport.x, -viewport.y);

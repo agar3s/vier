@@ -11,8 +11,8 @@ var Level = function(){
     platforms = [];
     for (var i = 0; i <= m.w; i+=factor) {
       var grad = i%(Math.PI*2);
-      //var y = -20*(2*Math.sin(i/3));
-      var y = -i/4+20*(2*Math.tan(i));
+      var y = -20*(2*Math.sin(i/3));
+      //var y = -i/4+20*(2*Math.tan(i));
       m.h=y<m.h?y:m.h;
       platforms.push(new Platform(i,y, factor));
       //m.points.push({x:i,y:300+(factor)*(Math.sin(i)-Math.cos(i))});
@@ -23,6 +23,7 @@ var Level = function(){
     var index = Math.floor(-viewport.x/factor);
     if(index<0){index=0;}
     var limit = index + Math.floor(dimensions.w/factor);
+    if(limit>=platforms.length){limit=platforms.length-1;}
     ctx.fillStyle='#A44';
     for(i = index; i <= limit; i++) {
       platforms[i].draw();
