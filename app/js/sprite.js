@@ -23,8 +23,8 @@ var Sprite = function(data){
   m.direction = 1;
   m.landed = 0;
   m.byteArray = convertTobyte(m.data);
-  m.maxVx = pixelSize*2.5;
-  m.accelerationX = 0.5;
+  m.maxVx = pixelSize*2.2;
+  m.accelerationX = 0.25;
   m.pixelSize = pixelSize;
 
   m.rotate = function(){
@@ -98,12 +98,14 @@ var Sprite = function(data){
     m.y = yf-m.pixelSize*15;
   }
   m.left = function(){
+    if(m.vx>0)m.vx=0;
     m.vx-=m.accelerationX;
     if(m.landed) m.setAnimation('r');
-    if(m.vx < -m.maxVx&&m.x>100) m.vx = -m.maxVx;
+    if(m.vx < -m.maxVx) m.vx = -m.maxVx;
     m.direction = 0;
   }
   m.right= function(){
+    if(m.vx<0)m.vx=0;
     m.vx+=m.accelerationX;
     if(m.landed) m.setAnimation('r');
     if(m.vx > m.maxVx) m.vx = m.maxVx;
@@ -126,8 +128,8 @@ var Sprite = function(data){
   }
   m.down= function(){
     if(!m.downed){
-      m.vy+=pixelSize*3-1;
-      m.downed = 1;
+      //m.vy+=pixelSize*3-1;
+      //m.downed = 1;
     }
   }
   m.up= function(){
@@ -135,6 +137,7 @@ var Sprite = function(data){
   }
   m.update= function(){
     m.fall();
+    if(m.x+m.vx)
     m.x += m.vx;
   }
   m.updateX= function(){

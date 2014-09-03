@@ -20,7 +20,7 @@ var Power = function(type, pixelSize){
   m.sprite.x = heroS.x+8*3;
   m.sprite.y = heroS.y;
   m.sprite.pixelSize = 2;
-  m.sprite.vx = heroS.direction?9:-9;
+  m.sprite.vx = heroS.direction?10:-10;
   m.sprite.direction = heroS.direction;
   m.updateX= function(){
     m.sprite.updateX();
@@ -78,7 +78,7 @@ var HeroT = function(spr){
       keyMap^=128;
     }
     if(keyMap&32) m.power();
-    if(keyMap&1&&m.sprite.x>-pixelSize) m.sprite.left();
+    if(keyMap&1&&m.sprite.x>-16) m.sprite.left();
     else if(keyMap&4&&m.sprite.x+16*pixelSize<xlevel.w) m.sprite.right();
     else m.sprite.stopX();
   }
