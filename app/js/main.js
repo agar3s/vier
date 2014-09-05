@@ -101,14 +101,15 @@ var loop = 0;
 // var boundsv
 var xcam = 0; 
 var ycam = 0;
+var yOld = myhero.sprite.y;
 //scale
 //ctx.transform(1, 0, 0, 1, 0, 0);
 function gameLoop() {
   cleanSpace();
   xlevel.draw();
-  xlevel.collides();
   firexx.drawCharacter();
   heroS.accelerateY(0.8);
+  xlevel.collides();
   heroS.update();
   myhero.update();
 
@@ -141,12 +142,17 @@ function gameLoop() {
   }else{
     xxx=0;
   }
-  if(viewport.y-viewport.oY<-dimensions.h&&(myhero.sprite.y+viewport.oY+16*pixelSize>viewport.y+dimensions.h&&myhero.sprite.vy>0)||(myhero.sprite.y-viewport.oY<viewport.y&&myhero.sprite.vy<0)){
-    viewport.y+=myhero.sprite.vy;
+  yyy = 0;
+  if((viewport.y-viewport.oY<-dimensions.h&&myhero.sprite.y+viewport.oY+16*pixelSize>viewport.y+dimensions.h&&myhero.sprite.vy>0))
     yyy= -myhero.sprite.vy;
-  }else{
-    yyy = 0;
-  }
+  else if(myhero.sprite.y-viewport.oY<viewport.y)
+    if(myhero.sprite.vy<0)
+      yyy= -myhero.sprite.vy;
+    else if(myhero.sprite.vy==0)
+      yyy = yOld-myhero.sprite.y;
+  
+  viewport.y-=yyy;
+  yOld = myhero.sprite.y;
   ctx.translate(xxx, yyy);
   requestAnimationFrame(gameLoop);
 }
