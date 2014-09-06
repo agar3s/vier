@@ -4,7 +4,7 @@ var Level = function(){
   m.w = 1500;
   m.h = 0;
   //m.points = [];
-  var factor = 1;
+  var factor = 20;
   //var montains = +20*(2*Math.sin(i/3));
   //var imposible climbing = -i/2+30*(2*Math.tan(i));
   //var y = -20*(2*Math.sin(i/3));
@@ -13,7 +13,7 @@ var Level = function(){
     for (var i = 0; i <= m.w; i+=factor) {
       var grad = i%(Math.PI*2);
       //var y = -i-20*(Math.sin(i/4));
-      var y = -20-i*i/1000;
+      var y = -10*(Math.tan(grad)*Math.sin(grad)*Math.sin(grad));
       //var y = -i/4+20*(2*Math.tan(i));
       m.h=y<m.h?y:m.h;
       platforms.push(new Platform(i,y, factor));
@@ -26,18 +26,18 @@ var Level = function(){
     if(index<0){index=0;}
     var limit = index + Math.floor(dimensions.w/factor);
     if(limit>=platforms.length){limit=platforms.length-1;}
-    ctx.fillStyle='#A44';
+    ctx.fillStyle='#A4A';
     for(i = index; i <= limit; i++) {
       platforms[i].draw();
     }
   }
-  m.collides = function(){
-    var index = Math.floor(heroS.xi()/factor)-1;
+  m.collides = function(sprite){
+    var index = Math.floor(sprite.xi()/factor)-1;
     if(index<0)index=0;
-    var limit = Math.floor(heroS.xf()/factor)+1;
+    var limit = Math.floor(sprite.xf()/factor)+1;
     if(limit>=platforms.length) limit = platforms.length-1;
     for(i = index; i <= limit; i++) {
-      platforms[i].collides();
+      platforms[i].collides(sprite);
     }
   }
   m.drawLevel = function(){

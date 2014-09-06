@@ -143,7 +143,7 @@ var Sprite = function(data){
   m.updateX= function(){
     m.x += m.vx;
   }
-  m.drawCharacter= function(){
+  m.draw= function(){
     ctx.fillStyle = m.color;
     for(var i = 0; i < m.data.length; i++) {
       //var y = array[i] >> 4;

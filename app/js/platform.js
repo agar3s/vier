@@ -4,14 +4,14 @@ var Platform = function(x,y,width){
   m.y = y;
   m.width = width;
   m.collide = 1;
-  m.collides = function(){
-    if((heroS.xi()>m.x&&heroS.xi()<m.x+m.width||
-      heroS.xf()>m.x&&heroS.xf()<m.x+m.width||
-      heroS.xi()<m.x&&heroS.xf()>m.x+m.width)&&
-      (m.y>heroS.yil()&&m.y+5<heroS.yf())&&
-      (heroS.vy>=0)){
+  m.collides = function(sprite){
+    if((sprite.xi()>m.x&&sprite.xi()<m.x+m.width||
+      sprite.xf()>m.x&&sprite.xf()<m.x+m.width||
+      sprite.xi()<m.x&&sprite.xf()>m.x+m.width)&&
+      (m.y>sprite.yil()&&m.y+5<sprite.yf())&&
+      (sprite.vy>=0)){
       m.collide = 1;
-      heroS.land(y);
+      sprite.land(y);
     }else{
       m.collide = 0;
 //      heroS.landed = 0;
