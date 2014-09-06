@@ -111,6 +111,12 @@ var Sprite = function(data){
     if(m.vx > m.maxVx) m.vx = m.maxVx;
     m.direction = 1;
   }
+  m.forward = function(){
+    m.direction?m.right():m.left();
+  }
+  m.turn = function(){
+    m.direction = !m.direction;
+  }
   m.stopX = function(){
     if(m.vx!=0){
       m.vx=0;
@@ -137,7 +143,6 @@ var Sprite = function(data){
   }
   m.update= function(){
     m.fall();
-    if(m.x+m.vx)
     m.x += m.vx;
   }
   m.updateX= function(){

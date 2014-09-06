@@ -13,8 +13,9 @@ var Level = function(){
     for (var i = 0; i <= m.w; i+=factor) {
       var grad = i%(Math.PI*2);
       //var y = -i-20*(Math.sin(i/4));
-      var y = -10*(Math.tan(grad)*Math.sin(grad)*Math.sin(grad));
+      var y = -10*(Math.sin(grad));
       //var y = -i/4+20*(2*Math.tan(i));
+      //var y = -40;
       m.h=y<m.h?y:m.h;
       platforms.push(new Platform(i,y, factor));
       //m.points.push({x:i,y:300+(factor)*(Math.sin(i)-Math.cos(i))});
