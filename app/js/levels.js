@@ -23,9 +23,9 @@ var Level = function(){
   }
   m.generateLevel();
   m.draw = function(){
-    var index = Math.floor(-viewport.x/factor);
+    var index = ~~(-viewport.x/factor);
     if(index<0){index=0;}
-    var limit = index + Math.floor(dimensions.w/factor);
+    var limit = index + ~~(dimensions.w/factor);
     if(limit>=platforms.length){limit=platforms.length-1;}
     ctx.fillStyle='#A4A';
     for(i = index; i <= limit; i++) {
@@ -33,9 +33,9 @@ var Level = function(){
     }
   }
   m.collides = function(sprite){
-    var index = Math.floor(sprite.xi()/factor)-1;
+    var index = ~~(sprite.xi()/factor)-1;
     if(index<0)index=0;
-    var limit = Math.floor(sprite.xf()/factor)+1;
+    var limit = ~~(sprite.xf()/factor)+1;
     if(limit>=platforms.length) limit = platforms.length-1;
     for(i = index; i <= limit; i++) {
       platforms[i].collides(sprite);

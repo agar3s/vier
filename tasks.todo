@@ -25,6 +25,16 @@
 
 ---- enemies with simple AI
 
+!-- from the virtualwar 
+	---- use the simple js audio
+	---- create backgrounds using masks
+	---- reserved word 'with'
+	--- ncanvas to create new patterns
+
+--- storms?
+--- hills?
+--- bricks?
+
 -- calculates the velocity in y
 +---- gravity
 +--- launch powers

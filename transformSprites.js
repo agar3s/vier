@@ -50,7 +50,7 @@ var createSprite = function(name, byteArray){
 }
 
 var createImage = function(name, byteArray){
-  var png = new Png(new Buffer(byteArray), Math.floor(byteArray.length/3), 1);
+  var png = new Png(new Buffer(byteArray), ~~(byteArray.length/3), 1);
   png.encode(function(encodedPng){
     fs.writeFileSync('./sprites/'+name+'.png', encodedPng.toString('binary'), 'binary');
   });

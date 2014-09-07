@@ -5,7 +5,7 @@ var Enemy = function(type, sprite){
   m.sprite = sprite;
   m.sprite.color = '#FFF';
   m.sprite.setAnimation('i');
-  m.sprite.pixelSize = 5;
+  m.sprite.pixelSize = 6;
   m.f = 10;
   m.w = 0;
   m.a = 0;
@@ -17,7 +17,6 @@ var Enemy = function(type, sprite){
   //f: forward
   //t: change direction
   //j: jump
-  //m: jump forward
   //a: main attack
   //b: second attack
   //c: third attack
@@ -34,7 +33,7 @@ var Enemy = function(type, sprite){
         newPipe+=action;
         continue;
       }
-      i+= Math.floor(Math.log10(times))+1;
+      i+= ~~(Math.log10(times))+1;
       for (var j = 0; j < times; j++) {
         newPipe+=(action);
       }
@@ -42,6 +41,7 @@ var Enemy = function(type, sprite){
     m.actionpipe = newPipe;
   }
   m.setActionPipe('jdw10jdstw10');
+  m.setActionPipe('lf30sw10tjl');
   m.actionIndex = 0;
   m.actions = {
     f: m.sprite.forward,
