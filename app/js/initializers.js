@@ -19,3 +19,4 @@ ctx.translate(viewport.x, -viewport.y);
 
 var powers = [];
 var heroElementColors = [25,115,205,295];
+var enemies = [];

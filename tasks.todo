@@ -2,10 +2,25 @@
 
 2403/13312 23%
 2441/13312
----- script to 
+
+!- hit points!
+	-- hit the road jack!
+	-- power collides enemies
+!- particle death
+!-- elemental rules of damage
+-- diagonal attacks
 
 
----- gulp builder
+---- enemies with simple AI
+---- implements textures for the backgrounds
+
+---- implements sound management
+	--- background music
+	--- sound effects
+	--- encrypted sounds way
+
+
++---- gulp builder
 	+---- copy
 	+---- concatenation
 	+---- minification
@@ -17,13 +32,6 @@
 +-- save the generator level
 	-- solo validar el que se encuentra en el mismo index.
 
----- implements textures for the backgrounds
----- implements sound management
-	--- background music
-	--- sound effects
-	--- encrypted sounds way
-
----- enemies with simple AI
 
 !-- from the virtualwar 
 	---- use the simple js audio
@@ -38,7 +46,7 @@
 -- calculates the velocity in y
 +---- gravity
 +--- launch powers
---- add collisions
++--- add collisions
 --- levels
 +--- animation
 +--- camera
@@ -81,12 +89,12 @@
 	-- 2 against air master
 	-- 3 against earth master
 	-- 4 against fire and water masters
-	-- 5 against the big master
-	-- 6 against the demons of exacra
+	-- 5 against the demons of exacra
+	-- 6 against the big master
 	-- 7 against the 4 elemental sons of the gods
 
 ---- infinity level
-	-- infinity montain
+	-- god mode
 
 --- gameplay
 	-- you need to climb different stages and destroy all the enemies in the level

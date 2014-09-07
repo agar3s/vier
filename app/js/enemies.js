@@ -1,18 +1,18 @@
 
 var Enemy = function(type, sprite){
   var m = this;
-  m.type = type;
+  //m.type = type;
   m.sprite = sprite;
   m.sprite.color = '#FFF';
   m.sprite.setAnimation('i');
-  m.sprite.pixelSize = 6;
+  m.sprite.setPixelSize(6);
   m.f = 10;
   m.w = 0;
   m.a = 0;
   m.e = 0;
   m.sprite.maxVx = heroS.maxVx*0.9;
   m.sprite.x = 300;
-
+  m.skills = new ElementalSkill([type]); 
   //action options:
   //f: forward
   //t: change direction
@@ -40,7 +40,7 @@ var Enemy = function(type, sprite){
     }
     m.actionpipe = newPipe;
   }
-  m.setActionPipe('jdw10jdstw10');
+  m.setActionPipe('ljdw10jdstw10');
   //m.setActionPipe('lf30sw10tjl');
   m.actionIndex = 0;
   m.actions = {
@@ -97,7 +97,17 @@ var Enemy = function(type, sprite){
     //m.away();
     m.nextAction();
     m.sprite.update();
+  }
 
+  m.hit = function(type, damage){
+    //console.log(type, m.skills.current, damage);
+    //damage =getTotalDamage(type, m.skills.current, damage) ;
+    //console.log('total damage:', damage);
+    if(m.sprite.hit(getTotalDamage(type, m.skills.current, damage))){
+     // console.log('kill me');
+      m.del = 1;
+      //make me particles
+    }
   }
 
 }

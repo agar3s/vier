@@ -5,8 +5,8 @@ heroS.setAnimation('i');
 var HeroT = function(sprite){
   var m = this;
   m.sprite = sprite;
-  m.sprite.pixelSize = 5;
-  m.element = 0;
+  m.sprite.setPixelSize(5);
+  m.element = 2;
   m.coldown = 16;
   m.currentColor = heroElementColors[m.element];
   m.sprite.color = 'hsl('+m.currentColor+',100%, 50%)';
@@ -24,7 +24,7 @@ var HeroT = function(sprite){
   m.power = function(){
     if(m.coldown<=0){
       m.sprite.setAnimation('p');
-      powers.push(new Power(0,2));
+      powers.push(new Power(m.element,2));
       m.coldown = 16;
     }
   }

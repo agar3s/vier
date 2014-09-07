@@ -25,8 +25,13 @@ var Sprite = function(data){
   m.byteArray = convertTobyte(m.data);
   m.maxVx = pixelSize*2.2;
   m.accelerationX = 0.25;
-  m.pixelSize = pixelSize;
+  m.pixelSize = 0;
   m.hp = 9; //hitpoints
+  m.setPixelSize = function(pixelSize){
+    m.pixelSize = pixelSize;
+    m.height = m.width = m.pixelSize*16;
+  }
+  m.setPixelSize(pixelSize);
 
   m.rotate = function(){
     var data2 = [];
@@ -172,6 +177,11 @@ var Sprite = function(data){
       }
       m.addFrame(loadByString(ha));
     }
+  }
+  m.hit = function(damage){
+    //console.log('hit!!');
+    m.hp-=damage;
+    return m.hp<0;
   }
 }
 

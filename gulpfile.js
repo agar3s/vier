@@ -25,6 +25,7 @@ gulp.task('scripts', ['move'],function() {
   gulp.src(['wrapper.txt',
             './app/js/initializers.js',
             './app/js/keyEvents.js',
+            './app/js/elements.js',
             './app/js/sprites.js',
             './app/js/sprite.js',
             './app/js/platform.js',

@@ -7,8 +7,8 @@ firexx.color = '#E60';
 firexx.pixelSize = 4;
 
 
-var enemy = new Enemy('F', new Sprite(loadByString(hero)));
-
+var enemy = new Enemy(2, new Sprite(loadByString(hero)));
+enemies.push(enemy);
 var loop = 0;
 
 // var boundsv
@@ -24,15 +24,11 @@ function gameLoop() {
   xlevel.draw();
   firexx.draw();
   heroS.draw();
-  enemy.sprite.draw();
 
   heroS.accelerateY(0.8);
   xlevel.collides(heroS);
   myhero.update();
 
-  enemy.sprite.accelerateY(0.8);
-  xlevel.collides(enemy.sprite);
-  enemy.update();
 
 
   for (var j = powers.length - 1; j >= 0; j--) {
@@ -41,10 +37,25 @@ function gameLoop() {
     if(loop%4==0){
       powers[j].animate();
     }
-    if(powers[j].outside){
+    if(loop%2==0)powers[j].collides();
+    if(powers[j].outside||powers[j].del){
       powers.splice(j, 1);
     }
   }
+
+  for (var j = enemies.length - 1; j >= 0; j--) {
+    var enemy = enemies[j];
+    if(enemy.del){
+      enemies.splice(j, 1);
+      continue;
+    }
+    enemy.sprite.draw();
+    enemy.sprite.accelerateY(0.8);
+    xlevel.collides(enemy.sprite);
+    enemy.update();
+    if(loop%2==0)
+      enemy.sprite.animate();
+  };
 
   if(loop%8==0){
     firexx.rotate();
@@ -54,7 +65,6 @@ function gameLoop() {
   
   if(loop%2==0){
     heroS.animate();
-    enemy.sprite.animate();
   }
   myhero.manage();
   
