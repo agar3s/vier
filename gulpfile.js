@@ -29,7 +29,9 @@ gulp.task('scripts', ['move'],function() {
             './app/js/sprite.js',
             './app/js/platform.js',
             './app/js/levels.js',
+            './app/js/powers.js',
             './app/js/enemies.js',
+            './app/js/hero.js',
             './app/js/main.js',
             'wrappere.txt'
           ])
@@ -67,7 +69,7 @@ gulp.task('scripts', ['move'],function() {
     .pipe(replace(/manage/g, 'aj'))
     .pipe(replace(/jump/g, 'ak'))
 //    .pipe(replace(/down/g, 'DO'))
-    .pipe(replace(/prev/g, 'al'))
+//    .pipe(replace(/prev/g, 'al'))
     .pipe(replace(/next/g, 'am'))
     .pipe(replace(/power/g, 'an'))
     .pipe(replace(/nextAction/g, 'ao'))

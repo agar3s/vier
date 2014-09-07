@@ -16,3 +16,6 @@ canvas.width = dimensions.w*zoomFactor;
 canvas.height = dimensions.h*zoomFactor;
 ctx.scale(zoomFactor, zoomFactor);
 ctx.translate(viewport.x, -viewport.y);
+
+var powers = [];
+var heroElementColors = [25,115,205,295];

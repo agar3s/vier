@@ -26,6 +26,7 @@ var Sprite = function(data){
   m.maxVx = pixelSize*2.2;
   m.accelerationX = 0.25;
   m.pixelSize = pixelSize;
+  m.hp = 9; //hitpoints
 
   m.rotate = function(){
     var data2 = [];

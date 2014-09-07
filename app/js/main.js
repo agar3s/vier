@@ -1,100 +1,11 @@
 //@agar3s
-var data = loadByString(hero);
-var heroS = new Sprite(data);
-var powers = [];
-
 var xlevel = new Level();
-heroS.setAnimation('i');
-
-
-var heroElementColors = [25,115,205,295];
-var Power = function(type, pixelSize){
-  var m = this;
-  m.type = type;
-  if(m.type==0) m.data = loadByString(fire);
-  if(m.type==1) m.data = loadByString(water);
-  //m.data = loadByString(fire);
-  m.sprite = new Sprite(m.data);
-  m.outside = 0;
-  m.sprite.color = heroS.color;
-  m.sprite.x = heroS.x+8*3;
-  m.sprite.y = heroS.y;
-  m.sprite.pixelSize = 2;
-  m.sprite.vx = heroS.direction?10:-10;
-  m.sprite.direction = heroS.direction;
-  m.updateX= function(){
-    m.sprite.updateX();
-    m.outside = m.sprite.x>xlevel.w || m.sprite.x<-10;
-  }
-  m.animate = function(){
-    if(m.type==0)m.sprite.rotate()
-    if(m.type==1)m.sprite.rotate()
-  }
-}
-
-var HeroT = function(sprite){
-  var m = this;
-  m.sprite = sprite;
-  m.element = 0;
-  m.coldown = 16;
-  m.currentColor = heroElementColors[m.element];
-  m.sprite.color = 'hsl('+m.currentColor+',100%, 50%)';
-  m.incColor = 0;
-  m.next = function(){
-    if(++m.element>3) m.element=0;
-    m.incColor=5;
-    keyMap-=16;
-  }
-  m.prev = function(){
-    if(--m.element<0) m.element=3;
-    keyMap-=64;
-    m.incColor=-5;
-  }
-  m.power = function(){
-    if(m.coldown<=0){
-      m.sprite.setAnimation('p');
-      powers.push(new Power(0,2));
-      m.coldown = 16;
-    }
-  }
-  m.update = function(){
-    m.currentColor+=m.incColor;
-    if(m.currentColor<0) m.currentColor=355;
-    if(m.currentColor>355) m.currentColor=5;
-    if(m.currentColor!=heroElementColors[m.element]){
-      m.sprite.color = 'hsl('+m.currentColor+',100%, 50%)';
-    }else{
-      m.incColor = 0;
-    }
-    if(--m.coldown<0) m.coldown=0;
-  }
-  m.manage= function(){
-    if(keyMap&16) m.next();
-    if(keyMap&64) m.prev();
-    if(keyMap&8) m.sprite.down();
-    if(keyMap&2) m.sprite.up();
-    if(keyMap&128){
-      m.sprite.jump();
-      keyMap^=128;
-    }
-    if(keyMap&32) m.power();
-    if(keyMap&1&&m.sprite.x>-16) m.sprite.left();
-    else if(keyMap&4&&m.sprite.x+16*pixelSize<xlevel.w) m.sprite.right();
-    else m.sprite.stopX();
-  }
-}
-
-data = loadByString(fire);
-var firexx = new Sprite(data);
-firexx.color = '#E60';
 var myhero = new HeroT(heroS);
 
-function cleanSpace(){
-  ctx.clearRect(-viewport.x, viewport.y, dimensions.w, dimensions.h);
-}
-
+var firexx = new Sprite(loadByString(fire));
+firexx.color = '#E60';
 firexx.pixelSize = 4;
-heroS.pixelSize = 5;
+
 
 var enemy = new Enemy('F', new Sprite(loadByString(hero)));
 
@@ -108,18 +19,21 @@ var yOld = myhero.sprite.y;
 //scale
 //ctx.transform(1, 0, 0, 1, 0, 0);
 function gameLoop() {
-  cleanSpace();
+  ctx.clearRect(-viewport.x, viewport.y, dimensions.w, dimensions.h);
+  //draw the guys
   xlevel.draw();
   firexx.draw();
+  heroS.draw();
+  enemy.sprite.draw();
+
   heroS.accelerateY(0.8);
   xlevel.collides(heroS);
+  myhero.update();
 
   enemy.sprite.accelerateY(0.8);
   xlevel.collides(enemy.sprite);
   enemy.update();
 
-  heroS.update();
-  myhero.update();
 
   for (var j = powers.length - 1; j >= 0; j--) {
     powers[j].updateX();
@@ -137,15 +51,15 @@ function gameLoop() {
     loop=0;
   }
   firexx.updateX();
-  heroS.draw();
-  enemy.sprite.draw();
-  myhero.manage();
+  
   if(loop%2==0){
     heroS.animate();
     enemy.sprite.animate();
   }
-  loop++;
+  myhero.manage();
+  
 
+  //update the viewport
   if(myhero.sprite.x>300+viewport.x&&myhero.sprite.x-300<xlevel.w-dimensions.w){
     viewport.x-=myhero.sprite.vx;
     xxx=-myhero.sprite.vx;
@@ -164,6 +78,8 @@ function gameLoop() {
   viewport.y-=yyy;
   yOld = myhero.sprite.y;
   ctx.translate(xxx, yyy);
+  
+  loop++;
   requestAnimationFrame(gameLoop);
 }
 
