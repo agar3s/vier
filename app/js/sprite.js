@@ -76,8 +76,14 @@ var Sprite = function(data){
   m.xi = function(){
     return m.x+m.pixelSize*5;
   }
+  m.xpi = function(){
+    return m.x+m.pixelSize;
+  }
   m.xf = function(){
     return m.x+m.pixelSize*11;
+  }
+  m.xpf = function(){
+    return m.x+m.pixelSize*14;
   }
   m.yi = function(){
     return m.y+m.pixelSize*2;

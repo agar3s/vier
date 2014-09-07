@@ -20,8 +20,8 @@ var Power = function(type, pixelSize){
   m.collides = function(){
     for (var i = enemies.length - 1; i >= 0; i--) {
       var sprite = enemies[i].sprite;
-      if((sprite.xi()>m.sprite.xi()&&sprite.xi()<m.sprite.xf()||
-      sprite.xf()>m.sprite.xi()&&sprite.xf()<m.sprite.xf())&&
+      if((sprite.xpi()>m.sprite.xpi()&&sprite.xpi()<m.sprite.xpf()||
+      sprite.xpf()>m.sprite.xpi()&&sprite.xpf()<m.sprite.xpf())&&
       (m.sprite.y>sprite.y&&m.sprite.y<sprite.yf())){
         //m.sprite.color = '#fff';
         enemies[i].hit(m.type, m.damage);

@@ -6,9 +6,10 @@
 !- hit points!
 	+-- hit the road jack!
 	+-- power collides enemies
-!- particle death
++!- particle death
 !- drop element recharge
-!+-- elemental rules of damage
++!-- elemental rules of damage
+-- check collision
 -- diagonal attacks
 
 !-- viewport x cuando se devuelve esta extraño

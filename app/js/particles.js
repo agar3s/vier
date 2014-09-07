@@ -11,11 +11,12 @@ var Particle = function(x, y, vx, vy, size, color){
     m.x += m.vx;
     m.vy += 0.2;
     m.y += m.vy;
+    m.size*=1;
     return --m.life<0;
   }
 
   m.draw = function(){
-    ctx.fillStyle = 'hsla('+m.color+',100%, '+m.life+'%, 1)';
+    ctx.fillStyle = 'hsla('+m.color+','+m.life+'%, '+m.life+'%, '+m.life/100+')';
     ctx.fillRect(m.x, m.y, m.size, m.size);
   }
 }
