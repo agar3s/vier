@@ -3,7 +3,8 @@ var Enemy = function(type, sprite){
   var m = this;
   //m.type = type;
   m.sprite = sprite;
-  m.sprite.color = '#FFF';
+  m.color = 134
+  m.sprite.color = 'hsl('+m.color+',100%, 50%)';
   m.sprite.setAnimation('i');
   m.sprite.setPixelSize(6);
   m.f = 10;
@@ -107,6 +108,8 @@ var Enemy = function(type, sprite){
      // console.log('kill me');
       m.del = 1;
       //make me particles
+      createParticles(m.sprite, damage, 0, 0, m.color);
+      enemies.push(new Enemy(2, new Sprite(loadByString(hero))));
     }
   }
 

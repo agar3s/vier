@@ -16,6 +16,10 @@ var xcam = 0;
 var ycam = 0;
 var yOld = myhero.sprite.y;
 
+particles.push(new Particle(230, -300, 1.2,-10, 3, 329));
+particles.push(new Particle(240, -300, 2.15,-14, 3, 167));
+particles.push(new Particle(250, -300, 3.29,-8, 3, 279));
+
 //scale
 //ctx.transform(1, 0, 0, 1, 0, 0);
 function gameLoop() {
@@ -55,6 +59,12 @@ function gameLoop() {
     enemy.update();
     if(loop%2==0)
       enemy.sprite.animate();
+  };
+  for (var i = particles.length - 1; i >= 0; i--) {
+    particles[i].draw();
+    if(particles[i].update()){
+      particles.splice(i, 1);
+    }
   };
 
   if(loop%8==0){

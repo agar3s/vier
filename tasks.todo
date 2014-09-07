@@ -4,13 +4,14 @@
 2441/13312
 
 !- hit points!
-	-- hit the road jack!
-	-- power collides enemies
+	+-- hit the road jack!
+	+-- power collides enemies
 !- particle death
-!-- elemental rules of damage
+!- drop element recharge
+!+-- elemental rules of damage
 -- diagonal attacks
 
-
+!-- viewport x cuando se devuelve esta extraño
 ---- enemies with simple AI
 ---- implements textures for the backgrounds
 

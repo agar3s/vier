@@ -26,7 +26,7 @@ var Sprite = function(data){
   m.maxVx = pixelSize*2.2;
   m.accelerationX = 0.25;
   m.pixelSize = 0;
-  m.hp = 9; //hitpoints
+  m.hp = 1; //hitpoints
   m.setPixelSize = function(pixelSize){
     m.pixelSize = pixelSize;
     m.height = m.width = m.pixelSize*16;

@@ -26,6 +26,7 @@ gulp.task('scripts', ['move'],function() {
             './app/js/initializers.js',
             './app/js/keyEvents.js',
             './app/js/elements.js',
+            './app/js/particles.js',
             './app/js/sprites.js',
             './app/js/sprite.js',
             './app/js/platform.js',
