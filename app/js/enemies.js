@@ -111,7 +111,6 @@ var Enemy = function(type, sprite){
       createParticles(m.sprite, damage, 0, 0, m.color);
       //create a new element cell to drop out
       enemies.push(new Enemy(~~(Math.random()*4), new Sprite(loadByString(hero))));
-      enemies.push(new Enemy(~~(Math.random()*4), new Sprite(loadByString(hero))));
     }
   }
 
