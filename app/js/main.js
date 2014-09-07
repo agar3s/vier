@@ -6,9 +6,7 @@ var firexx = new Sprite(loadByString(fire));
 firexx.color = '#E60';
 firexx.pixelSize = 4;
 
-
-var enemy = new Enemy(2, new Sprite(loadByString(hero)));
-enemies.push(enemy);
+enemies.push(new Enemy(2, new Sprite(loadByString(hero))));
 var loop = 0;
 
 // var boundsv
@@ -80,7 +78,7 @@ function gameLoop() {
   
 
   //update the viewport
-  if(myhero.sprite.x>300+viewport.x&&myhero.sprite.x-300<xlevel.w-dimensions.w){
+  if(myhero.sprite.x>432+viewport.x&&myhero.sprite.x<xlevel.w-dimensions.w+432){
     viewport.x-=myhero.sprite.vx;
     xxx=-myhero.sprite.vx;
   }else{

@@ -109,7 +109,7 @@ var Enemy = function(type, sprite){
       m.del = 1;
       //make me particles
       createParticles(m.sprite, damage, 0, 0, m.color);
-      enemies.push(new Enemy(2, new Sprite(loadByString(hero))));
+      //enemies.push(new Enemy(2, new Sprite(loadByString(hero))));
     }
   }
 
