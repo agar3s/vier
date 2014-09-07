@@ -1,4 +1,4 @@
-var platforms = [];
+
 var Level = function(){
 	var m = this;
   m.w = 1500;
@@ -40,7 +40,5 @@ var Level = function(){
     for(i = index; i <= limit; i++) {
       platforms[i].collides(sprite);
     }
-  }
-  m.drawLevel = function(){
   }
 }

@@ -6,7 +6,7 @@ var firexx = new Sprite(loadByString(fire));
 firexx.color = '#E60';
 firexx.pixelSize = 4;
 
-enemies.push(new Enemy(2, new Sprite(loadByString(hero))));
+enemies.push(new Enemy(1, new Sprite(loadByString(hero))));
 var loop = 0;
 
 // var boundsv
@@ -14,9 +14,6 @@ var xcam = 0;
 var ycam = 0;
 var yOld = myhero.sprite.y;
 
-particles.push(new Particle(230, -300, 1.2,-10, 3, 329));
-particles.push(new Particle(240, -300, 2.15,-14, 3, 167));
-particles.push(new Particle(250, -300, 3.29,-8, 3, 279));
 
 //scale
 //ctx.transform(1, 0, 0, 1, 0, 0);
@@ -34,7 +31,7 @@ function gameLoop() {
 
 
   for (var j = powers.length - 1; j >= 0; j--) {
-    powers[j].updateX();
+    powers[j].update();
     powers[j].sprite.draw();
     if(loop%4==0){
       powers[j].animate();

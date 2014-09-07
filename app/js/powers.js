@@ -32,8 +32,9 @@ var Power = function(type, pixelSize){
     }
   }
   
-  m.updateX= function(){
+  m.update= function(){
     m.sprite.updateX();
+    m.sprite.updateY();
     m.outside = m.sprite.x>xlevel.w || m.sprite.x<-10;
   }
   

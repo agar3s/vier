@@ -1,13 +1,13 @@
 var keyMap = 0;
 var keys={
-  '37':1,
-  '38':2,
-  '39':4,
-  '40':8,
-  '65':16,
-  '83':32,
-  '68':64,
-  '32':128
+  '37':1,         //left
+  '38':2,         //up
+  '39':4,         //right
+  '40':8,         //down
+  '65':16,        //d next
+  '83':32,        //s attack
+  '68':64,        //a previous
+  '32':128        //space jump
 }
 doc.addEventListener('keydown', function(e){
   var key = e.keyCode ? e.keyCode : e.which;

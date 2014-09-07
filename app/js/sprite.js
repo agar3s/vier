@@ -19,7 +19,6 @@ var Sprite = function(data){
   m.y=-720;
   m.vx=0;
   m.vy=0;
-  m.downed=0;
   m.direction = 1;
   m.landed = 0;
   m.byteArray = convertTobyte(m.data);
@@ -144,21 +143,15 @@ var Sprite = function(data){
       m.setAnimation('j');
     }
   }
-  m.down= function(){
-    if(!m.downed){
-      //m.vy+=pixelSize*3-1;
-      //m.downed = 1;
-    }
-  }
-  m.up= function(){
-    //y-=20;
-  }
   m.update= function(){
     m.fall();
     m.x += m.vx;
   }
   m.updateX= function(){
     m.x += m.vx;
+  }
+  m.updateY= function(){
+    m.y += m.vy;
   }
   m.draw= function(){
     ctx.fillStyle = m.color;

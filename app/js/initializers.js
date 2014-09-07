@@ -18,6 +18,7 @@ ctx.scale(zoomFactor, zoomFactor);
 ctx.translate(viewport.x, -viewport.y);
 
 var powers = [];
-var heroElementColors = [25,115,205,295];
+var elementColors = [295, 205,25,115];
 var enemies = [];
 var particles = [];
+var platforms = [];

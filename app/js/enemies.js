@@ -3,7 +3,7 @@ var Enemy = function(type, sprite){
   var m = this;
   //m.type = type;
   m.sprite = sprite;
-  m.color = 134
+  m.color = elementColors[type]
   m.sprite.color = 'hsl('+m.color+',100%, 50%)';
   m.sprite.setAnimation('i');
   m.sprite.setPixelSize(6);
@@ -109,7 +109,8 @@ var Enemy = function(type, sprite){
       m.del = 1;
       //make me particles
       createParticles(m.sprite, damage, 0, 0, m.color);
-      //enemies.push(new Enemy(2, new Sprite(loadByString(hero))));
+      //create a new element cell to drop out
+      enemies.push(new Enemy(~~(Math.random()*4), new Sprite(loadByString(hero))));
     }
   }
 
