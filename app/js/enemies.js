@@ -33,7 +33,7 @@ var Enemy = function(type, sprite){
         newPipe+=action;
         continue;
       }
-      i+= ~~(Math.log10(times))+1;
+      i+= (''+times).length;
       for (var j = 0; j < times; j++) {
         newPipe+=(action);
       }
@@ -41,7 +41,7 @@ var Enemy = function(type, sprite){
     m.actionpipe = newPipe;
   }
   m.setActionPipe('jdw10jdstw10');
-  m.setActionPipe('lf30sw10tjl');
+  //m.setActionPipe('lf30sw10tjl');
   m.actionIndex = 0;
   m.actions = {
     f: m.sprite.forward,
