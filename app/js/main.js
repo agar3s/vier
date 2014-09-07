@@ -95,7 +95,7 @@ function gameLoop() {
   ctx.translate(xxx, yyy);
   
   loop++;
-  requestAnimationFrame(gameLoop);
+  ra(gameLoop);
 }
 
-requestAnimationFrame(gameLoop);
+ra(gameLoop);

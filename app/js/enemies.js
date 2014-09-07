@@ -104,12 +104,13 @@ var Enemy = function(type, sprite){
     //console.log(type, m.skills.current, damage);
     //damage =getTotalDamage(type, m.skills.current, damage) ;
     //console.log('total damage:', damage);
-    if(m.sprite.hit(getTotalDamage(type, m.skills.current, damage))){
+    if(m.sprite.hit(getTotalDamage(type, m.skills.current, damage))&&!m.del){
      // console.log('kill me');
       m.del = 1;
       //make me particles
       createParticles(m.sprite, damage, 0, 0, m.color);
       //create a new element cell to drop out
+      enemies.push(new Enemy(~~(Math.random()*4), new Sprite(loadByString(hero))));
       enemies.push(new Enemy(~~(Math.random()*4), new Sprite(loadByString(hero))));
     }
   }
