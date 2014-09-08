@@ -14,7 +14,8 @@ var Enemy = function(type, sprite){
   m.sprite.maxVx = heroS.maxVx*0.9;
   m.sprite.x = 300;
   m.skills = new ElementalSkill([type]);
-  m.maxhp = 1; 
+  m.maxhp = 9;
+  m.sprite.hp = 9;
   m.ghostTime = 100;
   m.del = 0;
   //action options:
@@ -120,10 +121,10 @@ var Enemy = function(type, sprite){
   }
 
   m.drawAvatar = function(vx, vy){
-    ctx.fillStyle = 'red';
-    ctx.fillRect (vx-335, vy+35, 300,10);
+    ctx.fillStyle=loop%16==0?'#fff':'red';
+    ctx.fillRect(vx-335, vy+35, 300,8);
     ctx.fillStyle = '#000';
-    ctx.fillRect (vx-334, vy+36, 300*(1-m.sprite.hp/m.maxhp)-2,8);
+    ctx.fillRect (vx-334, vy+36, 300*(1-m.sprite.hp/m.maxhp)-2,6);
   }
 
 }

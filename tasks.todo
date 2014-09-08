@@ -3,16 +3,24 @@
 2403/13312 23%
 2441/13312
 
-!- hit points!
++!- hit points!
 	+-- hit the road jack!
 	+-- power collides enemies
-+!- particle death
++- mostrar hitpoints 
++- mostrar hitpoints del current enemy
 !- drop element recharge
+-- elemental power status
+-- agressive enemies
++!- particle death
 +!-- elemental rules of damage
--- check collision
--- diagonal attacks
++-- check collision
++-- diagonal attacks
 
-!-- viewport x cuando se devuelve esta extraño
++!-- viewport x cuando se devuelve esta extraño
+-- book monster: dictionary with all the different configuration for monsters
+-- monster faces and names : XD
+-- level configurations
+
 ---- enemies with simple AI
 ---- implements textures for the backgrounds
 
