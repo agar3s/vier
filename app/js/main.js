@@ -3,8 +3,8 @@ var xlevel = new Level();
 var myhero = new HeroT(heroS);
 
 var firexx = new Sprite(loadByString(fire));
-firexx.color = '#E60';
-firexx.pixelSize = 4;
+firexx.color = basicColors[0];
+firexx.pixelSize = 3;
 
 enemies.push(new Enemy(1, new Sprite(loadByString(hero))));
 var loop = 0;
@@ -64,6 +64,8 @@ function gameLoop() {
 
   if(loop%8==0){
     firexx.rotate();
+  }
+  if(loop%64==0){
     loop=0;
   }
   firexx.updateX();
@@ -71,11 +73,10 @@ function gameLoop() {
   if(loop%2==0){
     heroS.animate();
   }
-  myhero.manage();
   
 
   //update the viewport
-  if(myhero.sprite.x>432+viewport.x&&myhero.sprite.x<xlevel.w-dimensions.w+432){
+  if(myhero.sprite.x>450+viewport.x&&myhero.sprite.x<xlevel.w-dimensions.w+450){
     viewport.x-=myhero.sprite.vx;
     xxx=-myhero.sprite.vx;
   }else{
@@ -93,6 +94,10 @@ function gameLoop() {
   viewport.y-=yyy;
   yOld = myhero.sprite.y;
   ctx.translate(xxx, yyy);
+
+  //draw user interface information
+  myhero.manage();
+  myhero.draw();
   
   loop++;
   ra(gameLoop);

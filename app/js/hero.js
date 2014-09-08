@@ -6,40 +6,48 @@ var HeroT = function(sprite){
   var m = this;
   m.sprite = sprite;
   m.sprite.setPixelSize(5);
-  m.element = 2;
+  m.skills = new ElementalSkill([0,1,2,3],99);
   m.coldown = 16;
-  m.currentColor = elementColors[m.element];
+  m.currentColor = elementColors[m.skills.current];
   m.sprite.color = 'hsl('+m.currentColor+',100%, 50%)';
   m.incColor = 0;
   m.down = 0;
   m.up = 0;
+  m.sprite.hp = 30;
+  m.maxhp = 30;
+
   m.next = function(){
-    if(++m.element>3) m.element=0;
+    if(++m.skills.current>3) m.skills.current=0;
+    m.skills.updateCurrentQ();
+    firexx.color = basicColors[m.skills.current];
     m.incColor=5;
     keyMap-=64;
   }
   m.prev = function(){
-    if(--m.element<0) m.element=3;
+    if(--m.skills.current<0) m.skills.current=3;
+    m.skills.updateCurrentQ();
+    firexx.color = basicColors[m.skills.current];
     keyMap-=16;
     m.incColor=-5;
   }
   m.power = function(){
     if(m.coldown<=0){
       m.sprite.setAnimation('p');
-      var power = new Power(m.element,2);
-      if(m.down)power.sprite.vy=7;
-      if(m.up)power.sprite.vy=-7;
-      powers.push(power);
+      var vy = 0;
+      if(m.down)vy=7;
+      if(m.up)vy=-7;
+      m.skills.power(vy);
       m.coldown = 16;
     }
+    m.sprite.color = 'hsl('+m.currentColor+','+m.skills.currentQ+'%, 50%)';
   }
   m.update = function(){
     m.sprite.update();
     m.currentColor+=m.incColor;
     if(m.currentColor<0) m.currentColor=355;
     if(m.currentColor>355) m.currentColor=5;
-    if(m.currentColor!=elementColors[m.element]){
-      m.sprite.color = 'hsl('+m.currentColor+',100%, 50%)';
+    if(m.currentColor!=elementColors[m.skills.current]){
+      m.sprite.color = 'hsl('+m.currentColor+','+m.skills.currentQ+'%, 50%)';
     }else{
       m.incColor = 0;
     }
@@ -59,5 +67,21 @@ var HeroT = function(sprite){
     if(keyMap&1&&m.sprite.x>-16) m.sprite.left();
     else if(keyMap&4&&m.sprite.x+16*pixelSize<xlevel.w) m.sprite.right();
     else m.sprite.stopX();
+  }
+  //draw power indicators
+  m.draw = function(){
+    var vx = -viewport.x;
+    var vy = viewport.y;
+
+    ctx.fillStyle = 'red';
+    ctx.fillRect (vx+35, vy+35, 300*(m.sprite.hp/m.maxhp),10);
+    m.skills.draw(vx, vy+dimensions.h);
+
+    if(currentEnemy){
+      with(currentEnemy){
+        drawAvatar(vx+dimensions.w, vy);
+        if(del&&--ghostTime==0) currentEnemy = null;
+      }
+    }
   }
 }

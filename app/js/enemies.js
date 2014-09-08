@@ -13,7 +13,10 @@ var Enemy = function(type, sprite){
   m.e = 0;
   m.sprite.maxVx = heroS.maxVx*0.9;
   m.sprite.x = 300;
-  m.skills = new ElementalSkill([type]); 
+  m.skills = new ElementalSkill([type]);
+  m.maxhp = 1; 
+  m.ghostTime = 100;
+  m.del = 0;
   //action options:
   //f: forward
   //t: change direction
@@ -112,6 +115,15 @@ var Enemy = function(type, sprite){
       //create a new element cell to drop out
       enemies.push(new Enemy(~~(Math.random()*4), new Sprite(loadByString(hero))));
     }
+    currentEnemy = m;
+    console.log(1-m.sprite.hp/m.maxhp, m.sprite.hp);
+  }
+
+  m.drawAvatar = function(vx, vy){
+    ctx.fillStyle = 'red';
+    ctx.fillRect (vx-335, vy+35, 300,10);
+    ctx.fillStyle = '#000';
+    ctx.fillRect (vx-334, vy+36, 300*(1-m.sprite.hp/m.maxhp)-2,8);
   }
 
 }

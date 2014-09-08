@@ -180,7 +180,8 @@ var Sprite = function(data){
   m.hit = function(damage){
     //console.log('hit!!');
     m.hp-=damage;
-    return m.hp<0;
+    if(m.hp<0) m.hp=0;
+    return m.hp==0;
   }
 }
 

@@ -19,9 +19,14 @@ ctx.translate(viewport.x, -viewport.y);
 
 var powers = [];
 var elementColors = [295, 205,25,115];
+var basicColors = ['#E0F', '#09F', '#F60', '#1F0'];
 var enemies = [];
 var particles = [];
 var platforms = [];
+var currentEnemy = null;
+
+//set text style
+ctx.font = "normal lighter 18px fantasy";
 
 
 //requestAnimationFrame
