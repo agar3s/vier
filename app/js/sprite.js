@@ -8,10 +8,10 @@ var convertTobyte = function(d){
   }
   return bArray;
 }
-var Sprite = function(data){
+var Sprite = function(code){
   var m = this;
   m.byteArray = new Int16Array(ppp);
-  m.data = data;
+  m.data = loadByString(code);
   m.frames = [];
   m.iFrame = 0;
   m.color = '#000';
@@ -123,7 +123,7 @@ var Sprite = function(data){
     m.direction = 1;
   }
   m.forward = function(){
-    m.direction?m.right():m.left();
+    m.direction?(m.x+17*pixelSize<xlevel.w?m.right():m.stopX()):m.x>0?m.left():m.stopX();
   }
   m.turn = function(){
     m.direction = !m.direction;

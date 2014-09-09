@@ -1,4 +1,4 @@
-var heroS = new Sprite(loadByString(hero));
+var heroS = new Sprite(hero);
 heroS.setAnimation('i');
 
 
@@ -13,9 +13,9 @@ var HeroT = function(sprite){
   m.incColor = 0;
   m.down = 0;
   m.up = 0;
-  m.sprite.hp = 30;
-  m.maxhp = 30;
-
+  m.sprite.hp = 31;
+  m.maxhp = 31;
+  m.del=0;
   m.next = function(){
     if(++m.skills.current>3) m.skills.current=0;
     m.skills.updateCurrentQ();
@@ -79,20 +79,29 @@ var HeroT = function(sprite){
       //make me particles
       createParticles(heroS, damage, 0, 0, m.color);
       //create a new element cell to drop out
-      //enemies.push(new Enemy(~~(Math.random()*4), new Sprite(loadByString(hero))));
-      alert('muerto!')
     }
     //currentEnemy = m;
     //console.log(1-m.sprite.hp/m.maxhp, m.sprite.hp);
+  }
+  m.charge = function(type, quantity){
+    if(type==4){
+      m.sprite.hp+=quantity;
+      if(m.sprite.hp>m.maxhp)m.sprite.hp=m.maxhp;
+    }else{
+      m.skills.charges[type]+=quantity;
+      if(m.skills.charges[type]>99)m.skills.charges[type]=99;      
+    }
   }
   //draw power indicators
   m.draw = function(){
     var vx = -viewport.x;
     var vy = viewport.y;
 
-    ctx.strokeStyle = 'red';
-    ctx.fillStyle = 'red';
+    ctx.strokeStyle = 'yellow';
+    ctx.fillStyle = '#300';
     ctx.strokeRect (vx+35, vy+35,300,8);
+    ctx.fillRect (vx+35, vy+35,300,8);
+    ctx.fillStyle = 'yellow';
     ctx.fillRect (vx+35, vy+35, 300*(m.sprite.hp/m.maxhp),8);
     m.skills.draw(vx, vy+dimensions.h);
 

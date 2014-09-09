@@ -1,5 +1,5 @@
 
-var Enemy = function(type, sprite){
+var Enemy = function(type, sprite, x){
   var m = this;
   //m.type = type;
   m.sprite = sprite;
@@ -7,12 +7,9 @@ var Enemy = function(type, sprite){
   m.sprite.color = 'hsl('+m.color+',100%, 50%)';
   m.sprite.setAnimation('i');
   m.sprite.setPixelSize(7);
-  m.f = 10;
-  m.w = 0;
-  m.a = 0;
-  m.e = 0;
+
   m.sprite.maxVx = heroS.maxVx*0.9;
-  m.sprite.x = 300;
+  m.sprite.x = x;
   m.skills = new ElementalSkill([type]);
   m.maxhp = 4;
   m.sprite.hp = 4;
@@ -29,6 +26,8 @@ var Enemy = function(type, sprite){
   //w: wait
   //l: lock until land, do nothing
   //d: move forward until land
+  //g: go for the hero
+  //r: run away from the hero
   m.actionpipe = '';
   m.setActionPipe = function(actionpipe){
     var newPipe = '';
@@ -46,15 +45,14 @@ var Enemy = function(type, sprite){
     }
     m.actionpipe = newPipe;
   }
-  //m.setActionPipe('lajdaw10jdstaw10');
+  m.setActionPipe('lgajdag10jdsajd');
   //m.setActionPipe('lf30sw10tjl');
-  m.setActionPipe('lf60sw10tf60sw10ta');
+  //m.setActionPipe('lf60sw10tf60sw10ta');
   m.actionIndex = 0;
 
   m.attack1 = function(){
     if(m.coldown<=0){
       m.sprite.setAnimation('p');
-      console.log('xx');
       //var vy = 0;
       //m.skills.power(vy);
       var vx = -(m.sprite.x - heroS.x);
@@ -69,6 +67,16 @@ var Enemy = function(type, sprite){
       //power.sprite.vy=vy;
       //m.coldown = 16;
     }
+  }
+  //follow the hero
+  m.follow = function(){
+    m.sprite.direction = m.sprite.x<heroS.x;
+    m.sprite.forward();
+  }
+  //run away from the hero
+  m.away = function(){
+    m.sprite.direction = m.sprite.x>heroS.x;
+    m.sprite.forward();
   }
   m.actions = {
     f: m.sprite.forward,
@@ -91,26 +99,10 @@ var Enemy = function(type, sprite){
       }else{
         m.sprite.stopX();
       }
-    }
+    },
+    g: m.follow,
+    r: m.away
   } 
-  //follow the hero
-  m.follow = function(){
-    if(m.sprite.x<heroS.x){
-      m.sprite.right();
-    }else{
-      m.sprite.left();
-    }
-  }
-  //run away from the hero
-  m.away = function(){
-    if(m.sprite.x<heroS.x&&m.sprite.x>0){
-      m.sprite.left();
-    }else if(m.sprite.x>heroS.x&&m.sprite.x+16*m.sprite.pixelSize<xlevel.w){
-      m.sprite.right();
-    }else{
-      m.sprite.stopX();
-    }
-  }
 
   //do the next action in the pipe
   m.nextAction = function(){
@@ -129,6 +121,16 @@ var Enemy = function(type, sprite){
     if(--m.coldown<0) m.coldown=0;
   }
 
+  m.trigger = function(event){
+    enemies.push(new Enemy(~~(Math.random()*4), new Sprite(hero),Math.random()*xlevel.w));
+    enemies.push(new Enemy(~~(Math.random()*4), new Sprite(hero),Math.random()*xlevel.w));
+    if(~~(Math.random()*10)==0)
+      createBooster(4, m.maxhp, m.sprite.x, m.sprite.y);
+    else
+      createBooster(m.skills.current, m.maxhp,m.sprite.x, m.sprite.y);
+      
+  }
+
   m.hit = function(type, damage){
     //console.log(type, m.skills.current, damage);
     //damage =getTotalDamage(type, m.skills.current, damage) ;
@@ -139,17 +141,17 @@ var Enemy = function(type, sprite){
       //make me particles
       createParticles(m.sprite, damage, 0, 0, m.color);
       //create a new element cell to drop out
-      enemies.push(new Enemy(~~(Math.random()*4), new Sprite(loadByString(hero))));
-      //enemies.push(new Enemy(~~(Math.random()*4), new Sprite(loadByString(hero))));
+      m.trigger('death');
+      //enemies.push(new Enemy(~~(Math.random()*4), new Sprite(hero)));
     }
     currentEnemy = m;
     console.log(1-m.sprite.hp/m.maxhp, m.sprite.hp);
   }
 
   m.drawAvatar = function(vx, vy){
-    ctx.fillStyle=loop%16==0?'#fff':'red';
+    ctx.fillStyle=loop%16==0?'#000':'yellow';
     ctx.fillRect(vx-335, vy+35, 300,8);
-    ctx.fillStyle = '#000';
+    ctx.fillStyle = '#300';
     ctx.fillRect (vx-334, vy+36, 300*(1-m.sprite.hp/m.maxhp)-2,6);
   }
 

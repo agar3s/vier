@@ -3,6 +3,7 @@ var hero  = '{H{I{X{Y"#$134ACEQSVacdsu~.~1~=~@~M~P~]~^~`~a';
 var heropower = '{I{J{Y{Z"#$134ACERSVcdsu~.~0~=~?~M~O~]~^~_~`';
 var herorun = '{Y{Z{i{j"#$134ACDESVWbcdqru~)~*~+~0~9~A~Q~a~b';
 var herojump = '{Z{[{g{h{i{j{k!#$134ACESTcesu~-~0~=~?~L~O~\\~_';
+var booster = 'ABCDEQSUabcdequ~,~0~<~@~L~P~\\~]~^~_~`';
 var powerAnimation = '';
 var frames = [
   '',

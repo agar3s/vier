@@ -1,15 +1,15 @@
 var Power = function(type, pixelSize, x, y, vx, vy){
   var m = this;
   m.type = type;
-  if(m.type==0) m.data = loadByString(fire);
-  if(m.type==1) m.data = loadByString(fire);
-  if(m.type==2) m.data = loadByString(fire);
-  if(m.type==3) m.data = loadByString(fire);
+  if(m.type==0) m.data = fire;
+  if(m.type==1) m.data = fire;
+  if(m.type==2) m.data = fire;
+  if(m.type==3) m.data = fire;
   //m.data = loadByString(fire);
   m.sprite = new Sprite(m.data);
   m.outside = 0;
-  m.color = basicColors[type];
-  m.sprite.color =m.color;
+  m.color = elementColors[type];
+  m.sprite.color =basicColors[type];
   m.sprite.x = x;
   m.sprite.y = y;
   m.sprite.setPixelSize(2);

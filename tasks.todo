@@ -8,11 +8,11 @@
 	+-- power collides enemies
 +- mostrar hitpoints 
 +- mostrar hitpoints del current enemy
-!- drop element recharge
++!- drop element recharge
 +-- elemental power status
--- agressive enemies
--- enemy function go to hero
--- enemy function run away from hero
++-- agressive enemies
++-- enemy function go to hero
++-- enemy function run away from hero
 -- optimizar collision de enemypowers
 +!- particle death
 +!-- elemental rules of damage
@@ -22,6 +22,7 @@
 +!-- viewport x cuando se devuelve esta extraño
 -- book monster: dictionary with all the different configuration for monsters
 -- monster faces and names : XD
+-- enemy generator
 -- level configurations
 
 ---- enemies with simple AI

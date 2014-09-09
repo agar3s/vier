@@ -2,11 +2,11 @@
 var xlevel = new Level();
 var myhero = new HeroT(heroS);
 
-var firexx = new Sprite(loadByString(fire));
+var firexx = new Sprite(fire);
 firexx.color = basicColors[0];
 firexx.pixelSize = 3;
 
-enemies.push(new Enemy(1, new Sprite(loadByString(hero))));
+enemies.push(new Enemy(1, new Sprite(hero), Math.random()*xlevel.w));
 var loop = 0;
 
 // var boundsv
@@ -22,11 +22,11 @@ function gameLoop() {
   //draw the guys
   xlevel.draw();
   firexx.draw();
-  heroS.draw();
-
+  
   heroS.accelerateY(0.8);
   xlevel.collides(heroS);
-  myhero.update();
+  if(!myhero.del)
+    myhero.update();
 
 
 
@@ -74,6 +74,15 @@ function gameLoop() {
       particles.splice(i, 1);
     }
   }
+  for (var i = boosters.length - 1; i >= 0; i--) {
+    boosters[i].update()
+    xlevel.collides(boosters[i].sprite);
+    boosters[i].sprite.draw();
+    if(loop%2==0)boosters[i].collidesHero(heroS.bounds());
+    if(boosters[i].del){
+      boosters.splice(i, 1);
+    }
+  }
 
   if(loop%8==0){
     firexx.rotate();
@@ -109,8 +118,11 @@ function gameLoop() {
   ctx.translate(xxx, yyy);
 
   //draw user interface information
-  myhero.manage();
-  myhero.draw();
+  if(!myhero.del){
+    heroS.draw();
+    myhero.manage();
+    myhero.draw();
+  }
   
   loop++;
   ra(gameLoop);

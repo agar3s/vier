@@ -32,6 +32,7 @@ gulp.task('scripts', ['move'],function() {
             './app/js/platform.js',
             './app/js/levels.js',
             './app/js/powers.js',
+            './app/js/boosters.js',
             './app/js/enemies.js',
             './app/js/hero.js',
             './app/js/main.js',
