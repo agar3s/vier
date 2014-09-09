@@ -4,11 +4,20 @@
 // f4201
 // e2140
 
+//  awef
+// a0421
+// w1042
+// e2104
+// f4210
+
 //a=0   //purple
 //w=1   //azul
 //f=2   //orange
 //e=3   //green
-var elementalMatriz = [[0,4,1,2],[1,0,2,4],[4,2,0,1],[2,1,4,0]];
+var elementalMatriz = [[0,4,2,1],
+                       [1,0,4,2],
+                       [2,1,0,4],
+                       [4,2,1,0]];
 function getTotalDamage(from, to, damage){
   return elementalMatriz[from][to]*damage/2;
 }
@@ -23,10 +32,9 @@ var ElementalSkill = function(types, charge){
     m.charges.push(charge);
   }
 
-  m.power = function(vy){
+  m.power = function(vy, x, y){
     if(m.charges[m.current]-->0){
-      var power = new Power(m.current, 2);
-      power.sprite.vy=vy;
+      var power = new Power(m.current, 2, x, y,  heroS.direction?10:-10, vy);
       powers.push(power);
       m.updateCurrentQ();
     }else{

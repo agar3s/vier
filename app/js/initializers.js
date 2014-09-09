@@ -18,8 +18,9 @@ ctx.scale(zoomFactor, zoomFactor);
 ctx.translate(viewport.x, -viewport.y);
 
 var powers = [];
-var elementColors = [295, 205,25,115];
-var basicColors = ['#E0F', '#09F', '#F60', '#1F0'];
+var enemypowers = [];
+var elementColors = [295, 205, 115, 25];
+var basicColors = ['#E0F', '#09F', '#1F0', '#F60'];
 var enemies = [];
 var particles = [];
 var platforms = [];
@@ -48,3 +49,11 @@ if (!requestAnimationFrame) {
 }
 
 ra = requestAnimationFrame;
+
+
+function intersectRect(r1, r2) {
+  return !(r2.left > r1.right || 
+           r2.right < r1.left || 
+           r2.top > r1.bottom ||
+           r2.bottom < r1.top);
+}

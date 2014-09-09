@@ -54,13 +54,26 @@ function gameLoop() {
     enemy.update();
     if(loop%2==0)
       enemy.sprite.animate();
-  };
+  }
+
+  for (var j = enemypowers.length - 1; j >= 0; j--) {
+    enemypowers[j].update();
+    enemypowers[j].sprite.draw();
+    if(loop%4==0){
+      enemypowers[j].animate();
+    }
+    if(loop%2==0)enemypowers[j].collidesHero(heroS.bounds());
+    if(enemypowers[j].outside||enemypowers[j].del){
+      enemypowers.splice(j, 1);
+    }
+  }
+
   for (var i = particles.length - 1; i >= 0; i--) {
     particles[i].draw();
     if(particles[i].update()){
       particles.splice(i, 1);
     }
-  };
+  }
 
   if(loop%8==0){
     firexx.rotate();

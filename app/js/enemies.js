@@ -6,7 +6,7 @@ var Enemy = function(type, sprite){
   m.color = elementColors[type]
   m.sprite.color = 'hsl('+m.color+',100%, 50%)';
   m.sprite.setAnimation('i');
-  m.sprite.setPixelSize(6);
+  m.sprite.setPixelSize(7);
   m.f = 10;
   m.w = 0;
   m.a = 0;
@@ -14,8 +14,9 @@ var Enemy = function(type, sprite){
   m.sprite.maxVx = heroS.maxVx*0.9;
   m.sprite.x = 300;
   m.skills = new ElementalSkill([type]);
-  m.maxhp = 9;
-  m.sprite.hp = 9;
+  m.maxhp = 4;
+  m.sprite.hp = 4;
+  m.coldown = 16;
   m.ghostTime = 100;
   m.del = 0;
   //action options:
@@ -45,9 +46,30 @@ var Enemy = function(type, sprite){
     }
     m.actionpipe = newPipe;
   }
-  m.setActionPipe('ljdw10jdstw10');
+  //m.setActionPipe('lajdaw10jdstaw10');
   //m.setActionPipe('lf30sw10tjl');
+  m.setActionPipe('lf60sw10tf60sw10ta');
   m.actionIndex = 0;
+
+  m.attack1 = function(){
+    if(m.coldown<=0){
+      m.sprite.setAnimation('p');
+      console.log('xx');
+      //var vy = 0;
+      //m.skills.power(vy);
+      var vx = -(m.sprite.x - heroS.x);
+      var vy = -(m.sprite.y - heroS.y);
+      var h = Math.sqrt(vx*vx+vy*vy);
+      vx/=h;
+      vy/=h;
+      var power = new Power(m.skills.current, 2, m.sprite.x+8*3, m.sprite.y, 3*vx, 3*vy);
+
+      enemypowers.push(power);
+      m.coldown = 16;
+      //power.sprite.vy=vy;
+      //m.coldown = 16;
+    }
+  }
   m.actions = {
     f: m.sprite.forward,
     t: m.sprite.turn,
@@ -101,7 +123,10 @@ var Enemy = function(type, sprite){
     //m.follow();
     //m.away();
     m.nextAction();
+    //evaluar
+//    m.attack();
     m.sprite.update();
+    if(--m.coldown<0) m.coldown=0;
   }
 
   m.hit = function(type, damage){
@@ -115,6 +140,7 @@ var Enemy = function(type, sprite){
       createParticles(m.sprite, damage, 0, 0, m.color);
       //create a new element cell to drop out
       enemies.push(new Enemy(~~(Math.random()*4), new Sprite(loadByString(hero))));
+      //enemies.push(new Enemy(~~(Math.random()*4), new Sprite(loadByString(hero))));
     }
     currentEnemy = m;
     console.log(1-m.sprite.hp/m.maxhp, m.sprite.hp);

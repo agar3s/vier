@@ -36,7 +36,7 @@ var HeroT = function(sprite){
       var vy = 0;
       if(m.down)vy=7;
       if(m.up)vy=-7;
-      m.skills.power(vy);
+      m.skills.power(vy, heroS.x+8*3, heroS.y);
       m.coldown = 16;
     }
     m.sprite.color = 'hsl('+m.currentColor+','+m.skills.currentQ+'%, 50%)';
@@ -68,13 +68,32 @@ var HeroT = function(sprite){
     else if(keyMap&4&&m.sprite.x+16*pixelSize<xlevel.w) m.sprite.right();
     else m.sprite.stopX();
   }
+
+  m.hit = function(type, damage){
+    //console.log(type, m.skills.current, damage);
+    //damage =getTotalDamage(type, m.skills.current, damage) ;
+    //console.log('total damage:', damage);
+    if(heroS.hit(getTotalDamage(type, m.skills.current, damage))&&!m.del){
+     // console.log('kill me');
+      m.del = 1;
+      //make me particles
+      createParticles(heroS, damage, 0, 0, m.color);
+      //create a new element cell to drop out
+      //enemies.push(new Enemy(~~(Math.random()*4), new Sprite(loadByString(hero))));
+      alert('muerto!')
+    }
+    //currentEnemy = m;
+    //console.log(1-m.sprite.hp/m.maxhp, m.sprite.hp);
+  }
   //draw power indicators
   m.draw = function(){
     var vx = -viewport.x;
     var vy = viewport.y;
 
+    ctx.strokeStyle = 'red';
     ctx.fillStyle = 'red';
-    ctx.fillRect (vx+35, vy+35, 300*(m.sprite.hp/m.maxhp),10);
+    ctx.strokeRect (vx+35, vy+35,300,8);
+    ctx.fillRect (vx+35, vy+35, 300*(m.sprite.hp/m.maxhp),8);
     m.skills.draw(vx, vy+dimensions.h);
 
     if(currentEnemy){

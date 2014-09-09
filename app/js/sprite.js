@@ -183,6 +183,14 @@ var Sprite = function(data){
     if(m.hp<0) m.hp=0;
     return m.hp==0;
   }
+  m.bounds = function(){
+    return {
+      left:m.xi(),
+      right:m.xf(),
+      top:m.yi(),
+      bottom:m.yf(),
+    }
+  }
 }
 
 var loadByString= function(sprite){

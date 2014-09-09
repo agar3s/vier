@@ -9,8 +9,11 @@
 +- mostrar hitpoints 
 +- mostrar hitpoints del current enemy
 !- drop element recharge
--- elemental power status
++-- elemental power status
 -- agressive enemies
+-- enemy function go to hero
+-- enemy function run away from hero
+-- optimizar collision de enemypowers
 +!- particle death
 +!-- elemental rules of damage
 +-- check collision

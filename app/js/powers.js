@@ -1,4 +1,4 @@
-var Power = function(type, pixelSize){
+var Power = function(type, pixelSize, x, y, vx, vy){
   var m = this;
   m.type = type;
   if(m.type==0) m.data = loadByString(fire);
@@ -8,27 +8,39 @@ var Power = function(type, pixelSize){
   //m.data = loadByString(fire);
   m.sprite = new Sprite(m.data);
   m.outside = 0;
-  m.color = myhero.currentColor;
-  m.sprite.color ='hsl('+m.color+',100%, 50%)';
-  m.sprite.x = heroS.x+8*3;
-  m.sprite.y = heroS.y;
+  m.color = basicColors[type];
+  m.sprite.color =m.color;
+  m.sprite.x = x;
+  m.sprite.y = y;
   m.sprite.setPixelSize(2);
-  m.sprite.vx = heroS.direction?10:-10;
-  m.sprite.direction = heroS.direction;
+  m.sprite.vx = vx;
+  m.sprite.vy = vy;
+  m.sprite.direction = vx>0;
   m.damage = 1;
   
   m.collides = function(){
     for (var i = enemies.length - 1; i >= 0; i--) {
       var sprite = enemies[i].sprite;
-      if((sprite.xpi()>m.sprite.xpi()&&sprite.xpi()<m.sprite.xpf()||
-      sprite.xpf()>m.sprite.xpi()&&sprite.xpf()<m.sprite.xpf())&&
-      (m.sprite.y>sprite.y&&m.sprite.y<sprite.yf())){
+      if(intersectRect(sprite.bounds(), m.sprite.bounds())){
         //m.sprite.color = '#fff';
         enemies[i].hit(m.type, m.damage);
         m.del = 1;
         createParticles(m.sprite, 2, m.sprite.vx/2, -3, m.color);
         //make me particles
       }
+    }
+  }
+
+  m.collidesHero = function(bounds){
+    //ctx.strokeRect(heroS.xpi(), heroS.y, heroS.xpf()-heroS.xpi() ,heroS.yf()-heroS.yi())
+    //ctx.strokeRect(m.sprite.xpi(), m.sprite.y, m.sprite.xpf()-m.sprite.xpi() ,m.sprite.yf()-m.sprite.yi())
+    if(intersectRect(bounds, m.sprite.bounds())){
+      //m.sprite.color = '#fff';
+      //***enemies[i].hit(m.type, m.damage);
+      myhero.hit(m.type, m.damage);
+      m.del = 1;
+      createParticles(m.sprite, 2, m.sprite.vx/2, -3, m.color);
+      //make me particles
     }
   }
   
