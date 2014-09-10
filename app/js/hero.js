@@ -1,4 +1,4 @@
-var heroS = new Sprite(hero);
+var heroS = new Sprite(hero, heroAnimations);
 heroS.setAnimation('i');
 
 

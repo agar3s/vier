@@ -6,7 +6,7 @@ var firexx = new Sprite(fire);
 firexx.color = basicColors[0];
 firexx.pixelSize = 3;
 
-enemies.push(new Enemy(0, ~~(Math.random()*4), new Sprite(hero), Math.random()*xlevel.w));
+enemies.push(new Enemy(2, ~~(Math.random()*4), Math.random()*xlevel.w));
 var loop = 0;
 
 // var boundsv

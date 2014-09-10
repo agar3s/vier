@@ -1,11 +1,13 @@
-var monsterNames=['Minion', 'Elemental', 'Monster', 'Wizard', 'Master', 'Grand Master', 'Gran Elemental'];
 var elementalNames=['Air', 'Water', 'Earth', 'Fire'];
-var Enemy = function(nameCode, type, sprite, x){
+
+var Enemy = function(nameCode, type, x){
   var m = this;
   //m.type = type;
   m.name = elementalNames[type]+' '+monsterNames[nameCode];
-  m.sprite = sprite;
   m.color = elementColors[type]
+  //load sprite depending on nameCode and type
+  m.monsterCode = elementalNames[type][0]+nameCode;
+  m.sprite = new Sprite(monsterSprites[m.monsterCode], monsterAnimations[m.monsterCode]);
   m.sprite.color = 'hsl('+m.color+',100%, 50%)';
   m.sprite.setAnimation('i');
   m.sprite.setPixelSize(7);
@@ -124,8 +126,8 @@ var Enemy = function(nameCode, type, sprite, x){
   }
 
   m.trigger = function(event){
-    enemies.push(new Enemy(~~(Math.random()*7), ~~(Math.random()*4), new Sprite(hero),Math.random()*xlevel.w));
-    enemies.push(new Enemy(~~(Math.random()*7), ~~(Math.random()*4), new Sprite(hero),Math.random()*xlevel.w));
+    enemies.push(new Enemy(~~(Math.random()*7), ~~(Math.random()*4), Math.random()*xlevel.w));
+    enemies.push(new Enemy(~~(Math.random()*7), ~~(Math.random()*4), Math.random()*xlevel.w));
     if(~~(Math.random()*10)==0)
       createBooster(4, m.maxhp, m.sprite.x, m.sprite.y);
     else
@@ -134,11 +136,8 @@ var Enemy = function(nameCode, type, sprite, x){
   }
 
   m.hit = function(type, damage){
-    //console.log(type, m.skills.current, damage);
     //damage =getTotalDamage(type, m.skills.current, damage) ;
-    //console.log('total damage:', damage);
     if(m.sprite.hit(getTotalDamage(type, m.skills.current, damage))&&!m.del){
-     // console.log('kill me');
       m.del = 1;
       //make me particles
       createParticles(m.sprite, damage, 0, 0, m.color);

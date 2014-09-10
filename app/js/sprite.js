@@ -8,7 +8,7 @@ var convertTobyte = function(d){
   }
   return bArray;
 }
-var Sprite = function(code){
+var Sprite = function(code, animations){
   var m = this;
   m.byteArray = new Int16Array(ppp);
   m.data = loadByString(code);
@@ -25,6 +25,7 @@ var Sprite = function(code){
   m.maxVx = pixelSize*2.2;
   m.accelerationX = 0.25;
   m.pixelSize = 0;
+  m.animations = animations||defaultAnimations;
   m.hp = 1; //hitpoints
   m.setPixelSize = function(pixelSize){
     m.pixelSize = pixelSize;
@@ -163,11 +164,11 @@ var Sprite = function(code){
     };
   }
   m.setAnimation = function(name){
-    if(m.currentAnimation == name) return;
+    if(m.currentAnimation == name||!m.animations[name]) return;
     m.currentAnimation = name;
     m.frames = [];
-    var animation = animations[name].f;
-    m.byteArray = convertTobyte(loadByString(animations[name].kf));
+    var animation = m.animations[name].f;
+    m.byteArray = convertTobyte(loadByString(m.animations[name].kf));
     for (j = 0; j < animation.length; j++) {
       var ha = frames[animation[j]];
       if(animation[j]==-1){
@@ -178,7 +179,6 @@ var Sprite = function(code){
     }
   }
   m.hit = function(damage){
-    //console.log('hit!!');
     m.hp-=damage;
     if(m.hp<0) m.hp=0;
     return m.hp==0;

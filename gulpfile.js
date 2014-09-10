@@ -33,6 +33,7 @@ gulp.task('scripts', ['move'],function() {
             './app/js/levels.js',
             './app/js/powers.js',
             './app/js/boosters.js',
+            './app/js/enemyBook.js',
             './app/js/enemies.js',
             './app/js/hero.js',
             './app/js/screens.js',
@@ -124,7 +125,6 @@ gulp.task('scripts', ['move'],function() {
     .pipe(replace(/bottom/g, 'AJ'))
     .pipe(replace(/Level/g, 'AK'))
     .pipe(replace(/charge/g, 'AL'))
-    .pipe(replace(/Sprite/g, 'AM'))
     .pipe(replace(/skills/g, 'AN'))
     .pipe(replace(/maxhp/g, 'AO'))
     .pipe(replace(/quantity/g, 'AP'))
@@ -135,7 +135,6 @@ gulp.task('scripts', ['move'],function() {
     .pipe(replace(/setActionPipe/g, 'AU'))
     .pipe(replace(/ghostTime/g, 'AV'))
     .pipe(replace(/Enemy/g, 'AW'))
-    .pipe(replace(/hero/g, 'AX'))
     .pipe(replace(/actionIndex/g, 'AY'))
     .pipe(replace(/booster/g, 'AZ'))
     .pipe(replace(/hit/g, 'ba'))
@@ -165,7 +164,12 @@ gulp.task('scripts', ['move'],function() {
     .pipe(replace(/black/g, 'bs'))
     .pipe(replace(/monsterNames/g, 'bt'))
     .pipe(replace(/elementNames/g, 'bv'))
+    .pipe(replace(/heroAnimations/g, 'bw'))
+    .pipe(replace(/monsterAnimations/g, 'bx'))
+    .pipe(replace(/monsterSprites/g, 'by'))
+    .pipe(replace(/Sprite/g, 'AM'))
     .pipe(replace(/element/g, 'Au'))
+    .pipe(replace(/hero/g, 'AX'))
 
     .pipe(uglify())
     .pipe(gulp.dest('./dist/'))

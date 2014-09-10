@@ -78,7 +78,7 @@ var transformSprite = function(file){
   });
 };
 
-transformSprite('booster');
-transformSprite('herojump');
-transformSprite('herojump02');
-transformSprite('herojump03');
+transformSprite('skeleton00');
+transformSprite('skeleton01');
+transformSprite('skeleton02');
+transformSprite('skeleton03');
