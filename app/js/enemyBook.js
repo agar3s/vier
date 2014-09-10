@@ -1,4 +1,3 @@
-var monsterNames=['Minion', 'Elemental', 'Monster', 'Wizard', 'Master', 'Grand Master', 'Gran Elemental'];
 var monster1 = '';
 var monster2 = '';
 var monster3 = "{&{'{({){*{5{6{7{8{:{;{F{G{H{K{O{V{W{X{Y{Z{[{_{`{h{i{j{k{n{o{p!\"#$%)*+./013567:;=ABCDEHIJKMSZ[]^abcdejmnqsu~%~-~.~/~;~<~@~A~I~J~K~Q~R~Y~Z~[~a~b~i~q~r~s~t";
@@ -60,3 +59,42 @@ for (var i = 0; i < 7; i++) {
   monsterAnimations['E'+i]= monsterAnimations['B'+i];
   monsterAnimations['F'+i]= monsterAnimations['B'+i];
 };
+
+// nameCode     1 digit
+// type         1 digit
+// vx           1 hexa
+// hp           2 hexa
+// pixelSize    1 digit (+4)
+// coldown      1 hexa (*3)
+// triggerType  1 digit
+// actionpipe   n characters
+var monsterMoves = {
+  a: 'ljlw90taw90', //jump wait attack
+  b: 'lf80sw30asw30t'
+}
+var monsterAttributes = {
+  basic: '1031F1'
+}
+var monsterBook = {
+  a0: '00'+monsterAttributes.basic,
+  a1: '01'+monsterAttributes.basic,
+  a2: '02'+monsterAttributes.basic,
+  a3: '03'+monsterAttributes.basic,
+}
+
+var generateMonster = function(code, x, actionpipe){
+  //nameCode, type, vx, actionpipe, hp, pixelSize, coldown, triggerType
+  //7 posibilites, 4 posiblities, x 99 posiblities, vx 16 posibilites, string *, hp 256 posibilites, pixelSize, coldown, triggerType
+  //1digit, 1digit, 1hexa, array, 2hexa, 1digit, 1hexa, 1digit
+  //=,=,*100,=,at the end,
+  var nameCode = code[0];
+  var type = code[1];
+  var vx = parseInt(code[2],16);
+  var hp = parseInt(code[3]+code[4],16);
+  var pSize = parseInt(code[5])+4;
+  var coldown = parseInt(code[6],16)*3;
+  var triggerType = code[7];
+
+
+  return new Enemy(nameCode, type, x*100, vx, actionpipe, hp, pSize, coldown, triggerType);
+}

@@ -167,6 +167,12 @@ gulp.task('scripts', ['move'],function() {
     .pipe(replace(/heroAnimations/g, 'bw'))
     .pipe(replace(/monsterAnimations/g, 'bx'))
     .pipe(replace(/monsterSprites/g, 'by'))
+    //asdas
+    .pipe(replace(/monsterMoves/g, 'Ba'))
+    .pipe(replace(/monsterBook/g, 'Bb'))
+    .pipe(replace(/monsterAttributes/g, 'Bc'))
+    .pipe(replace(/basic/g, 'Bd'))
+    //newss
     .pipe(replace(/Sprite/g, 'AM'))
     .pipe(replace(/element/g, 'Au'))
     .pipe(replace(/hero/g, 'AX'))

@@ -1,9 +1,10 @@
-var elementalNames=['Air', 'Water', 'Earth', 'Fire'];
+var monsterNames=['Minion', 'Elemental', 'Monster', 'Wizard', 'Master', 'Grand Master', 'Gran Elemental'];
 
 var Enemy = function(nameCode, type, x, vx, actionpipe, hp, pixelSize, coldown, triggerType){
   var m = this;
   //m.type = type;
   m.name = elementalNames[type]+' '+monsterNames[nameCode];
+  m.damage = parseInt(nameCode)+1;
   m.color = elementColors[type]
   //load sprite depending on nameCode and type
   m.monsterCode = elementalNames[type][0]+nameCode;
@@ -66,7 +67,7 @@ var Enemy = function(nameCode, type, x, vx, actionpipe, hp, pixelSize, coldown, 
       var h = Math.sqrt(vx*vx+vy*vy);
       vx/=h;
       vy/=h;
-      var power = new Power(m.skills.current, 2, m.sprite.x+8*3, m.sprite.y, 3*vx, 3*vy);
+      var power = new Power(m.skills.current, m.sprite.pixelSize/3, m.damage, m.sprite.x+8*3, m.sprite.y, 3*vx, 3*vy);
 
       enemypowers.push(power);
       m.coldown = m.maxColdown;
@@ -150,7 +151,6 @@ var Enemy = function(nameCode, type, x, vx, actionpipe, hp, pixelSize, coldown, 
     }
   ];
   m.trigger = function(event){
-    enemies.push(new Enemy(~~(Math.random()*7), ~~(Math.random()*4), Math.random()*xlevel.w, ~~(Math.random()*14), 'f300t',~~(Math.random()*10),7,32));
     m.triggers[m.triggerType]();
   }
 

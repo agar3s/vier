@@ -29,6 +29,7 @@ var particles = [];
 var platforms = [];
 var boosters = [];
 var currentEnemy = null;
+var elementalNames=['Air', 'Water', 'Earth', 'Fire'];
 
 //set text style
 ctx.textBaseline="middle";

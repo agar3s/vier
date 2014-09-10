@@ -1,8 +1,9 @@
 
-var Level = function(){
+var Level = function(width, enemiesVector){
 	var m = this;
-  m.w = 1424;
+  m.w = width;
   m.h = 0;
+  m.enemiesVector = enemiesVector;
   //m.points = [];
   var factor = 20;
   //var montains = +20*(2*Math.sin(i/3));
@@ -32,6 +33,11 @@ var Level = function(){
       platforms[i].draw();
     }
   }
+
+  m.releaseEnemy = function(){
+
+  }
+
   m.collides = function(sprite){
     var index = ~~(sprite.xi()/factor)-1;
     if(index<0)index=0;

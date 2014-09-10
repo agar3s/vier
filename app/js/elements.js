@@ -34,7 +34,7 @@ var ElementalSkill = function(types, charge){
 
   m.power = function(vy, x, y){
     if(m.charges[m.current]-->0){
-      var power = new Power(m.current, 2, x, y,  heroS.direction?10:-10, vy);
+      var power = new Power(m.current, 2, 1, x, y,  heroS.direction?10:-10, vy);
       powers.push(power);
       m.updateCurrentQ();
     }else{

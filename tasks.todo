@@ -3,6 +3,32 @@
 2403/13312 23%
 2441/13312
 
+-- Level generator
+	-- width
+	-- height
+	-- enemies
+	-- platforms
+	-- messages
+	-- title
+	-- backgrounds
+	--- upgrounds
+	-- color
+	---- music
+
+-- Level functions
+	-- enemy dispatcher
+	-- events
+		-- on player X
+		-- on enemy died
+		-- on level start
+		-- on level ends
+		-- on last enemy died
+		-- on message ends
+	-- restart
+	-- start
+	-- ends
+
+
 +!- hit points!
 	+-- hit the road jack!
 	+-- power collides enemies
@@ -31,10 +57,11 @@
 	+-- pixel size
 	+-- coldown
 	+-- trigger 
-	-- monster faces: no hace falta? 
+	+-- monster faces: no hace falta? 
 	+-- and names : XD
 -- book monster: dictionary with all the different configuration for monsters
 -- level configurations
+	
 !-- if a monster fall remove... 
 - viewport x again
 ---- enemies with simple AI
