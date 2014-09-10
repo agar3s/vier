@@ -150,7 +150,7 @@ var Enemy = function(nameCode, type, x, vx, actionpipe, hp, pixelSize, coldown, 
     }
   ];
   m.trigger = function(event){
-    enemies.push(new Enemy(~~(Math.random()*7), ~~(Math.random()*4), Math.random()*xlevel.w, Math.random()*14, 'f300t',Math.random()*10,7,32));
+    enemies.push(new Enemy(~~(Math.random()*7), ~~(Math.random()*4), Math.random()*xlevel.w, ~~(Math.random()*14), 'f300t',~~(Math.random()*10),7,32));
     m.triggers[m.triggerType]();
   }
 
@@ -174,7 +174,8 @@ var Enemy = function(nameCode, type, x, vx, actionpipe, hp, pixelSize, coldown, 
     ctx.fillRect(vx-335, vy+35, 300,8);
     ctx.fillStyle = '#300';
     ctx.fillRect (vx-334, vy+36, 300*(1-m.sprite.hp/m.maxhp)-2,6);
-    m.sprite.drawFace(vx-135, vy+50);
+    if(!m.del||loop%8==0)
+      m.sprite.drawFace(vx-135, vy+50);
   }
 
 }
