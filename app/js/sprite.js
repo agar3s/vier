@@ -8,6 +8,27 @@ var convertTobyte = function(d){
   }
   return bArray;
 }
+var loadByString= function(sprite){
+  var i=0, char=sprite[i];
+  var byteArray=[];
+  var byte = 0;
+  while(char){
+    var mod = 0X55;
+    if(char[0]=='{'){
+      char = sprite[++i];
+      mod=0;
+    }
+    if(char[0]=='~'){
+      char = sprite[++i];
+      mod=0XAA;
+    }
+    byteArray.push(char.charCodeAt()+mod-0X21);
+    char = sprite[++i]
+  }
+  return byteArray;
+}
+var faceMask = loadByString('{%{&{\'{({){*{+{,{5{6{7{8{9{:{;{<{E{F{G{H{I{J{K{L{U{V{W{X{Y{Z{[{\\{e{f{g{h{i{j{k{l{u!"#$%&\'');
+
 var Sprite = function(code, animations){
   var m = this;
   m.byteArray = new Int16Array(ppp);
@@ -32,6 +53,23 @@ var Sprite = function(code, animations){
     m.height = m.width = m.pixelSize*16;
   }
   m.setPixelSize(pixelSize);
+
+  m.generateFace = function(){
+    var data2 = [];
+    var byteInfo = convertTobyte(m.data);
+    var byteMask = convertTobyte(faceMask);
+    for(var j = 0; j < ppp; j++) {
+      var byteP = byteInfo[j]&byteMask[j];
+      for (var i = 0; i < ppp; i++) {
+        if(1<<(pp1-i)&byteP){
+         data2.push(j*ppp+i);
+        }
+      }
+    }
+    console.log(data2);
+    m.faceSprite = data2;
+  }
+  m.generateFace();
 
   m.rotate = function(){
     var data2 = [];
@@ -162,7 +200,16 @@ var Sprite = function(code, animations){
       //var x = array[i] & 0XF;
       var k = (m.data[i] & 0XF)
       ctx.fillRect(m.x+(m.direction?k:15-k)*m.pixelSize, m.y+(m.data[i] >> 4)*m.pixelSize, m.pixelSize, m.pixelSize);
-    };
+    }
+  }
+  m.drawFace= function(posx, posy){
+    ctx.fillStyle = m.color;
+    for(var i = 0; i < m.faceSprite.length; i++) {
+      //var y = array[i] >> 4;
+      //var x = array[i] & 0XF;
+      var k = (m.faceSprite[i] & 0XF)
+      ctx.fillRect(posx+(m.direction?k:15-k)*9, posy+(m.faceSprite[i] >> 4)*9, 9, 9);
+    }
   }
   m.setAnimation = function(name){
     if(m.currentAnimation == name||!m.animations[name]) return;
@@ -194,22 +241,3 @@ var Sprite = function(code, animations){
   }
 }
 
-var loadByString= function(sprite){
-  var i=0, char=sprite[i];
-  var byteArray=[];
-  var byte = 0;
-  while(char){
-    var mod = 0X55;
-    if(char[0]=='{'){
-      char = sprite[++i];
-      mod=0;
-    }
-    if(char[0]=='~'){
-      char = sprite[++i];
-      mod=0XAA;
-    }
-    byteArray.push(char.charCodeAt()+mod-0X21);
-    char = sprite[++i]
-  }
-  return byteArray;
-}

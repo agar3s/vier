@@ -78,7 +78,4 @@ var transformSprite = function(file){
   });
 };
 
-transformSprite('skeleton00');
-transformSprite('skeleton01');
-transformSprite('skeleton02');
-transformSprite('skeleton03');
+transformSprite('faceMask');

@@ -60,4 +60,3 @@ for (var i = 0; i < 7; i++) {
   monsterAnimations['E'+i]= monsterAnimations['B'+i];
   monsterAnimations['F'+i]= monsterAnimations['B'+i];
 };
-console.log(monsterAnimations);

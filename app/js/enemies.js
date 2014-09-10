@@ -174,6 +174,7 @@ var Enemy = function(nameCode, type, x, vx, actionpipe, hp, pixelSize, coldown, 
     ctx.fillRect(vx-335, vy+35, 300,8);
     ctx.fillStyle = '#300';
     ctx.fillRect (vx-334, vy+36, 300*(1-m.sprite.hp/m.maxhp)-2,6);
+    m.sprite.drawFace(vx-135, vy+50);
   }
 
 }

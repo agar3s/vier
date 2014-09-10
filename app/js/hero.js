@@ -96,7 +96,8 @@ var HeroT = function(sprite){
   m.draw = function(){
     var vx = -viewport.x;
     var vy = viewport.y;
-
+    ctx.fillStyle=white;
+    ctx.fillText('Agtaske', vx+73, vy+20);
     ctx.strokeStyle = 'yellow';
     ctx.fillStyle = '#300';
     ctx.strokeRect (vx+35, vy+35,300,8);
@@ -111,5 +112,6 @@ var HeroT = function(sprite){
         if(del&&--ghostTime==0) currentEnemy = null;
       }
     }
+    m.sprite.drawFace(vx-35, vy+50);
   }
 }
