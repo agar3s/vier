@@ -1,4 +1,4 @@
-var Particle = function(x, y, vx, vy, size, color){
+function Particle(x, y, vx, vy, size, color){
   var m = this;
   m.x = x;
   m.y = y;

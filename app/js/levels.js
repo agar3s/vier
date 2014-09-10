@@ -1,7 +1,7 @@
 
 var Level = function(){
 	var m = this;
-  m.w = 1024;
+  m.w = 1424;
   m.h = 0;
   //m.points = [];
   var factor = 20;

@@ -145,7 +145,6 @@ var Enemy = function(type, sprite, x){
       //enemies.push(new Enemy(~~(Math.random()*4), new Sprite(hero)));
     }
     currentEnemy = m;
-    console.log(1-m.sprite.hp/m.maxhp, m.sprite.hp);
   }
 
   m.drawAvatar = function(vx, vy){

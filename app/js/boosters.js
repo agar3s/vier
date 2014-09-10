@@ -10,6 +10,7 @@ var Booster = function(type, quantity, x, y){
   m.sprite.vy = 0.5;
   m.sprite.landed = 0;
   m.times = 256;
+  m.del=0;
   m.update = function(){
     var cond = loop%32==0;
     if(!m.sprite.landed){

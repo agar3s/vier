@@ -28,7 +28,12 @@ var boosters = [];
 var currentEnemy = null;
 
 //set text style
-ctx.font = "normal lighter 18px fantasy";
+ctx.textBaseline="middle";
+ctx.textAlign="center"; 
+function setFont(type){
+  ctx.font=type?'normal lighter 12px':'normal lighter 18px fantasy';
+}
+setFont();
 
 
 //requestAnimationFrame

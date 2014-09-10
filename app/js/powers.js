@@ -17,6 +17,7 @@ var Power = function(type, pixelSize, x, y, vx, vy){
   m.sprite.vy = vy;
   m.sprite.direction = vx>0;
   m.damage = 1;
+  m.del = 0;
   
   m.collides = function(){
     for (var i = enemies.length - 1; i >= 0; i--) {

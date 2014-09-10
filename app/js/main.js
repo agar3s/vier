@@ -17,6 +17,8 @@ var yOld = myhero.sprite.y;
 
 //scale
 //ctx.transform(1, 0, 0, 1, 0, 0);
+var currentScreen = 'i';
+
 function gameLoop() {
   ctx.clearRect(-viewport.x, viewport.y, dimensions.w, dimensions.h);
   //draw the guys
@@ -31,64 +33,70 @@ function gameLoop() {
 
 
   for (var j = powers.length - 1; j >= 0; j--) {
-    powers[j].update();
-    powers[j].sprite.draw();
-    if(loop%4==0){
-      powers[j].animate();
-    }
-    if(loop%2==0)powers[j].collides();
-    if(powers[j].outside||powers[j].del){
-      powers.splice(j, 1);
+    with(powers[j]){
+      update();
+      sprite.draw();
+      if(loop%4==0){
+        animate();
+      }
+      if(loop%2==0)collides();
+      if(outside||del){
+        powers.splice(j, 1);
+      }
     }
   }
 
   for (var j = enemies.length - 1; j >= 0; j--) {
-    var enemy = enemies[j];
-    if(enemy.del){
-      enemies.splice(j, 1);
-      continue;
+    with(enemies[j]){
+      if(del){
+        enemies.splice(j, 1);
+        continue;
+      }
+      sprite.draw();
+      sprite.accelerateY(0.8);
+      xlevel.collides(sprite);
+      update();
+      if(loop%2==0)
+        sprite.animate();
     }
-    enemy.sprite.draw();
-    enemy.sprite.accelerateY(0.8);
-    xlevel.collides(enemy.sprite);
-    enemy.update();
-    if(loop%2==0)
-      enemy.sprite.animate();
   }
 
   for (var j = enemypowers.length - 1; j >= 0; j--) {
-    enemypowers[j].update();
-    enemypowers[j].sprite.draw();
-    if(loop%4==0){
-      enemypowers[j].animate();
-    }
-    if(loop%2==0)enemypowers[j].collidesHero(heroS.bounds());
-    if(enemypowers[j].outside||enemypowers[j].del){
-      enemypowers.splice(j, 1);
+    with(enemypowers[j]){
+      update();
+      sprite.draw();
+      if(loop%4==0){
+        animate();
+      }
+      if(loop%2==0)collidesHero(heroS.bounds());
+      if(outside||del){
+        enemypowers.splice(j, 1);
+      }
     }
   }
 
   for (var i = particles.length - 1; i >= 0; i--) {
-    particles[i].draw();
-    if(particles[i].update()){
-      particles.splice(i, 1);
+    with(particles[i]){
+      draw();
+      if(update()){
+        particles.splice(i, 1);
+      }
     }
   }
   for (var i = boosters.length - 1; i >= 0; i--) {
-    boosters[i].update()
-    xlevel.collides(boosters[i].sprite);
-    boosters[i].sprite.draw();
-    if(loop%2==0)boosters[i].collidesHero(heroS.bounds());
-    if(boosters[i].del){
-      boosters.splice(i, 1);
+    with(boosters[i]){
+      update()
+      xlevel.collides(sprite);
+      sprite.draw();
+      if(loop%2==0)collidesHero(heroS.bounds());
+      if(del){
+        boosters.splice(i, 1);
+      }
     }
   }
 
   if(loop%8==0){
     firexx.rotate();
-  }
-  if(loop%64==0){
-    loop=0;
   }
   firexx.updateX();
   
@@ -122,10 +130,48 @@ function gameLoop() {
     heroS.draw();
     myhero.manage();
     myhero.draw();
+  }else{
+    currentScreen='d';
   }
-  
-  loop++;
-  ra(gameLoop);
 }
 
-ra(gameLoop);
+//different screens
+//game state = current screen
+var showScreen = {
+  g: gameLoop,
+  i: introScreen,
+  p: pauseScreen,
+  d: function(vx, vy){
+    gameLoop();
+    deadScreen(vx, vy);
+  }
+}
+//actions that the user can do at screen
+var actionsScreen = {
+  g: function(key){
+    currentScreen = 'p';
+  },
+  i: function(key){
+    currentScreen = 'g';
+  },
+  p: function(key){
+    currentScreen = 'g';
+  },
+  d: function(key){
+    console.log('restart level');
+  }
+}
+function mainLoop(){
+  showScreen[currentScreen](-viewport.x, viewport.y);
+  if(keyMap&256){
+    actionsScreen[currentScreen](1);
+    keyMap-=256;
+  }
+  if(loop%64==0){
+    loop=0;
+  }
+  loop++;
+  ra(mainLoop);
+}
+
+ra(mainLoop);

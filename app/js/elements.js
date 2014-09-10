@@ -50,7 +50,7 @@ var ElementalSkill = function(types, charge){
     //ctx.fillText (""+myhero.skills.current, vx+75, vy-65);
     for (var i = 0; i < 4; i++) {
       ctx.fillStyle = i==m.current&&loop%8==0?'#000':basicColors[i];
-      ctx.fillText (""+m.charges[i], vx+30+(i%2==0?35:i==1?69:0), vy-35-(i%2==1?30:i==0?60:0));
+      ctx.fillText (""+m.charges[i], vx+40+(i%2==0?35:i==1?69:0), vy-40-(i%2==1?30:i==0?60:0));
     };
     // ctx.fillStyle = basicColors[0];
     // ctx.fillText (""+m.charges[0], vx+65, vy-95);
