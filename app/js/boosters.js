@@ -19,11 +19,11 @@ var Booster = function(type, quantity, x, y){
       m.del=m.times--==0;
       cond = loop%~~(m.times/16)==0; 
     }
-    m.sprite.color=cond?'#fff':basicColors[type];
+    m.sprite.color=cond?white:basicColors[type];
   }
   m.collidesHero = function(bounds){
     if(intersectRect(bounds, m.sprite.bounds())){
-      //m.sprite.color = '#fff';
+      //m.sprite.color = white;
       //***enemies[i].hit(m.type, m.damage);
       myhero.charge(m.type, m.quantity);
       m.del = 1;

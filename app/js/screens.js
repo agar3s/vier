@@ -1,6 +1,6 @@
 function introScreen(vx, vy){
   ctx.fillStyle='rgba(0,0,0,0.1)';
-  ctx.strokeStyle='#FFF';
+  ctx.strokeStyle=white;
   ctx.fillRect(vx, vy, dimensions.w, dimensions.h);
   ctx.font='normal lighter 72px fantasy';
   ctx.strokeText ("VIER", vx+dimensions.w/2, vy+dimensions.h*0.1);
@@ -13,7 +13,7 @@ function introScreen(vx, vy){
 function pauseScreen(vx, vy){
   //draw pause screen
   ctx.fillStyle='rgba(0,0,0,0.1)';
-  ctx.strokeStyle='#FFF';
+  ctx.strokeStyle=white;
   ctx.fillRect(vx, vy, dimensions.w, dimensions.h);
   setFont(0);
   ctx.strokeText ("PAUSE", vx+dimensions.w/2, vy+dimensions.h*0.3);
@@ -24,7 +24,7 @@ function pauseScreen(vx, vy){
 
 function deadScreen(vx, vy){
   ctx.fillStyle='rgba(0,0,0,0.6)';
-  ctx.strokeStyle='#FFF';
+  ctx.strokeStyle=white;
   ctx.fillRect(vx, vy, dimensions.w, dimensions.h);
   setFont(0);
   ctx.strokeText ("DEAD", vx+dimensions.w/2, vy+dimensions.h*0.3);

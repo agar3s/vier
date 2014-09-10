@@ -23,7 +23,7 @@ var Power = function(type, pixelSize, x, y, vx, vy){
     for (var i = enemies.length - 1; i >= 0; i--) {
       var sprite = enemies[i].sprite;
       if(intersectRect(sprite.bounds(), m.sprite.bounds())){
-        //m.sprite.color = '#fff';
+        //m.sprite.color = white;
         enemies[i].hit(m.type, m.damage);
         m.del = 1;
         createParticles(m.sprite, 2, m.sprite.vx/2, -3, m.color);
@@ -36,7 +36,7 @@ var Power = function(type, pixelSize, x, y, vx, vy){
     //ctx.strokeRect(heroS.xpi(), heroS.y, heroS.xpf()-heroS.xpi() ,heroS.yf()-heroS.yi())
     //ctx.strokeRect(m.sprite.xpi(), m.sprite.y, m.sprite.xpf()-m.sprite.xpi() ,m.sprite.yf()-m.sprite.yi())
     if(intersectRect(bounds, m.sprite.bounds())){
-      //m.sprite.color = '#fff';
+      //m.sprite.color = white;
       //***enemies[i].hit(m.type, m.damage);
       myhero.hit(m.type, m.damage);
       m.del = 1;

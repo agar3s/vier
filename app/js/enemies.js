@@ -1,7 +1,9 @@
-
-var Enemy = function(type, sprite, x){
+var monsterNames=['Minion', 'Elemental', 'Monster', 'Wizard', 'Master', 'Grand Master', 'Gran Elemental'];
+var elementalNames=['Air', 'Water', 'Earth', 'Fire'];
+var Enemy = function(nameCode, type, sprite, x){
   var m = this;
   //m.type = type;
+  m.name = elementalNames[type]+' '+monsterNames[nameCode];
   m.sprite = sprite;
   m.color = elementColors[type]
   m.sprite.color = 'hsl('+m.color+',100%, 50%)';
@@ -122,8 +124,8 @@ var Enemy = function(type, sprite, x){
   }
 
   m.trigger = function(event){
-    enemies.push(new Enemy(~~(Math.random()*4), new Sprite(hero),Math.random()*xlevel.w));
-    enemies.push(new Enemy(~~(Math.random()*4), new Sprite(hero),Math.random()*xlevel.w));
+    enemies.push(new Enemy(~~(Math.random()*7), ~~(Math.random()*4), new Sprite(hero),Math.random()*xlevel.w));
+    enemies.push(new Enemy(~~(Math.random()*7), ~~(Math.random()*4), new Sprite(hero),Math.random()*xlevel.w));
     if(~~(Math.random()*10)==0)
       createBooster(4, m.maxhp, m.sprite.x, m.sprite.y);
     else
@@ -148,7 +150,9 @@ var Enemy = function(type, sprite, x){
   }
 
   m.drawAvatar = function(vx, vy){
-    ctx.fillStyle=loop%16==0?'#000':'yellow';
+    ctx.fillStyle=white;
+    ctx.fillText(m.name, vx-120, vy+20);
+    ctx.fillStyle=loop%16==0?black:'yellow';
     ctx.fillRect(vx-335, vy+35, 300,8);
     ctx.fillStyle = '#300';
     ctx.fillRect (vx-334, vy+36, 300*(1-m.sprite.hp/m.maxhp)-2,6);
