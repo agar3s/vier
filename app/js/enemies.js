@@ -1,6 +1,6 @@
 var elementalNames=['Air', 'Water', 'Earth', 'Fire'];
 
-var Enemy = function(nameCode, type, x){
+var Enemy = function(nameCode, type, x, vx, actionpipe, hp, pixelSize, coldown, triggerType){
   var m = this;
   //m.type = type;
   m.name = elementalNames[type]+' '+monsterNames[nameCode];
@@ -10,14 +10,16 @@ var Enemy = function(nameCode, type, x){
   m.sprite = new Sprite(monsterSprites[m.monsterCode], monsterAnimations[m.monsterCode]);
   m.sprite.color = 'hsl('+m.color+',100%, 50%)';
   m.sprite.setAnimation('i');
-  m.sprite.setPixelSize(7);
+  m.sprite.setPixelSize(pixelSize);
 
-  m.sprite.maxVx = heroS.maxVx*0.9;
+  m.sprite.maxVx = vx||m.pixelSize*2.2;
   m.sprite.x = x;
   m.skills = new ElementalSkill([type]);
-  m.maxhp = 4;
-  m.sprite.hp = 4;
-  m.coldown = 16;
+  m.maxhp = hp;
+  m.sprite.hp = hp;
+  m.maxColdown = coldown;
+  m.coldown = coldown;
+  m.triggerType = triggerType||2;
   m.ghostTime = 100;
   m.del = 0;
   //action options:
@@ -32,7 +34,7 @@ var Enemy = function(nameCode, type, x){
   //d: move forward until land
   //g: go for the hero
   //r: run away from the hero
-  m.actionpipe = '';
+  
   m.setActionPipe = function(actionpipe){
     var newPipe = '';
     for (var i = 0; i < actionpipe.length; i++) {
@@ -49,7 +51,7 @@ var Enemy = function(nameCode, type, x){
     }
     m.actionpipe = newPipe;
   }
-  m.setActionPipe('lgajdag10jdsajd');
+  m.setActionPipe(actionpipe||'f60taw20');
   //m.setActionPipe('lf30sw10tjl');
   //m.setActionPipe('lf60sw10tf60sw10ta');
   m.actionIndex = 0;
@@ -67,7 +69,7 @@ var Enemy = function(nameCode, type, x){
       var power = new Power(m.skills.current, 2, m.sprite.x+8*3, m.sprite.y, 3*vx, 3*vy);
 
       enemypowers.push(power);
-      m.coldown = 16;
+      m.coldown = m.maxColdown;
       //power.sprite.vy=vy;
       //m.coldown = 16;
     }
@@ -125,14 +127,31 @@ var Enemy = function(nameCode, type, x){
     if(--m.coldown<0) m.coldown=0;
   }
 
-  m.trigger = function(event){
-    enemies.push(new Enemy(~~(Math.random()*7), ~~(Math.random()*4), Math.random()*xlevel.w));
-    enemies.push(new Enemy(~~(Math.random()*7), ~~(Math.random()*4), Math.random()*xlevel.w));
-    if(~~(Math.random()*10)==0)
-      createBooster(4, m.maxhp, m.sprite.x, m.sprite.y);
-    else
+  //triggers coded in an array
+  // m.trigger[0] = create energy booster
+  // m.trigger[1] = create health booster
+  // m.trigger[2] = create random booster 1/10 to drop life
+  // m.trigger[3] = hummm
+  m.triggers = [
+    function(){
       createBooster(m.skills.current, m.maxhp,m.sprite.x, m.sprite.y);
-      
+    },
+    function(){
+      createBooster(4, m.maxhp, m.sprite.x, m.sprite.y);
+    },
+    function(){
+      if(~~(Math.random()*10)==0)
+        m.triggers[1]();
+      else
+        m.triggers[0]();
+    },
+    function(){
+      console.log('otra cosa')
+    }
+  ];
+  m.trigger = function(event){
+    enemies.push(new Enemy(~~(Math.random()*7), ~~(Math.random()*4), Math.random()*xlevel.w, Math.random()*14, 'f300t',Math.random()*10,7,32));
+    m.triggers[m.triggerType]();
   }
 
   m.hit = function(type, damage){

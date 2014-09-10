@@ -6,6 +6,8 @@ var monster4 = '';
 var monster5 = '';
 var monster6 = '';
 
+var superAggressive = 'lgajdag10jdsajd';
+
 var monsterSprites={
   A0:hero,
   A1:hero,

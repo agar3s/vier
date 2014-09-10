@@ -22,19 +22,21 @@
 +!-- viewport x cuando se devuelve esta extraño
 -- enemy generator
 	+-- name
-	-- type
-	-- sprite
-	-- pos x, y
-	-- vx
-	-- mov descriptor
-	-- hp
-	-- pixel size
-	-- coldown
-	-- trigger 
-	-- monster faces and names : XD
+	+-- type
+	+-- sprite
+	+-- pos x, y
+	+-- vx
+	+-- mov descriptor
+	+-- hp
+	+-- pixel size
+	+-- coldown
+	+-- trigger 
+	-- monster faces: no hace falta? 
+	+-- and names : XD
 -- book monster: dictionary with all the different configuration for monsters
 -- level configurations
-
+!-- if a monster fall remove... 
+- viewport x again
 ---- enemies with simple AI
 ---- implements textures for the backgrounds
 

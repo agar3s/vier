@@ -124,7 +124,7 @@ var Sprite = function(code, animations){
     m.direction = 1;
   }
   m.forward = function(){
-    m.direction?(m.x+17*pixelSize<xlevel.w?m.right():m.stopX()):m.x>0?m.left():m.stopX();
+    m.direction?(m.x+17*pixelSize+m.vx<xlevel.w?m.right():m.stopX()):m.x+m.vx>0?m.left():m.stopX();
   }
   m.turn = function(){
     m.direction = !m.direction;
@@ -138,6 +138,7 @@ var Sprite = function(code, animations){
   m.jump= function(){
     if(m.landed||m.canDoubleJump){
       m.vy=-m.pixelSize*3;
+      if(m.vy<-20)m.vy = -20;
       if(!m.landed)
         m.canDoubleJump = 0;
       m.landed = 0;
