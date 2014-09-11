@@ -73,7 +73,7 @@ var monsterMoves = {
   b: 'lf80sw30asw30t'
 }
 var monsterAttributes = {
-  basic: '1031F1'
+  basic: '1031F0'
 }
 var monsterBook = {
   a0: '00'+monsterAttributes.basic,

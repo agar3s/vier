@@ -1,5 +1,4 @@
 //@agar3s
-var xlevel = new Level(1400, []);
 var myhero = new HeroT(heroS);
 
 var firexx = new Sprite(fire);
@@ -8,9 +7,15 @@ firexx.pixelSize = 3;
 
 //enemies.push(new Enemy(2, ~~(Math.random()*4), Math.random()*xlevel.w, Math.random()*14,'jdg30w100ar30', 6,13, 40,3));
 //enemies.push(generateMonster(monsterBook.a0, 3,monsterMoves.a));
-enemies.push(generateMonster(monsterBook.a1, 4,monsterMoves.b));
+
+var tempenemies= [];
+tempenemies.push(generateMonster(monsterBook.a1, 4,monsterMoves.b));
 //enemies.push(generateMonster(monsterBook.a2, 5,monsterMoves.a));
-enemies.push(generateMonster(monsterBook.a3, 6,monsterMoves.b));
+tempenemies.push(generateMonster(monsterBook.a3, 9,monsterMoves.b));
+tempenemies.push(generateMonster(monsterBook.a2, 12,monsterMoves.b));
+//tempenemies.push(generateMonster(monsterBook.a3, 100,monsterMoves.b));
+var xlevel = new Level(2400, tempenemies, 100);
+
 var loop = 0;
 
 // var boundsv
@@ -34,7 +39,7 @@ function gameLoop() {
   if(!myhero.del)
     myhero.update();
 
-
+  xlevel.onPlayerX(heroS.x);
 
   for (var j = powers.length - 1; j >= 0; j--) {
     with(powers[j]){

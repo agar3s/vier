@@ -66,7 +66,6 @@ var Sprite = function(code, animations){
         }
       }
     }
-    console.log(data2);
     m.faceSprite = data2;
   }
   m.generateFace();

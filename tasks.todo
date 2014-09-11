@@ -3,9 +3,12 @@
 2403/13312 23%
 2441/13312
 
+-- level manager
+	-- params to create a level
+	-- enemies as a array codified
+
 -- Level generator
-	-- width
-	-- height
+	+-- width
 	-- enemies
 	-- platforms
 	-- messages
@@ -18,7 +21,7 @@
 -- Level functions
 	-- enemy dispatcher
 	-- events
-		-- on player X
+		+-- on player X
 		-- on enemy died
 		-- on level start
 		-- on level ends
