@@ -62,7 +62,8 @@ var levels = {
     factor: 150,
     yi: 0,
     pendiente: -0.5,
-    title: 'Chapter 1'
+    title: 'Chapter 1',
+    nextl:'level1'
   }
 }
 
@@ -77,17 +78,17 @@ function restartLevel(wy){
   console.log(720+viewport.y);
   viewport.x=0;
   viewport.y=-wy;
-  xlevel = LevelGenerator(levels[currentLevel]);
   heroS.reset();
   myhero.reset();
   currentEnemy= undefined;
+  xlevel = LevelGenerator(levels[currentLevel]);
 }
 
 function nextLevel(){
   console.log('cl',currentLevel);
   currentLevel = levels[currentLevel].nextl;
   console.log(levels[currentLevel]);
-  restartLevel(720+viewport.y);
+  restartLevel(-viewport.y);
 }
 
 //restartLevel();

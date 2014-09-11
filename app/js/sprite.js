@@ -49,6 +49,7 @@ var Sprite = function(code, animations){
     m.vy=0;
     m.direction = 1;
     m.landed = 0;
+    m.canDoubleJump = 0;
   }
   m.reset();
   m.setPixelSize = function(pixelSize){
