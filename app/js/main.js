@@ -32,7 +32,7 @@ function gameLoop() {
   xlevel.collides(heroS);
   if(!myhero.del)
     myhero.update();
-
+  
   xlevel.onPlayerX(heroS.x);
 
   for (var j = powers.length - 1; j >= 0; j--) {
@@ -117,7 +117,7 @@ function gameLoop() {
   }
 
   //update the viewport
-  if(myhero.sprite.x>450+wx&&myhero.sprite.x<xlevel.w-dimensions.w+450){
+  if(myhero.sprite.x>450-wx&&myhero.sprite.x<xlevel.w-dimensions.w+450){
     viewport.x-=myhero.sprite.vx;
     xxx=-myhero.sprite.vx;
   }else{

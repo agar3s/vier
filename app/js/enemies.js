@@ -36,6 +36,11 @@ var Enemy = function(nameCode, type, x, vx, actionpipe, hp, pixelSize, coldown, 
   //d: move forward until land
   //g: go for the hero
   //r: run away from the hero
+  //h: fly
+  //u: up
+  //n: down
+  //k: diagonal
+  //m: transversal
   
   m.setActionPipe = function(actionpipe){
     var newPipe = '';
@@ -109,7 +114,24 @@ var Enemy = function(nameCode, type, x, vx, actionpipe, hp, pixelSize, coldown, 
       }
     },
     g: m.follow,
-    r: m.away
+    r: m.away,
+    h: function(){
+      m.sprite.fall =function(){};
+    },
+    u: function(){
+      m.sprite.y-=3;
+    },
+    n: function(){
+      m.sprite.y+=3;
+    },
+    k: function(){
+      m.actions.u();
+      m.sprite.forward();
+    },
+    m: function(){
+      m.actions.n();
+      m.sprite.forward();
+    }
   } 
 
   //do the next action in the pipe

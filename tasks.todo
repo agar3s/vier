@@ -3,14 +3,18 @@
 2403/13312 23%
 2441/13312
 
+-- set skills in 40 by default
+-- when restart restore to 30
+
 -- level manager
 	-- params to create a level
 	-- enemies as a array codified
 
 -- Level generator
 	+-- width
-	-- enemies
-	-- platforms
+	+-- enemies
+	+-- platforms
+	
 	-- messages
 	-- title
 	-- backgrounds
@@ -22,14 +26,14 @@
 	-- enemy dispatcher
 	-- events
 		+-- on player X
-		-- on enemy died
+		+-- on enemy died
 		-- on level start
 		-- on level ends
 		-- on last enemy died
 		-- on message ends
-	-- restart
-	-- start
-	-- ends
+	+-- restart
+	+-- start
+	+-- ends
 
 
 +!- hit points!

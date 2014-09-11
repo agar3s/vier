@@ -70,16 +70,20 @@ for (var i = 0; i < 7; i++) {
 // actionpipe   n characters
 var monsterMoves = {
   a: 'ljlw90taw90', //jump wait attack
-  b: 'lf80sw30asw30t'
+  b: 'lf80sw30asw30t',
+  m: 'w20hk20f9w9m20tas'
 }
+//vx,hp,psize,coldown,trigger
 var monsterAttributes = {
-  basic: '1031F0'
+  basic: '1031F0',
+  boss2: '320490'
 }
 var monsterBook = {
   a0: '00'+monsterAttributes.basic,
   a1: '01'+monsterAttributes.basic,
   a2: '02'+monsterAttributes.basic,
   a3: '03'+monsterAttributes.basic,
+  x2: '40'+monsterAttributes.boss2,
 }
 
 var generateMonster = function(code, x, actionpipe){

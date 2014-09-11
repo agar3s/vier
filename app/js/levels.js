@@ -41,6 +41,7 @@ var Level = function(width, enemiesVector, factor, platforms, yi, pendiente, tit
   m.enemiesVector = enemiesVector;
   m.totalEnemies = m.enemiesVector.length;
   m.remainingEnemies = 0;
+  m.count = 0;
   //m.points = [];
   m.factor = factor;
   //var montains = +20*(2*Math.sin(i/3));
@@ -72,6 +73,7 @@ var Level = function(width, enemiesVector, factor, platforms, yi, pendiente, tit
   m.generateLevel(platforms, yi, pendiente);
 
   m.draw = function(vx, vy){
+    m.count++;
     var index = ~~(vx/m.factor);
     if(index<0){index=0;}
     var limit = index + 1+~~(dimensions.w/m.factor);
@@ -94,7 +96,7 @@ var Level = function(width, enemiesVector, factor, platforms, yi, pendiente, tit
 
   // when the player reach specific position
   m.onPlayerX = function(x){
-    if(m.enemiesVector.length==0) return;
+    if(m.count<50||m.enemiesVector.length==0) return;
 
     var enemy = m.enemiesVector[0];
     if(x+dimensions.w-300>enemy.sprite.x){

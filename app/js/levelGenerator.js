@@ -13,7 +13,7 @@ var LevelGenerator = function(level){
   return new Level(level.width, monsters, level.factor, platformFunctions, level.yi, level.pendiente);
   
 }
-var currentLevel = 'level2';
+var currentLevel = 'level1';
 var levels = {
   level1: {
     codeMonsters: ['a1b4','a3b9','a2b12', 'a0b15', 'a3b24', 'a0b27', 'a1b30', 'a2b35'],
@@ -26,7 +26,7 @@ var levels = {
     nextl:'boss1'
   },
   boss1: {
-    codeMonsters:['a1b4'],
+    codeMonsters:['x2b4'],
     plats:['c',30],
     width: 1300,
     factor: 50,
@@ -46,10 +46,10 @@ var levels = {
     nextl:'boss2'
   },
   boss2: {
-    codeMonsters:['a1b4'],
+    codeMonsters:['x2m4'],
     plats:['x',300],
-    width: 1300,
-    factor: 28,
+    width: 1024,
+    factor: 50,
     yi: 0,
     pendiente: -0.1,
     title: 'Boss 2',
@@ -80,13 +80,14 @@ function restartLevel(wy){
   xlevel = LevelGenerator(levels[currentLevel]);
   heroS.reset();
   myhero.reset();
+  currentEnemy= undefined;
 }
 
 function nextLevel(){
   console.log('cl',currentLevel);
   currentLevel = levels[currentLevel].nextl;
   console.log(levels[currentLevel]);
-  restartLevel(0);
+  restartLevel(720+viewport.y);
 }
 
 //restartLevel();
