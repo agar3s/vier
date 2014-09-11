@@ -5,17 +5,21 @@ heroS.setAnimation('i');
 var HeroT = function(sprite){
   var m = this;
   m.sprite = sprite;
-  m.sprite.setPixelSize(5);
-  m.skills = new ElementalSkill([0,1,2,3],99);
-  m.coldown = 16;
-  m.currentColor = elementColors[m.skills.current];
-  m.sprite.color = 'hsl('+m.currentColor+',100%, 50%)';
+  m.sprite.setPixelSize(5);  
   m.incColor = 0;
   m.down = 0;
   m.up = 0;
-  m.sprite.hp = 31;
-  m.maxhp = 31;
-  m.del=0;
+
+  m.reset = function(){
+    m.del = 0;
+    m.sprite.hp = 31;
+    m.maxhp = 31;
+    m.skills = new ElementalSkill([0,1,2,3],99);
+    m.coldown = 16;
+    m.currentColor = elementColors[m.skills.current];
+    m.sprite.color = 'hsl('+m.currentColor+',100%, 50%)';
+  }
+  m.reset();
   m.next = function(){
     if(++m.skills.current>3) m.skills.current=0;
     m.skills.updateCurrentQ();
@@ -52,6 +56,7 @@ var HeroT = function(sprite){
       m.incColor = 0;
     }
     if(--m.coldown<0) m.coldown=0;
+    if(m.sprite.y>400) m.del = 1;
   }
   m.manage= function(){
     if(keyMap&64) m.next();
@@ -69,11 +74,13 @@ var HeroT = function(sprite){
     else m.sprite.stopX();
   }
 
-  m.hit = function(type, damage){
+  m.hit = function(type, damage, direction){
     //console.log(type, m.skills.current, damage);
     //damage =getTotalDamage(type, m.skills.current, damage) ;
     //console.log('total damage:', damage);
-    if(heroS.hit(getTotalDamage(type, m.skills.current, damage))&&!m.del){
+    var totalDamage = getTotalDamage(type, m.skills.current, damage);
+    m.sprite.x+=(direction?1:-1)*totalDamage*10;
+    if(heroS.hit(totalDamage)&&!m.del){
      // console.log('kill me');
       m.del = 1;
       //make me particles
@@ -93,17 +100,17 @@ var HeroT = function(sprite){
     }
   }
   //draw power indicators
-  m.draw = function(){
-    var vx = -viewport.x;
-    var vy = viewport.y;
-    ctx.fillStyle=white;
-    ctx.fillText('Agtaske', vx+73, vy+20);
-    ctx.strokeStyle = 'yellow';
-    ctx.fillStyle = '#300';
-    ctx.strokeRect (vx+35, vy+35,300,8);
-    ctx.fillRect (vx+35, vy+35,300,8);
-    ctx.fillStyle = 'yellow';
-    ctx.fillRect (vx+35, vy+35, 300*(m.sprite.hp/m.maxhp),8);
+  m.draw = function(vx, vy){
+    with(ctx){
+      fillStyle=white;
+      fillText('Agtaske', vx+73, vy+20);
+      strokeStyle = 'yellow';
+      fillStyle = '#300';
+      strokeRect (vx+35, vy+35,300,8);
+      fillRect (vx+35, vy+35,300,8);
+      fillStyle = 'yellow';
+      fillRect (vx+35, vy+35, 300*(m.sprite.hp/m.maxhp),8);
+    }
     m.skills.draw(vx, vy+dimensions.h);
 
     if(currentEnemy){

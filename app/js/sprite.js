@@ -35,19 +35,22 @@ var Sprite = function(code, animations){
   m.data = loadByString(code);
   m.frames = [];
   m.iFrame = 0;
-  m.color = '#000';
-  m.x=0;
-  m.y=-720;
-  m.vx=0;
-  m.vy=0;
-  m.direction = 1;
-  m.landed = 0;
   m.byteArray = convertTobyte(m.data);
   m.maxVx = pixelSize*2.2;
   m.accelerationX = 0.25;
   m.pixelSize = 0;
   m.animations = animations||defaultAnimations;
   m.hp = 1; //hitpoints
+  m.reset = function(){
+    m.color = black;
+    m.x=0;
+    m.y=-720;
+    m.vx=0;
+    m.vy=0;
+    m.direction = 1;
+    m.landed = 0;
+  }
+  m.reset();
   m.setPixelSize = function(pixelSize){
     m.pixelSize = pixelSize;
     m.height = m.width = m.pixelSize*16;

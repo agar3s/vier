@@ -24,7 +24,7 @@ var Power = function(type, pixelSize, damage, x, y, vx, vy){
       var sprite = enemies[i].sprite;
       if(intersectRect(sprite.bounds(), m.sprite.bounds())){
         //m.sprite.color = white;
-        enemies[i].hit(m.type, m.damage);
+        enemies[i].hit(m.type, m.damage, m.sprite.direction);
         m.del = 1;
         createParticles(m.sprite, 2, m.sprite.vx/2, -3, m.color);
         //make me particles
@@ -38,7 +38,7 @@ var Power = function(type, pixelSize, damage, x, y, vx, vy){
     if(intersectRect(bounds, m.sprite.bounds())){
       //m.sprite.color = white;
       //***enemies[i].hit(m.type, m.damage);
-      myhero.hit(m.type, m.damage);
+      myhero.hit(m.type, m.damage, m.sprite.direction);
       m.del = 1;
       createParticles(m.sprite, 2, m.sprite.vx/2, -3, m.color);
       //make me particles

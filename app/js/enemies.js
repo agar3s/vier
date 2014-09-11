@@ -15,6 +15,7 @@ var Enemy = function(nameCode, type, x, vx, actionpipe, hp, pixelSize, coldown, 
 
   m.sprite.maxVx = vx||m.pixelSize*2.2;
   m.sprite.x = x;
+  m.sprite.y = -720;
   m.skills = new ElementalSkill([type]);
   m.maxhp = hp;
   m.sprite.hp = hp;
@@ -126,6 +127,7 @@ var Enemy = function(nameCode, type, x, vx, actionpipe, hp, pixelSize, coldown, 
 //    m.attack();
     m.sprite.update();
     if(--m.coldown<0) m.coldown=0;
+    if(m.sprite.y>400) m.del = 1;
   }
 
   //triggers coded in an array
@@ -154,9 +156,12 @@ var Enemy = function(nameCode, type, x, vx, actionpipe, hp, pixelSize, coldown, 
     m.triggers[m.triggerType]();
   }
 
-  m.hit = function(type, damage){
+  m.hit = function(type, damage, direction){
     //damage =getTotalDamage(type, m.skills.current, damage) ;
-    if(m.sprite.hit(getTotalDamage(type, m.skills.current, damage))&&!m.del){
+    var totalDamage = getTotalDamage(type, m.skills.current, damage);
+    m.sprite.x+=(direction?1:-1)*totalDamage*(10-m.damage);
+    
+    if(m.sprite.hit(totalDamage)&&!m.del){
       m.del = 1;
       //make me particles
       createParticles(m.sprite, damage, 0, 0, m.color);

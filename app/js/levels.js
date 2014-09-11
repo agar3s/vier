@@ -2,31 +2,50 @@ var xf = 0;
 var yf = 0;
 var platformFunctions = {
   a: function(i, y, m, factor){
-    var grad = (i-xf)%(Math.PI*2);
-    return -y+yf+300*m*(Math.sin(grad));
-  },
-  b: function(i, y, m, factor){
     return -y+yf;
   },
-  c: function(i, y, m, factor){
+  b: function(i, y, m, factor){
     return -y+yf +m*(i-xf);
   },
+  c: function(i, y, m, factor){
+    var grad = (i-xf)%(Math.PI*2);
+    return -y+yf+200*m*(Math.cos(grad));
+  },
+  d: function(i, y, m, factor){
+    var grad = (i-xf)%(Math.PI*2);
+    return -y+yf+200*m*(Math.tan(grad));
+  },
   e: function(i, y, m, factor){
-    return platformFunctions.c((i+xf),y+yf,m)*(((i+xf)/factor)%2==1?1000:1)-modI;
+    return -y+yf -m*(i-xf);
+  },
+  f: function(i, y, m, factor){
+    var grad = (i-xf)%(Math.PI*2);
+    return -y+yf+200*m*(Math.sin(grad*grad));
+  },
+  w: function(i, y, m, factor){
+    return platformFunctions.c((i+xf),y+yf,m)*(((i+xf)/factor)%3==1?1:1000);
+  },
+  x: function(i, y, m, factor){
+    return platformFunctions.c((i+xf),y+yf,m)*(((i+xf)/factor)%2==1?1000:1);
   }
+
 }
 
-var Level = function(width, enemiesVector, factor){
+var Level = function(width, enemiesVector, factor, platforms, yi, pendiente, title){
+  xf = 0;
+  yf=0;
   var m = this;
   m.w = width;
   m.h = 0;
+  m.title = title;
   m.enemiesVector = enemiesVector;
+  m.totalEnemies = m.enemiesVector.length;
+  m.remainingEnemies = 0;
   //m.points = [];
   m.factor = factor;
   //var montains = +20*(2*Math.sin(i/3));
   //var imposible climbing = -i/2+30*(2*Math.tan(i));
   //var y = -20*(2*Math.sin(i/3));
-  var ejemplo = ['c', 10,'b', 10,'a', 10, 'b',100];
   m.generateLevel = function(functionArray, yi, pendiente){
     var currentIteration = 0;
     var functionIndex = 0;
@@ -46,25 +65,31 @@ var Level = function(width, enemiesVector, factor){
         currentFunction = functionArray[functionIndex];
         yf = y+yi;
         xf = i;
-        console.log(xf, yf);
       }
 
     };
   }
-  m.generateLevel(ejemplo, 300,-0.1);
-  m.draw = function(){
-    var index = ~~(-viewport.x/m.factor);
+  m.generateLevel(platforms, yi, pendiente);
+
+  m.draw = function(vx, vy){
+    var index = ~~(vx/m.factor);
     if(index<0){index=0;}
-    var limit = index + ~~(dimensions.w/m.factor);
+    var limit = index + 1+~~(dimensions.w/m.factor);
     if(limit>=platforms.length){limit=platforms.length-1;}
     ctx.fillStyle='#A4A';
     for(i = index; i <= limit; i++) {
       platforms[i].draw();
     }
+
+    ctx.fillStyle=white;
+    ctx.fillText(m.remainingEnemies+'/'+m.totalEnemies, vx+900, vy+650);
+
   }
-
-  m.releaseEnemy = function(){
-
+  m.onEnemyDied = function(){
+    if(++m.remainingEnemies==m.totalEnemies){
+      //drop the portal
+      nextLevel();
+    }
   }
 
   // when the player reach specific position
@@ -72,7 +97,9 @@ var Level = function(width, enemiesVector, factor){
     if(m.enemiesVector.length==0) return;
 
     var enemy = m.enemiesVector[0];
-    if(x+dimensions.w>enemy.sprite.x){
+    if(x+dimensions.w-300>enemy.sprite.x){
+
+      enemy.sprite.y= viewport.y;
       enemies.push(enemy);
       m.enemiesVector.splice(0,1);
     }

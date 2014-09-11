@@ -8,14 +8,6 @@ firexx.pixelSize = 3;
 //enemies.push(new Enemy(2, ~~(Math.random()*4), Math.random()*xlevel.w, Math.random()*14,'jdg30w100ar30', 6,13, 40,3));
 //enemies.push(generateMonster(monsterBook.a0, 3,monsterMoves.a));
 
-var tempenemies= [];
-tempenemies.push(generateMonster(monsterBook.a1, 4,monsterMoves.b));
-//enemies.push(generateMonster(monsterBook.a2, 5,monsterMoves.a));
-tempenemies.push(generateMonster(monsterBook.a3, 9,monsterMoves.b));
-tempenemies.push(generateMonster(monsterBook.a2, 12,monsterMoves.b));
-//tempenemies.push(generateMonster(monsterBook.a3, 100,monsterMoves.b));
-var xlevel = new Level(2400, tempenemies, 100);
-
 var loop = 0;
 
 // var boundsv
@@ -29,9 +21,11 @@ var yOld = myhero.sprite.y;
 var currentScreen = 'i';
 
 function gameLoop() {
-  ctx.clearRect(-viewport.x, viewport.y, dimensions.w, dimensions.h);
+  var wx = -viewport.x;
+  var wy = viewport.y;
+  ctx.clearRect(wx, wy, dimensions.w, dimensions.h);
   //draw the guys
-  xlevel.draw();
+  xlevel.draw(wx, wy);
   firexx.draw();
   
   heroS.accelerateY(0.8);
@@ -59,6 +53,7 @@ function gameLoop() {
     with(enemies[j]){
       if(del){
         enemies.splice(j, 1);
+        xlevel.onEnemyDied();
         continue;
       }
       sprite.draw();
@@ -113,16 +108,23 @@ function gameLoop() {
     heroS.animate();
   }
   
+  if(!myhero.del){
+    heroS.draw();
+    myhero.manage();
+    myhero.draw(wx, wy);
+  }else{
+    currentScreen='d';
+  }
 
   //update the viewport
-  if(myhero.sprite.x>450+viewport.x&&myhero.sprite.x<xlevel.w-dimensions.w+450){
+  if(myhero.sprite.x>450+wx&&myhero.sprite.x<xlevel.w-dimensions.w+450){
     viewport.x-=myhero.sprite.vx;
     xxx=-myhero.sprite.vx;
   }else{
     xxx=0;
   }
   yyy = 0;
-  if((viewport.y-viewport.oY<-dimensions.h&&myhero.sprite.y+viewport.oY+16*pixelSize>viewport.y+dimensions.h&&myhero.sprite.vy>0))
+  if((wy-viewport.oY<-dimensions.h&&myhero.sprite.y+viewport.oY+16*pixelSize>wy+dimensions.h&&myhero.sprite.vy>0))
     yyy= -myhero.sprite.vy;
   else if(myhero.sprite.y-viewport.oY<viewport.y)
     if(myhero.sprite.vy<0)
@@ -135,13 +137,6 @@ function gameLoop() {
   ctx.translate(xxx, yyy);
 
   //draw user interface information
-  if(!myhero.del){
-    heroS.draw();
-    myhero.manage();
-    myhero.draw();
-  }else{
-    currentScreen='d';
-  }
 }
 
 //different screens
@@ -150,9 +145,9 @@ var showScreen = {
   g: gameLoop,
   i: introScreen,
   p: pauseScreen,
-  d: function(vx, vy){
+  d: function(wx, wy){
     gameLoop();
-    deadScreen(vx, vy);
+    deadScreen(wx, wy);
   }
 }
 //actions that the user can do at screen
@@ -168,6 +163,8 @@ var actionsScreen = {
   },
   d: function(key){
     console.log('restart level');
+    restartLevel(720);
+    currentScreen = 'g';
   }
 }
 function mainLoop(){
