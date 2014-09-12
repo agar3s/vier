@@ -78,4 +78,5 @@ var transformSprite = function(file){
   });
 };
 
-transformSprite('faceMask');
+transformSprite('minion0');
+transformSprite('minion1');

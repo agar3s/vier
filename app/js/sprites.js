@@ -14,7 +14,11 @@ var frames = [
   '~`~M~?~>~=~/T2{k{[~P~J~A~;~:~0~,rdbVB1"{i{Y', //5 run
   '~k~j~Lo_N>~i~Y~Im]M=.', //6 monster 1
   '~p~n~m~l~`~]~\~P~M~=~0~$pi`YOG?92({m{g{^{U{N{J{E{9{4{%~t~s~k~j~b~[~Z~R~K~J~;~%njb^[NKA>;/+!{p{k{`{[{O{K{H{;{8{*', //7 monster 2
-  '~o~_~O~N~?~>~#hXPA@8\'{l{]{M~a~Q~L~A~<~$oi_ZYOJ?:*{o{_{N' //8 monster 2
+  '~o~_~O~N~?~>~#hXPA@8\'{l{]{M~a~Q~L~A~<~$oi_ZYOJ?:*{o{_{N', //8 monster 2
+  '~/~.~-uqecaTR', //9 skull 1
+  '~?~>~=~0~,usqdb', //10 skull 2
+  '~O~N~M~@~<~0~.~,tr', //11 skull 3
+  '~`~_~^~]~P~O~N~M~b~a~Z~Y~R~Q~J~I~B~A~2~1' //12 minion 1
 ];
 var defaultAnimations = {
   i:{kf:'', f:[0]}

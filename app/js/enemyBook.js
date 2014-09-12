@@ -1,45 +1,51 @@
-var monster1 = '';
+var monster1 = '{\'{({){*{7{8{9{:{G{H{I{J{W{X{Y{Z{e{f{g{h{i{j{u!"#$%./2367>?BCFGHRSbcrs~-~.~/~0~1~2~=~>~?~@~A~B~I~J~K~L~Q~R~Y~Z~[~\\~a~b';
 var monster2 = '';
 var monster3 = "{&{'{({){*{5{6{7{8{:{;{F{G{H{K{O{V{W{X{Y{Z{[{_{`{h{i{j{k{n{o{p!\"#$%)*+./013567:;=ABCDEHIJKMSZ[]^abcdejmnqsu~%~-~.~/~;~<~@~A~I~J~K~Q~R~Y~Z~[~a~b~i~q~r~s~t";
 var monster4 = '';
 var monster5 = '';
 var monster6 = '';
+var boss1 = '{D{L{S{T{V{W{X{Y{Z{\\{]{c{d{e{f{g{h{i{j{k{l{m{t{u#&\'0123456@ABCDEFQRSTUabcderst';
 
 var superAggressive = 'lgajdag10jdsajd';
 
 var monsterSprites={
-  A0:hero,
+  A0:monster1,
   A1:hero,
   A2: monster3,
   A3:hero,
-  A4:hero,
+  A4:boss1,
   A5:hero,//only one sprite for the grand master
   A6:hero,
   W0:hero,
   W1:hero,
   W2:monster3,
   W3:hero,
-  W4:hero,
+  W4:boss1,
   W5:hero,//only one sprite for the grand master
   W6:hero,
   E0:hero,
   E1:hero,
   E2:monster3,
   E3:hero,
-  E4:hero,
+  E4:boss1,
   E5:hero,//only one sprite for the grand master
   E6:hero,
   F0:hero,
   F1:hero,
   F2:monster3,
   F3:hero,
-  F4:hero,
+  F4:boss1,
   F5:hero,//only one sprite for the grand master
   F6:hero,
 }
 
 var monsterAnimations = {
-  B0: heroAnimations,
+  B0: {
+    i:{
+      kf:monster1,
+      f:[0,0,0,12,0,12]
+    }
+  },
   B1: heroAnimations,
   B2: {
     i:{
@@ -48,7 +54,12 @@ var monsterAnimations = {
     }
   },
   B3: heroAnimations,
-  B4: heroAnimations,
+  B4: {
+    i:{
+      kf:boss1,
+      f:[9,0,10,11,0,0,11,10,9,0]
+    }
+  },
   B5: heroAnimations,
   B6: heroAnimations,
 }
@@ -71,18 +82,23 @@ for (var i = 0; i < 7; i++) {
 var monsterMoves = {
   a: 'ljlw90taw90', //jump wait attack
   b: 'lf80sw30asw30t',
-  m: 'w20hk20f9w9m20tas'
+  m: 'w20hk20f9w9m20tas',
+  n: 'ljw20tg60stf30asw20'
 }
 //vx,hp,psize,coldown,trigger
 var monsterAttributes = {
-  basic: '1031F0',
+  minion: '2060F0',
+  boss1: '310490',
   boss2: '301490'
 }
+// nameCode     1 digit
+// type         1 digit
 var monsterBook = {
-  a0: '00'+monsterAttributes.basic,
-  a1: '01'+monsterAttributes.basic,
-  a2: '02'+monsterAttributes.basic,
-  a3: '03'+monsterAttributes.basic,
+  a0: '00'+monsterAttributes.minion,
+  a1: '01'+monsterAttributes.minion,
+  a2: '02'+monsterAttributes.minion,
+  a3: '03'+monsterAttributes.minion,
+  x1: '23'+monsterAttributes.boss1,
   x2: '40'+monsterAttributes.boss2,
 }
 

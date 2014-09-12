@@ -20,17 +20,32 @@ var HeroT = function(sprite){
     m.sprite.color = 'hsl('+m.currentColor+',100%, 50%)';
   }
   m.reset();
-  m.next = function(){
-    if(++m.skills.current>3) m.skills.current=0;
+  m.lock = function(locks){
+    for (var i = 0; i < locks.length; i++) {
+      m.skills.lock(locks[i]);
+    }
+  }
+  m.nextSkill = function(skill, index){
+    if(skill+index>3) skill=index-1;
+    else if(skill+index<0) skill=3+index+1;
+    else skill+=index;
+    if(m.skills.locks[skill]){
+      return m.nextSkill(skill, index);
+    }
+    return skill;
+  }
+  m.selectSkill = function(index){
+    m.skills.current= index;
     m.skills.updateCurrentQ();
     firexx.color = basicColors[m.skills.current];
+  }
+  m.next = function(){
+    m.selectSkill(m.nextSkill(m.skills.current,1));
     m.incColor=5;
     keyMap-=64;
   }
   m.prev = function(){
-    if(--m.skills.current<0) m.skills.current=3;
-    m.skills.updateCurrentQ();
-    firexx.color = basicColors[m.skills.current];
+    m.selectSkill(m.nextSkill(m.skills.current,-1));
     keyMap-=16;
     m.incColor=-5;
   }
@@ -80,6 +95,8 @@ var HeroT = function(sprite){
     //console.log('total damage:', damage);
     var totalDamage = getTotalDamage(type, m.skills.current, damage);
     m.sprite.x+=(direction?1:-1)*totalDamage*10;
+    if(m.sprite.x<0)m.sprite.x = 0;
+    if(m.sprite.x>xlevel.w-64)m.sprite.x = xlevel.w-64;
     if(heroS.hit(totalDamage)&&!m.del){
      // console.log('kill me');
       m.del = 1;

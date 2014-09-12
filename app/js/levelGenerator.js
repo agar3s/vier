@@ -10,28 +10,39 @@ var LevelGenerator = function(level){
     var hp = parseInt(codeMonster.substring(3));
     monsters.push(generateMonster(monsterBook[type], hp, monsterMoves[moves]));
   }
+  var m = myhero;
+  if(level.locks) m.lock(level.locks);
+  if(level.skill){
+    m.selectSkill(level.skill);
+    m.currentColor = elementColors[m.skills.current];
+    m.sprite.color = 'hsl('+m.currentColor+',100%, 50%)';
+  }
   return new Level(level.width, monsters, level.factor, platformFunctions, level.pendiente, level.title);
   
 }
-var currentLevel = 'level1';
+var currentLevel = 'boss1';
 var levels = {
   level1: {
-    codeMonsters: ['a1b4','a3b9','a2b12', 'a0b15', 'a3b24', 'a0b27', 'a1b30', 'a2b35'],
+    codeMonsters: ['a3b4','a3b9','a3b12', 'a3b15', 'a1b24', 'a1b27', 'a1b30', 'a1b35'],
     plats: ['a', 10,'b', 20,'a', 10, 'b', 7,'a',15, 'w', 15, 'a', 15, 'b',15, 'a',30],
     width: 3700,
     factor: 28,
     pendiente: -0.1,
     title: 'Chapter 1',
-    nextl:'boss1'
+    nextl:'boss1',
+    locks:[0,2],
+    skill:1
   },
   boss1: {
-    codeMonsters:['x2b4'],
+    codeMonsters:['x1n4'],
     plats:['c',70],
-    width: 1300,
+    width: 1024,
     factor: 20,
     pendiente: -0.05,
     title: 'Boss 1',
-    nextl:'level2'
+    nextl:'level2',
+    locks:[0,2],
+    skill:1
   },
   level2: {
     codeMonsters: ['a1b4','a3b9','a2b12', 'a0b15', 'a3b24', 'a0b27', 'a1b30', 'a2b35'],
@@ -41,7 +52,9 @@ var levels = {
     factor: 27,
     pendiente: -0.3,
     title: 'Chapter 2',
-    nextl:'boss2'
+    nextl:'boss2',
+    locks:[1,3],
+    skill:2
   },
   boss2: {
     codeMonsters:['x2m4'],
@@ -50,7 +63,9 @@ var levels = {
     factor: 37,
     pendiente: -0.05,
     title: 'Boss 2',
-    nextl:'level3'
+    nextl:'level3',
+    locks:[1,3],
+    skill:2
   },
   level3: {
     codeMonsters: ['a1b4','a3b9','a2b12', 'a0b15', 'a1b20', 'a2b30', 'a3b40', 'a0b45', 'a1b50', 'a2b55', 'a2b70', 'a3b80'],

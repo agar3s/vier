@@ -10,8 +10,9 @@ var keys={
   '32':128,       // space jump
   '13':256        // enter key 
 }
+
 doc.addEventListener('keydown', function(e){
-  var key = e.keyCode ? e.keyCode : e.which;
+  var key = e.keyCode|| e.which;
   if(keys[key]){
     keyMap|=keys[key];
     e.preventDefault();
