@@ -110,6 +110,7 @@ var HeroT = function(sprite){
       fillRect (vx+35, vy+35,300,8);
       fillStyle = 'yellow';
       fillRect (vx+35, vy+35, 300*(m.sprite.hp/m.maxhp),8);
+      fillText('- '+xlevel.title+' -', vx+dimensions.w/2, vy+35);
     }
     m.skills.draw(vx, vy+dimensions.h);
 

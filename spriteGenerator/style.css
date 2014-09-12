@@ -1,0 +1,53 @@
+table {
+  border-collapse: collapse;
+  display: block;
+  float: left;
+  margin: 10px;
+}
+tr {
+  border: none;
+}
+td.cell {
+  width: 20px;
+  height: 20px;
+  background: #ff0;
+  border: none;
+  margin: 0;
+  padding: 0;
+  border: 1px dotted #000;
+}
+td.cell:hover {
+  cursor: pointer;
+  background: #0f0;
+}
+td.cell.black {
+  background: #000;
+}
+td.cell.black:hover {
+  background: #f00;
+}
+textarea {
+  text-align: center;
+  margin: 10px;
+  width: 370px;
+  height: 350px;
+  font-size: 20px;
+  letter-spacing: 8px;
+  line-height: 21px;
+  padding: 0 0 0 8px;
+}
+hr {
+  display: block;
+  margin: 0 2% 10px;
+  width: 96%;
+}
+.frame {
+  background: #aa0;
+}
+.active {
+  background: #ff0;
+  color: #000;
+}
+#exported {
+  border: none;
+}

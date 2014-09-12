@@ -76,7 +76,7 @@ var monsterMoves = {
 //vx,hp,psize,coldown,trigger
 var monsterAttributes = {
   basic: '1031F0',
-  boss2: '320490'
+  boss2: '301490'
 }
 var monsterBook = {
   a0: '00'+monsterAttributes.basic,

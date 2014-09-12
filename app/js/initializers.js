@@ -11,6 +11,7 @@ var dimensions = {w:1024,h:720};
 var viewport = {x:0, y:-720, oY:250};
 var black = '#000';
 var white = '#fff';
+var xlevel;
 
 
 var zoomFactor =(innerHeight-100)/dimensions.h; 

@@ -156,6 +156,7 @@ var actionsScreen = {
     currentScreen = 'p';
   },
   i: function(key){
+    restartLevel(-720);
     currentScreen = 'g';
   },
   p: function(key){
@@ -163,7 +164,7 @@ var actionsScreen = {
   },
   d: function(key){
     console.log('restart level');
-    restartLevel(720);
+    restartLevel(-720);
     currentScreen = 'g';
   }
 }
