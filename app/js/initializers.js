@@ -23,8 +23,10 @@ ctx.translate(viewport.x, -viewport.y);
 
 var powers = [];
 var enemypowers = [];
-var elementColors = [295, 205, 115, 25,99];
-var basicColors = ['#E0F', '#09F', '#1F0', '#F60', 'yellow'];
+//295, 55
+var elementColors = [55, 205, 115, 25,99];
+//E
+var basicColors = ['yellow', '#09F', '#1F0', '#F60', 'yellow'];
 var enemies = [];
 var particles = [];
 var platforms = [];
