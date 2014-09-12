@@ -82,6 +82,7 @@ for (var i = 0; i < 7; i++) {
 var monsterMoves = {
   a: 'ljlw90taw90', //jump wait attack
   b: 'lf80sw30asw30t',
+  c: 'lg60asw5aw5r20s',
   m: 'w20hk20f9w9m20tas',
   n: 'ljw20tg60stf30asw20'
 }
@@ -98,6 +99,10 @@ var monsterBook = {
   a1: '01'+monsterAttributes.minion,
   a2: '02'+monsterAttributes.minion,
   a3: '03'+monsterAttributes.minion,
+  b0: '00'+monsterAttributes.minion,
+  b1: '01'+monsterAttributes.minion,
+  b2: '02'+monsterAttributes.minion,
+  b3: '03'+monsterAttributes.minion,
   x1: '23'+monsterAttributes.boss1,
   x2: '40'+monsterAttributes.boss2,
 }
