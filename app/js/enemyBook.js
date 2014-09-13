@@ -121,6 +121,7 @@ var monsterMoves = {
   c: 'lg60asw5aw5r20s', // follow and attack
   d: 'ljdsw60ajdw30at',
   e: 'ltja30w20', //jump aggresive attack
+  f: 'ltg30a30w20', //follow aggresive attack
   m: 'w20hk20f9w9m20tas', // fly
   n: 'ljw20tg60stf30asw20',  //
   o: 'lja10lf30jla10t',  // master earth boss
@@ -138,7 +139,7 @@ var monsterAttributes = {
   boss2: '420490',
   boss3: '430590',
   boss4: '330730',
-  boss5: '420550',
+  boss5: '420551',
 }
 // nameCode     1 digit
 // type         1 digit

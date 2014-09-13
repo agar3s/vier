@@ -94,9 +94,13 @@ var HeroT = function(sprite){
     //damage =getTotalDamage(type, m.skills.current, damage) ;
     //console.log('total damage:', damage);
     var totalDamage = getTotalDamage(type, m.skills.current, damage);
-    m.sprite.x+=(direction?1:-1)*totalDamage*10;
+    var xv=(direction?1:-1)*totalDamage*10;
+    m.sprite.x+=xv;
     if(m.sprite.x<0)m.sprite.x = 0;
     if(m.sprite.x>xlevel.w-64)m.sprite.x = xlevel.w-64;
+    viewport.x-=xv;
+    ctx.translate(-xv,0);
+
     if(heroS.hit(totalDamage)&&!m.del){
      // console.log('kill me');
       m.del = 1;
