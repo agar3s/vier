@@ -1,7 +1,7 @@
 var fs = require('fs');
 var heroSprites = [
-  '{&{\'{({){*{5{6{7{8{9{:{;{E{H{K{U{X{[{e{f{j{k{u!%&./012345678=ABCDEIMRSTY]^bcdhimnrst~#~$~,~-~.~/~0~;~<~@~A~J~K~Q~R~Z~[~a~b~h~i~j~k~q~r~s~t',
-  '{&{\'{({){*{5{6{7{8{9{:{;{E{H{K{U{X{[{e{f{j{k{s{u!%&-/012345678=ABCDEIMNRSTY]^bcdhirst~#~$~,~-~.~/~0~1~;~<~A~B~J~K~Q~R~Z~[~a~b~c~d~h~i~j~k'
+  '{6{:{E{F{I{J{K{V{W{X{Y{Z{[{b{c{d{g{h{i{k{s{t{u#$%&/012345@ABCDEFGOQRSTUX_cdimostu~"~$~)~-~.~/~0~3~>~?~M~N~]',
+  '{6{:{E{F{I{J{K{V{W{X{Y{Z{[{g{h{i{k{r{s{t#$%&./01345@ABCDEFGOQRSTUX_cdimostu~"~$~)~-~.~/~0~3~>~?~M~N~]'
 ];
 
 function convertArray(sprite){
@@ -46,7 +46,7 @@ for (var i = 0; i < diffArray.length; i++) {
 };
 diffArray = diffArray.join('\n');
 
-fs.writeFile('./animations/earthMaster1', diffArray, function(err){
+fs.writeFile('./animations/lastMasters', diffArray, function(err){
   if(err){
     console.log('exception:', err);
     return;

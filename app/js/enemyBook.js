@@ -6,6 +6,7 @@ var monster4 = '';
 var monster5 = '';
 var boss1 = '{D{L{S{T{V{W{X{Y{Z{\\{]{c{d{e{f{g{h{i{j{k{l{m{t{u#&\'0123456@ABCDEFQRSTUabcderst';
 var boss4 = '{&{\'{({){*{5{6{7{8{9{:{;{E{H{K{U{X{[{e{f{j{k{u!%&./012345678=ABCDEIMRSTY]^bcdhimnrst~#~$~,~-~.~/~0~;~<~@~A~J~K~Q~R~Z~[~a~b~h~i~j~k~q~r~s~t';
+var boss5 = '{6{:{E{F{I{J{K{V{W{X{Y{Z{[{b{c{d{g{h{i{k{s{t{u#$%&/012345@ABCDEFGOQRSTUX_cdimostu~"~$~)~-~.~/~0~3~>~?~M~N~]';
 
 var elemental0 = '{8{;{H{I{J{K{Y{Z{g{k"#$%&123456@CEPRSTVW`bdru~,~0~<~?~L~M~O~P~Q~\\~]~_~`~a';
 var superAggressive = 'lgajdag10jdsajd';
@@ -98,6 +99,14 @@ monsterAnimations.E4 = {
     f:[0,0,16,0,0,16,0,0,17,0,0,17]
   } 
 }
+
+monsterAnimations.F4 = {
+   i:{
+    kf: boss5,
+    f:[0,0,18]
+  } 
+}
+monsterAnimations.W4 = monsterAnimations.F4;
 // nameCode     1 digit
 // type         1 digit
 // vx           1 hexa
@@ -111,9 +120,12 @@ var monsterMoves = {
   b: 'lf80sw30asw30t', // move and attack
   c: 'lg60asw5aw5r20s', // follow and attack
   d: 'ljdsw60ajdw30at',
+  e: 'ltja30w20', //jump aggresive attack
   m: 'w20hk20f9w9m20tas', // fly
   n: 'ljw20tg60stf30asw20',  //
-  o: 'lja10lf30jla10t'  // master earth boss
+  o: 'lja10lf30jla10t',  // master earth boss
+  p: 'w15hk30af15am30tw15am30af15k30at',
+  q: 'w15thk30af15am30tw15am30f15k30a',
 }
 //vx,hp,psize,coldown,trigger
 var monsterAttributes = {
@@ -121,10 +133,12 @@ var monsterAttributes = {
   elemental: '3102E2',
   monster: '3153C1',
   wizard: '415291',
+  advanced: '304361',
   boss1: '310490',
   boss2: '420490',
   boss3: '430590',
   boss4: '330730',
+  boss5: '420550',
 }
 // nameCode     1 digit
 // type         1 digit
@@ -145,10 +159,20 @@ var monsterBook = {
   d1: '31'+monsterAttributes.wizard,
   d2: '32'+monsterAttributes.wizard,
   d3: '33'+monsterAttributes.wizard,
+  e0: '10'+monsterAttributes.advanced,
+  e1: '11'+monsterAttributes.advanced,
+  e2: '12'+monsterAttributes.advanced,
+  e3: '13'+monsterAttributes.advanced,
+  f0: '20'+monsterAttributes.advanced,
+  f1: '21'+monsterAttributes.advanced,
+  f2: '22'+monsterAttributes.advanced,
+  f3: '23'+monsterAttributes.advanced,
   x1: '23'+monsterAttributes.boss1,
   x2: '10'+monsterAttributes.boss2,
   x3: '40'+monsterAttributes.boss3,
   x4: '42'+monsterAttributes.boss4,
+  x5: '41'+monsterAttributes.boss5,
+  x6: '43'+monsterAttributes.boss5,
 }
 
 var generateMonster = function(code, x, actionpipe){

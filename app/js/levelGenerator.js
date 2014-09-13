@@ -20,7 +20,7 @@ var LevelGenerator = function(level){
   return new Level(level.width, monsters, level.factor, platformFunctions, level.pendiente, level.title);
   
 }
-var currentLevel = 'boss4';
+var currentLevel = 'boss5';
 var levels = {
   level1: {
     codeMonsters: ['a3b4','a3b9','a3b12', 'a3b15', 'a1b24', 'a1b27', 'a1b30', 'a1b35'],
@@ -103,7 +103,7 @@ var levels = {
     nextl:'level5'
   },
   level5:{
-    codeMonsters:['x2m4'],
+    codeMonsters:['b1b4','e1e19','e3e24', 'f1b30','f3b32', 'd3m40', 'd1m44', 'd0m48', 'd2m56', 'e0a67', 'e3a70', 'e1a73'],
     plats:['a',4,'f',5,'v',9,'a',3,'b',3,'h',3,'e',3,'a',4,'v',6,'a',6],
     width: 7650,
     factor: 170,
@@ -112,7 +112,7 @@ var levels = {
     nextl:'boss5'
   },
   boss5: {
-    codeMonsters:['x2m4'],
+    codeMonsters:['x5p4', 'x6q8'],
     plats:['b',14,'a',12,'e',14],
     width: 1330,
     factor: 35,

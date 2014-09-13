@@ -78,6 +78,5 @@ var transformSprite = function(file){
   });
 };
 
-transformSprite('earthMaster0');
-transformSprite('earthMaster1');
-transformSprite('earthMaster2');
+transformSprite('windE00');
+transformSprite('windE01');
