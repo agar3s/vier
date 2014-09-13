@@ -7,6 +7,7 @@ var monster5 = '';
 var boss1 = '{D{L{S{T{V{W{X{Y{Z{\\{]{c{d{e{f{g{h{i{j{k{l{m{t{u#&\'0123456@ABCDEFQRSTUabcderst';
 var boss4 = '{&{\'{({){*{5{6{7{8{9{:{;{E{H{K{U{X{[{e{f{j{k{u!%&./012345678=ABCDEIMRSTY]^bcdhimnrst~#~$~,~-~.~/~0~;~<~@~A~J~K~Q~R~Z~[~a~b~h~i~j~k~q~r~s~t';
 var boss5 = '{6{:{E{F{I{J{K{V{W{X{Y{Z{[{b{c{d{g{h{i{k{s{t{u#$%&/012345@ABCDEFGOQRSTUX_cdimostu~"~$~)~-~.~/~0~3~>~?~M~N~]';
+var boss6 = '{\'{*{4{7{8{9{:{={D{E{H{I{L{M{U{V{[{\\{e{f{g{h{i{j{k{l{s!"#$%&).13469?@CDGHSTbcderu~,~-~0~1~<~A~K~L~Q~R~[~\\~a~b';
 
 var elemental0 = '{8{;{H{I{J{K{Y{Z{g{k"#$%&123456@CEPRSTVW`bdru~,~0~<~?~L~M~O~P~Q~\\~]~_~`~a';
 var superAggressive = 'lgajdag10jdsajd';
@@ -17,7 +18,7 @@ var monsterSprites={
   A2:monster2,
   A3:monster3,
   A4:boss1,
-  A5:hero,//only one sprite for the grand master
+  A5:boss6,//only one sprite for the grand master
   A6:hero,
   W0:monster0,
   W1:elemental0,
@@ -68,7 +69,12 @@ var monsterAnimations = {
       f:[9,0,10,11,0,0,11,10,9,0]
     }
   },
-  B5: heroAnimations,
+  B5: {
+    i:{
+      kf:boss6,
+      f:[19,0,0,20,21,22,23,0,0,0,24,25,26,27,0,0,0]
+    }
+  },
   B6: heroAnimations,
 }
 
@@ -128,6 +134,7 @@ var monsterMoves = {
   p: 'w15hk30af15am30tw15am30af15k30at',
   q: 'w15thk30af15am30tw15am30f15k30a',
 }
+monsterMoves.z = monsterMoves.m+'zx'+monsterMoves.e+'z'+monsterMoves.c+'z'+monsterMoves.d+'jw20z';
 //vx,hp,psize,coldown,trigger
 var monsterAttributes = {
   minion: '2060F0',
@@ -140,6 +147,7 @@ var monsterAttributes = {
   boss3: '430590',
   boss4: '330730',
   boss5: '420551',
+  boss6: '750621',
 }
 // nameCode     1 digit
 // type         1 digit
@@ -174,6 +182,7 @@ var monsterBook = {
   x4: '42'+monsterAttributes.boss4,
   x5: '41'+monsterAttributes.boss5,
   x6: '43'+monsterAttributes.boss5,
+  x7: '50'+monsterAttributes.boss6,
 }
 
 var generateMonster = function(code, x, actionpipe){

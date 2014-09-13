@@ -5,7 +5,7 @@ var Enemy = function(nameCode, type, x, vx, actionpipe, hp, pixelSize, coldown, 
   //m.type = type;
   m.name = elementalNames[type]+' '+monsterNames[nameCode];
   m.damage = parseInt(nameCode)+1;
-  m.color = elementColors[type]
+  m.color = elementColors[type];
   //load sprite depending on nameCode and type
   m.monsterCode = elementalNames[type][0]+nameCode;
   m.sprite = new Sprite(monsterSprites[m.monsterCode], monsterAnimations[m.monsterCode]);
@@ -41,6 +41,8 @@ var Enemy = function(nameCode, type, x, vx, actionpipe, hp, pixelSize, coldown, 
   //n: down
   //k: diagonal
   //m: transversal
+  //x: restore gravity
+  //z: change element
   
   m.setActionPipe = function(actionpipe){
     var newPipe = '';
@@ -118,6 +120,14 @@ var Enemy = function(nameCode, type, x, vx, actionpipe, hp, pixelSize, coldown, 
     h: function(){
       m.sprite.fall =function(){};
     },
+    x: function(){
+      m.sprite.fall =function(){
+        m.sprite.y += m.sprite.vy;
+        if(m.sprite.vy<0){
+          m.sprite.landed = 0;
+        }
+      }
+    },
     u: function(){
       m.sprite.y-=3;
     },
@@ -131,6 +141,12 @@ var Enemy = function(nameCode, type, x, vx, actionpipe, hp, pixelSize, coldown, 
     m: function(){
       m.actions.n();
       m.sprite.forward();
+    },
+    z: function(){
+      m.skills.nextElement();
+      console.log('nx', m.skills.current);
+      m.color = elementColors[m.skills.current];
+      m.sprite.color = 'hsl('+m.color+',100%, 50%)';      
     }
   } 
 

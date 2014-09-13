@@ -1,7 +1,15 @@
 var fs = require('fs');
 var heroSprites = [
-  '{6{:{E{F{I{J{K{V{W{X{Y{Z{[{b{c{d{g{h{i{k{s{t{u#$%&/012345@ABCDEFGOQRSTUX_cdimostu~"~$~)~-~.~/~0~3~>~?~M~N~]',
-  '{6{:{E{F{I{J{K{V{W{X{Y{Z{[{g{h{i{k{r{s{t#$%&./01345@ABCDEFGOQRSTUX_cdimostu~"~$~)~-~.~/~0~3~>~?~M~N~]'
+  '{\'{*{4{7{8{9{:{={D{E{H{I{L{M{U{V{[{\\{e{f{g{h{i{j{k{l{s!"#$%&).13469?@CDGHSTbcderu~,~-~0~1~<~A~K~L~Q~R~[~\\~a~b',
+  '{#{\'{*{.{3{4{7{8{9{:{={>{D{E{H{I{L{M{U{V{[{\\{e{f{g{h{i{j{k{l{s!"#$%&).13469?@CDGHSTbcderu~,~-~0~1~<~A~K~L~Q~R~[~\\~a~b',
+  '{#{.{3{4{7{:{={>{D{E{G{H{I{J{L{M{U{V{X{Y{[{\\{f{g{h{i{j{k{s!"#$%&).13469?@CDGHSTbcderu~,~-~0~1~<~A~K~L~Q~R~[~\\~a~b',
+  '{#{.{3{4{7{:{={>{D{E{G{H{I{J{L{M{V{X{Y{[{f{g{h{i{j{k{s!"#$%&).13469?@CDGHSTbcderu~,~-~0~1~<~A~K~L~Q~R~[~\\~a~b',//3
+  '{#{\'{*{.{3{4{7{8{9{:{={>{E{H{I{L{V{[{f{g{h{i{j{k{s!"#$%&).13469?@CDGHSTbcderu~,~-~0~1~<~A~K~L~Q~R~[~\\~a~b',//4
+  '{#{\'{*{.{4{7{8{9{:{={E{H{I{L{V{[{f{g{h{i{j{k{s!"#$%&).13469?@CDGHSTbcderu~,~-~0~1~<~A~K~L~Q~R~[~\\~a~b',//5
+  '{${-{4{7{:{={E{G{H{I{J{L{V{X{Y{[{f{g{h{i{j{k{s!"#$%&).13469?@CDGHSTbcderu~,~-~0~1~<~A~K~L~Q~R~[~\\~a~b',//6
+  '{${-{4{5{7{:{<{={E{G{H{I{J{L{V{X{Y{[{f{g{h{i{j{k{s!"#$%&).13469?@CDGHSTbcderu~,~-~0~1~<~A~K~L~Q~R~[~\\~a~b',//7
+  '{${\'{*{-{4{5{7{8{9{:{<{={E{H{I{L{U{V{[{\\{f{g{h{i{j{k{s!"#$%&).13469?@CDGHSTbcderu~,~-~0~1~<~A~K~L~Q~R~[~\\~a~b',//8
+  '{\'{*{4{7{8{9{:{={D{E{H{I{L{M{U{V{[{\\{e{f{g{h{i{j{k{l{s!"#$%&).13469?@CDGHSTbcderu~,~-~0~1~<~A~K~L~Q~R~[~\\~a~b'
 ];
 
 function convertArray(sprite){
@@ -46,7 +54,7 @@ for (var i = 0; i < diffArray.length; i++) {
 };
 diffArray = diffArray.join('\n');
 
-fs.writeFile('./animations/lastMasters', diffArray, function(err){
+fs.writeFile('./animations/grandMaster', diffArray, function(err){
   if(err){
     console.log('exception:', err);
     return;

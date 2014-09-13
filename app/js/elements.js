@@ -50,6 +50,10 @@ var ElementalSkill = function(types, charge){
   m.updateCurrentQ = function(){
     m.currentQ = m.charges[m.current];
   }
+  m.nextElement= function(){
+    m.current++;
+    if(m.current>3)m.current=0;
+  }
   m.draw = function(vx, vy){
 
     for (var i = 0; i < 4; i++) {

@@ -102,7 +102,7 @@ var Level = function(width, enemiesVector, factor, platforms, pendiente, title){
   m.onEnemyDied = function(){
     if(++m.remainingEnemies==m.totalEnemies){
       //drop the portal
-      nextLevel();
+      setTimeout(nextLevel,2000);
     }
   }
 
