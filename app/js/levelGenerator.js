@@ -20,7 +20,7 @@ var LevelGenerator = function(level){
   return new Level(level.width, monsters, level.factor, platformFunctions, level.pendiente, level.title);
   
 }
-var currentLevel = 'boss6';
+var currentLevel = 'boss6b';
 var levels = {
   level1: {
     codeMonsters: ['a3b4','a3b9','a3b12', 'a3b15', 'a1b24', 'a1b27', 'a1b30', 'a1b35'],
@@ -127,20 +127,29 @@ var levels = {
     factor: 16,
     pendiente: -0.8,
     title: 'Grand Master Palace',
-    nextl:'boss6'
+    nextl:'boss6a'
   },
-  boss6:{
+  boss6a:{
     codeMonsters:['x7z4'],
     width: 1200,
     plats:['a',2],
     factor: 700,
     pendiente: 1,
     title: 'Grand Master',
+    nextl:'boss6b'
+  },
+  boss6b:{
+    codeMonsters:['z1r6','z2r6','z3r6','z4r6'],
+    width: 1800,
+    plats:['a',3],
+    factor: 700,
+    pendiente: 1,
+    title: 'Element\'s Avatar challenge',
     nextl:'ends'
   },
   ends:{
     codeMonsters:[],
-    width: 1200,
+    width: 1800,
     plats:['a',2],
     factor: 700,
     pendiente: 1,

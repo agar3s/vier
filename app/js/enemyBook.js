@@ -133,6 +133,7 @@ var monsterMoves = {
   o: 'lja10lf30jla10t',  // master earth boss
   p: 'w15hk30af15am30tw15am30af15k30at',
   q: 'w15thk30af15am30tw15am30f15k30a',
+  r: 'ljda3jsw40hk20a5tf30sxa3'
 }
 monsterMoves.z = monsterMoves.m+'zx'+monsterMoves.e+'z'+monsterMoves.c+'z'+monsterMoves.d+'jw20z';
 //vx,hp,psize,coldown,trigger
@@ -148,6 +149,7 @@ var monsterAttributes = {
   boss4: '330730',
   boss5: '420551',
   boss6: '750621',
+  boss7: '820811',
 }
 // nameCode     1 digit
 // type         1 digit
@@ -183,6 +185,10 @@ var monsterBook = {
   x5: '41'+monsterAttributes.boss5,
   x6: '43'+monsterAttributes.boss5,
   x7: '50'+monsterAttributes.boss6,
+  z1: '60'+monsterAttributes.boss7,
+  z2: '61'+monsterAttributes.boss7,
+  z3: '62'+monsterAttributes.boss7,
+  z4: '63'+monsterAttributes.boss7,
 }
 
 var generateMonster = function(code, x, actionpipe){
