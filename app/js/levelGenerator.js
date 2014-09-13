@@ -20,7 +20,7 @@ var LevelGenerator = function(level){
   return new Level(level.width, monsters, level.factor, platformFunctions, level.pendiente, level.title);
   
 }
-var currentLevel = 'level4';
+var currentLevel = 'boss4';
 var levels = {
   level1: {
     codeMonsters: ['a3b4','a3b9','a3b12', 'a3b15', 'a1b24', 'a1b27', 'a1b30', 'a1b35'],
@@ -85,7 +85,7 @@ var levels = {
     nextl:'level4'
   },
   level4:{
-    codeMonsters:['d0m4','d2m8','d2m12','d3m16'],
+    codeMonsters:['d3m4','d2m12','d2m20','d0m22', 'b2a28','b2a31','b2a32', 'b0m44', 'b3m50','a1c58','a3c60','a1c62','a3c64','c2b70', 'c2a75', 'd3d91', 'd1d95', 'd3d99'],
     plats:['a',4,'g',30, 'a',15, 'b',25,'a',15, 'b', 20,'w',18,'a',20,'e',20,'x',10, 'd',20, 'a',50,'v',18,'e',10,'a',20,'e',30,'a',49],
     width: 10024,
     factor: 27,
@@ -94,11 +94,11 @@ var levels = {
     nextl:'boss4'
   },
   boss4: {
-    codeMonsters:['x2m4'],
+    codeMonsters:['x4o4'],
     plats:['h',100],
     width: 1350,
     factor: 50,
-    pendiente: -0.1,
+    pendiente: -0.01,
     title: 'Earth Master',
     nextl:'level5'
   },

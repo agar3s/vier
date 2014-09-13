@@ -78,6 +78,6 @@ var transformSprite = function(file){
   });
 };
 
-transformSprite('wizard00');
-transformSprite('wizard01');
-transformSprite('wizard02');
+transformSprite('earthMaster0');
+transformSprite('earthMaster1');
+transformSprite('earthMaster2');

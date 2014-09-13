@@ -22,6 +22,8 @@ var frames = [
   '~^~N~>~.s{j{i{[{X~a~]~\~Q~M~L~<~0~,uTR{J{I{;{8', //13 elemental,
   '~o~n~m~^~\~O~M~>~=~.~-pF6{3~q~p~k~`~[~P~L~?~<~/~,soVG{U', //14 wizard,
   '~]~Na`5%{2~o~l~^~\~O~M~.p_UF6{V', //15 wizard,
+  '~Y~X~:~+X9(~k~j~i~h~$~#8', //16 earth boss
+  '~d~c~B~1N-{s~t~s~r~q~@nm.', //17 earth boss
 ];
 var defaultAnimations = {
   i:{kf:'', f:[0]}

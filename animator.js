@@ -1,8 +1,7 @@
 var fs = require('fs');
 var heroSprites = [
-  '{4{5{6{7{8{G{H{I{U{V{W{X{Y{g{h"123@BCDGORUV_bors~,~/~<~?~L~P~[~`~k~l~p~q',
-  '{3{4{5{6{7{8{G{H{I{V{W{X{Y{g{h"1236@BCDFORU_bpr~-~.~=~>~M~O~\\~^~l~m~n~o',
-  '{2{3{4{5{6{7{8{G{H{I{W{X{Y{g{h"%1235@BCDOR`abr~-~=~>~N~]~m~n'
+  '{&{\'{({){*{5{6{7{8{9{:{;{E{H{K{U{X{[{e{f{j{k{u!%&./012345678=ABCDEIMRSTY]^bcdhimnrst~#~$~,~-~.~/~0~;~<~@~A~J~K~Q~R~Z~[~a~b~h~i~j~k~q~r~s~t',
+  '{&{\'{({){*{5{6{7{8{9{:{;{E{H{K{U{X{[{e{f{j{k{s{u!%&-/012345678=ABCDEIMNRSTY]^bcdhirst~#~$~,~-~.~/~0~1~;~<~A~B~J~K~Q~R~Z~[~a~b~c~d~h~i~j~k'
 ];
 
 function convertArray(sprite){
@@ -47,7 +46,7 @@ for (var i = 0; i < diffArray.length; i++) {
 };
 diffArray = diffArray.join('\n');
 
-fs.writeFile('./animations/wizard', diffArray, function(err){
+fs.writeFile('./animations/earthMaster1', diffArray, function(err){
   if(err){
     console.log('exception:', err);
     return;
