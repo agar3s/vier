@@ -1,10 +1,7 @@
 var Power = function(type, pixelSize, damage, x, y, vx, vy){
   var m = this;
   m.type = type;
-  if(m.type==0) m.data = fire;
-  if(m.type==1) m.data = fire;
-  if(m.type==2) m.data = fire;
-  if(m.type==3) m.data = fire;
+  m.data = fire;
   //m.data = loadByString(fire);
   m.sprite = new Sprite(m.data);
   m.outside = 0;
@@ -52,9 +49,9 @@ var Power = function(type, pixelSize, damage, x, y, vx, vy){
   }
   
   m.animate = function(){
-    if(m.type==0)m.sprite.rotate()
-    if(m.type==1)m.sprite.rotate()
-    if(m.type==2)m.sprite.rotate()
-    if(m.type==3)m.sprite.rotate()
+    m.sprite.rotate()
+    //if(m.type==1)m.sprite.rotate()
+    //if(m.type==2)m.sprite.rotate()
+    //if(m.type==3)m.sprite.rotate()
   }
 }

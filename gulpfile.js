@@ -173,6 +173,15 @@ gulp.task('scripts', ['move'],function() {
     .pipe(replace(/monsterBook/g, 'Bb'))
     .pipe(replace(/monsterAttributes/g, 'Bc'))
     .pipe(replace(/basic/g, 'Bd'))
+    //new 
+    .pipe(replace(/monsterA/g, 'Be'))
+    .pipe(replace(/advanced/g, 'Bf'))
+    .pipe(replace(/codeMonsters/g, 'Bg'))
+    .pipe(replace(/plats/g, 'Bh'))
+    .pipe(replace(/factor/g, 'Bi'))
+    .pipe(replace(/pendiente/g, 'Bj'))
+    //.pipe(replace(//g, 'Bj'))
+    .pipe(replace(/advanced/g, 'Bd'))
     //newss
     .pipe(replace(/Sprite/g, 'AM'))
     .pipe(replace(/element/g, 'Au'))

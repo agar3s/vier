@@ -26,7 +26,6 @@ function gameLoop() {
   ctx.clearRect(wx, wy, dimensions.w, dimensions.h);
   //draw the guys
   xlevel.draw(wx, wy);
-  firexx.draw();
   
   heroS.accelerateY(0.8);
   xlevel.collides(heroS);

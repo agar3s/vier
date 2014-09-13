@@ -78,12 +78,4 @@ var transformSprite = function(file){
   });
 };
 
-transformSprite('gmaster0');
-transformSprite('gmaster1');
-transformSprite('gmaster2');
-transformSprite('gmaster3');
-transformSprite('gmaster4');
-transformSprite('gmaster5');
-transformSprite('gmaster6');
-transformSprite('gmaster7');
-transformSprite('gmaster8');
+transformSprite('water01');

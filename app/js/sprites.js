@@ -1,4 +1,6 @@
 var fire = '{f{g{h{i{u!$%056?@ABFORV`bcefostu~,';
+//var air = '{({){*{+{6{7{<{B{D{E{M{V{W{X{^{i{o%*5;FKV[eku~%~/~5~<~=~>~D~H~J~K~S~\\~]~b~n~o~p~q';
+//var water = '{j{k{l{u"#$(369>@ABEIUY^`abeis~!~$~+~-~.~/~3~@~A~B';
 var hero  = '{H{I{X{Y"#$134ACEQSVacdsu~.~1~=~@~M~P~]~^~`~a';
 var heropower = '{I{J{Y{Z"#$134ACERSVcdsu~.~0~=~?~M~O~]~^~_~`';
 var herorun = '{Y{Z{i{j"#$134ACDESVWbcdqru~)~*~+~0~9~A~Q~a~b';
