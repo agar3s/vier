@@ -18,7 +18,10 @@ var frames = [
   '~/~.~-uqecaTR', //9 skull 1
   '~?~>~=~0~,usqdb', //10 skull 2
   '~O~N~M~@~<~0~.~,tr', //11 skull 3
-  '~`~_~^~]~P~O~N~M~b~a~Z~Y~R~Q~J~I~B~A~2~1' //12 minion 1
+  '~`~_~^~]~P~O~N~M~b~a~Z~Y~R~Q~J~I~B~A~2~1', //12 minion 1
+  '~^~N~>~.s{j{i{[{X~a~]~\~Q~M~L~<~0~,uTR{J{I{;{8', //13 elemental,
+  '~o~n~m~^~\~O~M~>~=~.~-pF6{3~q~p~k~`~[~P~L~?~<~/~,soVG{U', //14 wizard,
+  '~]~Na`5%{2~o~l~^~\~O~M~.p_UF6{V', //15 wizard,
 ];
 var defaultAnimations = {
   i:{kf:'', f:[0]}

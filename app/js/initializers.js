@@ -26,7 +26,7 @@ var enemypowers = [];
 //295, 55
 var elementColors = [55, 205, 115, 25,99];
 //E
-var basicColors = ['yellow', '#09F', '#1F0', '#F60', 'yellow'];
+var basicColors = ['yellow', '#09F', '#1F0', '#F60', 'purple'];
 var enemies = [];
 var particles = [];
 var platforms = [];

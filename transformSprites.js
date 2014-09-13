@@ -78,5 +78,6 @@ var transformSprite = function(file){
   });
 };
 
-transformSprite('minion0');
-transformSprite('minion1');
+transformSprite('wizard00');
+transformSprite('wizard01');
+transformSprite('wizard02');

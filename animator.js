@@ -1,7 +1,8 @@
 var fs = require('fs');
 var heroSprites = [
-  '{\'{({){*{7{8{9{:{G{H{I{J{W{X{Y{Z{e{f{g{h{i{j{u!"#$%./2367>?BCFGHRSbcrs~-~.~/~0~1~2~=~>~?~@~A~B~I~J~K~L~Q~R~Y~Z~[~\\~a~b',
-  '{\'{({){*{7{8{9{:{G{H{I{J{W{X{Y{Z{e{f{g{h{i{j{u!"#$%./2367>?BCFGHRSbcrs~-~.~/~0~=~>~?~@~K~L~M~N~O~P~[~\\~]~^~_~`'
+  '{4{5{6{7{8{G{H{I{U{V{W{X{Y{g{h"123@BCDGORUV_bors~,~/~<~?~L~P~[~`~k~l~p~q',
+  '{3{4{5{6{7{8{G{H{I{V{W{X{Y{g{h"1236@BCDFORU_bpr~-~.~=~>~M~O~\\~^~l~m~n~o',
+  '{2{3{4{5{6{7{8{G{H{I{W{X{Y{g{h"%1235@BCDOR`abr~-~=~>~N~]~m~n'
 ];
 
 function convertArray(sprite){
@@ -46,7 +47,7 @@ for (var i = 0; i < diffArray.length; i++) {
 };
 diffArray = diffArray.join('\n');
 
-fs.writeFile('./animations/minion', diffArray, function(err){
+fs.writeFile('./animations/wizard', diffArray, function(err){
   if(err){
     console.log('exception:', err);
     return;

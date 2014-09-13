@@ -20,7 +20,7 @@ var LevelGenerator = function(level){
   return new Level(level.width, monsters, level.factor, platformFunctions, level.pendiente, level.title);
   
 }
-var currentLevel = 'level2';
+var currentLevel = 'level4';
 var levels = {
   level1: {
     codeMonsters: ['a3b4','a3b9','a3b12', 'a3b15', 'a1b24', 'a1b27', 'a1b30', 'a1b35'],
@@ -47,7 +47,6 @@ var levels = {
   level2: {
     codeMonsters: ['a0b4','a2b9','a2b12', 'a0b15', 'a2b18', 'a0b27', 'a2c30', 'a0c35', 'a2c40', 'a0c45'],
     plats: ['a',20,'b', 15,'a', 20,'b', 15, 'a', 7,'v',21, 'a',10, 'b', 22, 'a', 100],
-    //plats: ['a',2,'b', 25,'a', 20,'b', 25, 'a', 7,'e',33, 'a',2, 'c', 22, 'a', 100],
     width: 4800,
     factor: 27,
     pendiente: -0.3,
@@ -68,25 +67,25 @@ var levels = {
     skill:2
   },
   level3: {
-    codeMonsters: ['a1b4','a3b9','a2b12', 'a0b15', 'a1b20', 'a2b30', 'a3b40', 'a0b45', 'a1b50', 'a2b55', 'a2b70', 'a3b80'],
+    codeMonsters: ['b1b4','b1a9','b2a12', 'b3m15', 'b1a20', 'b2a30', 'b3m40', 'b0m45', 'c1a47', 'c2a55', 'b2a70', 'c3b80'],
     plats: ['a', 6,'f', 6,'a', 5, 'b', 5,'a', 5,'b',5,'x',8, 'c',9,'a',9],
     width: 8400,
     factor: 149,
     pendiente: -0.5,
-    title: 'Water Palace',
+    title: 'Air Palace',
     nextl:'boss3'
   },
   boss3: {
-    codeMonsters:['x2m4'],
+    codeMonsters:['x3m4'],
     plats:['c',2,'x',24,'c',2],
     width: 1024,
     factor: 50,
     pendiente: -0.1,
-    title: 'Water Master',
+    title: 'Air Master',
     nextl:'level4'
   },
   level4:{
-    codeMonsters:['x2m4'],
+    codeMonsters:['d0m4','d2m8','d2m12','d3m16'],
     plats:['a',4,'g',30, 'a',15, 'b',25,'a',15, 'b', 20,'w',18,'a',20,'e',20,'x',10, 'd',20, 'a',50,'v',18,'e',10,'a',20,'e',30,'a',49],
     width: 10024,
     factor: 27,
