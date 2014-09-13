@@ -36,3 +36,6 @@ function createParticles(s, force, vx, vy, color){
     );
   }
 }
+function randomParticles(){
+  particles.push(new Particle(-viewport.x+Math.random()*1024,viewport.y+Math.random()*720,0,0.1,2,Math.random()*360));
+}

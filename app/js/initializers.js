@@ -38,7 +38,7 @@ var elementalNames=['Air', 'Water', 'Earth', 'Fire'];
 ctx.textBaseline="middle";
 ctx.textAlign="center"; 
 function setFont(type){
-  ctx.font=type?'normal lighter 12px':'normal lighter 18px fantasy';
+  ctx.font=type?'normal lighter 12px':'normal lighter 20px monospace';
 }
 setFont();
 
