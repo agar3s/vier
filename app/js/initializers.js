@@ -13,6 +13,10 @@ var black = '#000';
 var white = '#fff';
 var xlevel;
 
+var xAxis=0;
+var yAxis=0;
+
+var currentLevel = 'level1';
 
 var zoomFactor =(innerHeight-100)/dimensions.h; 
 //var zoomFactor =1; 

@@ -20,6 +20,11 @@ var yOld = myhero.sprite.y;
 //ctx.transform(1, 0, 0, 1, 0, 0);
 var currentScreen = 'i';
 
+var updateBackground = function(xxs){
+  xAxis+=xxs*0.1;
+}
+
+
 function gameLoop() {
   var wx = -viewport.x;
   var wy = viewport.y;
@@ -134,6 +139,7 @@ function gameLoop() {
   viewport.y-=yyy;
   yOld = myhero.sprite.y;
   ctx.translate(xxx, yyy);
+  updateBackground(xxx);
 
   //draw user interface information
 }

@@ -44,7 +44,7 @@ var platformFunctions = {
 
 }
 
-var Level = function(width, enemiesVector, factor, platforms, pendiente, title){
+var Level = function(width, enemiesVector, factor, platforms, pendiente, title, backG){
   xf = 0;
   yf=0;
   var m = this;
@@ -83,9 +83,10 @@ var Level = function(width, enemiesVector, factor, platforms, pendiente, title){
     };
   }
   m.generateLevel(platforms, pendiente);
-
+  m.backG = backG; 
   m.draw = function(vx, vy){
     m.count++;
+    backG();
     var index = ~~(vx/m.factor);
     if(index<0){index=0;}
     var limit = index + 1+~~(dimensions.w/m.factor);

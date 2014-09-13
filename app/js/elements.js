@@ -45,7 +45,6 @@ var ElementalSkill = function(types, charge){
   }
   m.lock = function(element){
     m.locks[element] = 1;
-    console.log(m.locks);
   }
   m.updateCurrentQ = function(){
     m.currentQ = m.charges[m.current];
