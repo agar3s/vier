@@ -15,6 +15,7 @@ var Power = function(type, pixelSize, damage, x, y, vx, vy){
   m.sprite.direction = vx>0;
   m.damage = damage;
   m.del = 0;
+  getAudio([type,0.0066,0.1909,0.1663,0.1679,0.5182,,,-0.1129,0.2115,0.6703,-0.7826,-0.1723,0.2605,-0.0009,0.3423,0.0018,-0.4875,0.2872,-0.0083,0.1956,0.7835,-0.4082,0.59])
   
   m.collides = function(){
     for (var i = enemies.length - 1; i >= 0; i--) {

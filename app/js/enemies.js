@@ -198,13 +198,18 @@ var Enemy = function(nameCode, type, x, vx, actionpipe, hp, pixelSize, coldown, 
     //damage =getTotalDamage(type, m.skills.current, damage) ;
     var totalDamage = getTotalDamage(type, m.skills.current, damage);
     m.sprite.x+=(direction?1:-1)*totalDamage*(10-m.damage);
-    
+    if(totalDamage==0){
+      getAudio([2,0.09,0.04,0.19,0.12,0.13,0.08,-0.6065,-0.82,0.07,0.85,,,,,0.99,-1,-0.86,1,0.74,0.09,0.18,-1,0.5])
+    }else{
+      getAudio([type,,0.0949,,0.2521,0.4777,,-0.6065,,,,,,,,,,,1,,,0.216,,(totalDamage/(2*damage))])
+    }
     if(m.sprite.hit(totalDamage)&&!m.del){
       m.del = 1;
       //make me particles
       createParticles(m.sprite, damage, 0, 0, m.color);
       //create a new element cell to drop out
       m.trigger('death');
+      getAudio([3,0.09,0.2099,0.99,0.5199,0.62,0.05,-0.4199,-0.2,,0.1099,,,,,0.5984,0.5199,-0.0849,1,,,,,0.5])
       //enemies.push(new Enemy(~~(Math.random()*4), new Sprite(hero)));
     }
     currentEnemy = m;

@@ -183,6 +183,10 @@ function mainLoop(){
     loop=0;
   }
   loop++;
+  with(gl){
+    texImage2D(TEXTURE_2D, 0, RGBA, RGBA, UNSIGNED_BYTE, canvitas);
+    drawArrays(TRIANGLES, 0, 6);
+  }
   ra(mainLoop);
 }
 

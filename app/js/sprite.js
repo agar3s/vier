@@ -184,6 +184,7 @@ var Sprite = function(code, animations){
         m.canDoubleJump = 0;
       m.landed = 0;
       m.setAnimation('j');
+      return true
     }
   }
   m.update= function(){

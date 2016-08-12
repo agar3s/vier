@@ -138,14 +138,14 @@ var monsterMoves = {
 monsterMoves.z = monsterMoves.m+'zx'+monsterMoves.e+'z'+monsterMoves.c+'z'+monsterMoves.d+'jw20z';
 //vx,hp,psize,coldown,trigger
 var monsterAttributes = {
-  minion: '2060F0',
-  elemental: '3102E2',
-  monster: '3153C1',
-  wizard: '415291',
+  minion: '2020F0',
+  elemental: '3042E2',
+  monster: '3083C1',
+  wizard: '406291',
   advanced: '304361',
-  boss1: '310490',
-  boss2: '420490',
-  boss3: '430590',
+  boss1: '308490',
+  boss2: '416490',
+  boss3: '425590',
   boss4: '330730',
   boss5: '420551',
   boss6: '750621',

@@ -42,9 +42,10 @@ var stormLoop = 0;
 var stormBack = function(){
   stormLoop++;
   ctx.fillStyle='#000';
-  if(stormLoop%220==0||stormLoop%221==0||stormLoop%224==0||stormLoop%225==0||stormLoop%228==0||stormLoop%229==0||stormLoop%230==0||stormLoop%231==0){
+  if(stormLoop%420==0||stormLoop%421==0||stormLoop%424==0||stormLoop%425==0||stormLoop%428==0||stormLoop%429==0||stormLoop%430==0||stormLoop%431==0){
     ctx.fillStyle='#555';
-    
+    if(stormLoop%420==0)
+      getAudio([3,0.1135,0.5,0.6231,0.6654,0.0449,,0.6264,-0.6229,-0.1508,0.8529,-0.5802,0.874,0.2927,0.0184,0.7343,-0.2326,-0.0537,0.4766,0.4925,0.0156,0.0633,-0.8909,0.4])
   }
   ctx.fillRect(-viewport.x,yAxis+viewport.y,dimensions.w,dimensions.h);
   particles.push(new Particle(-viewport.x+Math.random()*1024,viewport.y+Math.random()*720,0,0,2,Math.random()*180));

@@ -1,8 +1,46 @@
 <style>
-  * {background: #aaa;padding:0;margin:0 auto;}
-  canvas{background: #203;display: block;margin:50px auto;bottom:0;top:0;}
+  * {background: #000;padding:0;margin:0 auto;}
+  canvas{background: #000;display: block;margin:50px auto;bottom:0;top:0;}#c{display:none}
 </style>
+<script id="2d-vertex-shader" type="x-shader/x-vertex">
+    attribute vec2 ap;
+    attribute vec2 at;
+    uniform vec2 ur;
+    varying vec2 vtc;
+    void main() {
+       vec2 z=ap/ur;
+       vec2 z2=z*2.0;
+       vec2 cs=z2-1.0;
+       gl_Position=vec4(cs*vec2(1,-1),0,1);
+       vtc=at;
+    }
+</script>
+<script id="2d-fragment-shader" type="x-shader/x-fragment">
+    precision mediump float;
+    varying vec2 vtc;
+    uniform sampler2D im;
+    void main(){
+      vec4 s=vec4(0);
+      vec2 tc=vec2(vtc);
+      for(int i=-4;i<4;i++){
+        for(int j=-3;j<3;j++){
+          s+=texture2D(im,tc+vec2(j,i)*0.004)*0.25;
+        }
+      }
+      if(texture2D(im,tc).r<0.3){
+        gl_FragColor=s*s*0.012+texture2D(im,tc);
+      }else if(texture2D(im, tc).r<0.5){
+        gl_FragColor=s*s*0.009+texture2D(im,tc);
+      }else{
+        gl_FragColor=s*s*0.0075+texture2D(im,tc);
+      }
+
+
+    }
+</script>
 <canvas id='c' width='1024' height='720'></canvas>
+<canvas id='canvas3d' width='1024' height='720'></canvas>
+<script src='js/jsfxr.js'></script>
 <script src='js/initializers.js'></script>
 <script src='js/keyEvents.js'></script>
 <script src='js/elements.js'></script>

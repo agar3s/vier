@@ -1,19 +1,17 @@
-var gulp = require('gulp');
-var path = 'app/**';
-var clean = require('gulp-clean');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var zip = require('gulp-zip');
-var size = require('gulp-filesize');
-var runsequence = require('run-sequence');
-var wait = require('gulp-wait');
+var gulp = require('gulp')
+var del     = require('del')
+var concat = require('gulp-concat')
+var uglify = require('gulp-uglify')
+var zip = require('gulp-zip')
+var size = require('gulp-filesize')
+var runsequence = require('run-sequence')
+var wait = require('gulp-wait')
 
-var replace = require('gulp-replace');
+var replace = require('gulp-replace')
 
 
 gulp.task('clean', function(){
-  return gulp.src(['dist/*'], {read:false})
-  .pipe(clean());
+  return del(['dist/*']);
 });
 
 gulp.task('move', ['clean'],function(){
@@ -22,7 +20,9 @@ gulp.task('move', ['clean'],function(){
 });
 
 gulp.task('scripts', ['move'],function() {
-  gulp.src(['wrapper.txt',
+  gulp.src([
+            'wrapper.txt',            
+            './app/js/jsfxr.js',
             './app/js/initializers.js',
             './app/js/keyEvents.js',
             './app/js/elements.js',
@@ -42,6 +42,7 @@ gulp.task('scripts', ['move'],function() {
             'wrappere.txt'
           ])
     .pipe(concat('a.js'))
+    /*
     .pipe(replace(/drawCharacter/g, 'a'))
     .pipe(replace(/accelerateY/g, 'b'))
     .pipe(replace(/updateX/g, 'c'))
@@ -70,7 +71,7 @@ gulp.task('scripts', ['move'],function() {
     .pipe(replace(/data/g, 'D'))
     .pipe(replace(/sprite/g, 'S'))
     .pipe(replace(/elementalMatriz/g, 'af'))
-    .pipe(replace(/draw/g, 'ag'))
+    //.pipe(replace(/draw/g, 'ag'))
     .pipe(replace(/animate/g, 'ah'))
     .pipe(replace(/outside/g, 'ai'))
     .pipe(replace(/manage/g, 'aj'))
@@ -103,7 +104,7 @@ gulp.task('scripts', ['move'],function() {
     .pipe(replace(/gameLoop/g, 'Al'))
     .pipe(replace(/heroS/g, 'Am'))
     .pipe(replace(/platforms/g, 'An'))
-    .pipe(replace(/canvas/g, 'Ao'))
+    //.pipe(replace(/canvas/g, 'Ao'))
     .pipe(replace(/ctx/g, 'Ap'))
     .pipe(replace(/bounds/g, 'Aq'))
     .pipe(replace(/heropower/g, 'Ar'))
@@ -187,7 +188,8 @@ gulp.task('scripts', ['move'],function() {
     .pipe(replace(/element/g, 'Au'))
     .pipe(replace(/hero/g, 'AX'))
 
-    .pipe(uglify())
+    //.pipe(uglify())
+    */
     .pipe(gulp.dest('./dist/'))
 });
 

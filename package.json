@@ -30,7 +30,6 @@
     "gulp-clean": "^0.3.1",
     "gulp-concat": "^2.3.4",
     "gulp-filesize": "0.0.6",
-    "gulp-modify": "0.0.4",
     "gulp-replace": "^0.4.0",
     "gulp-zip": "^2.0.1",
     "run-sequence": "^0.3.6"
